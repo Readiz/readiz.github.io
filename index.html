@@ -20,11 +20,47 @@
         <script src="./js/readiz_util.js"></script>
         <script>
             window.Terminal = $('body').terminal({
+                help: function() {
+                    this.echo('main, about, log, blog, util, feed, bot, stock, memo, echo, calc');
+                },
+                main: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://main.readiz.com/';
+                },
+                about: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://about.readiz.com/';
+                },
+                log: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://log.readiz.com/';
+                },
+                blog: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://blog.readiz.com/';
+                },
+                util: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://util.readiz.com/';
+                },
+                feed: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://feed.readiz.com/';
+                },
+                bot: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://bot.readiz.com/';
+                },
+                stock: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://p.readiz.com/stock';
+                },
+                memo: function() {
+                    this.echo('Redirecting...')
+                    location.href = 'http://p.readiz.com/memo';
+                },
                 echo: function(arg1) {
                     this.echo(arg1);
-                },
-                help: function() {
-                    this.echo('echo, calc');
                 },
                 calc: {
                     add: function(a, b) {
@@ -35,6 +71,8 @@
                     }
                 },
                 plogin: function(arg1, arg2) {
+                    this.echo('Signing in...');
+
                     var url = "https://p.readiz.com/do_login";
                     var values = { username: arg1, password: arg2 };
                     var form = createElement("form", {action: url,
