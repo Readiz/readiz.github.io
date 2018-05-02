@@ -11,18 +11,29 @@
         <!-- Place favicon.ico in the root directory -->
         <!--<link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">-->
+        <link href="/css/jquery.terminal.css" rel="stylesheet"/>
+    </head>
+    <body>
         <script src="/js/jquery-1.7.1.min.js"></script>
         <script src="/js/jquery.mousewheel-min.js"></script>
         <script src="/js/jquery.terminal.min.js"></script>
-        <link href="/css/jquery.terminal.css" rel="stylesheet"/>
         <script>
-            jQuery(document).ready(function($) {
-                $('body').terminal("https://p.readiz.com/do_login", {
-                    login: true,
-                    greetings: "You are authenticated"
-                });
+            window.Terminal = $('body').terminal({
+                echo: function(arg1) {
+                    this.echo(arg1);
+                },
+                calc: {
+                    add: function(a, b) {
+                        this.echo(a+b);
+                    },
+                    sub: function(a, b) {
+                        this.echo(a-b);
+                    }
+                }
+            }, { 
+                prompt: '>', 
+                greeting: true 
             });
         </script>
-  </head>
-<body>
-</body>
+    </body>
+</html>
