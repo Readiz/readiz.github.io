@@ -21,7 +21,7 @@
         <script>
             window.Terminal = $('body').terminal({
                 help: function() {
-                    this.echo('main, about, log, blog, util, feed, bot, stock, memo, echo, calc');
+                    this.echo('help, main, about, log, blog, util, feed, bot, stock, memo, echo');
                 },
                 main: function() {
                     this.echo('Redirecting...')
@@ -74,7 +74,7 @@
                     this.echo('Signing in...');
 
                     var url = "https://p.readiz.com/do_login";
-                    var values = { username: arg1, password: arg2 };
+                    var values = { username: arg1, password: arg2, return_page: 'https://p.readiz.com/summary' };
                     var form = createElement("form", {action: url,
                                                     method: "POST",
                                                     style: "display: none"});
@@ -108,7 +108,8 @@
                           '# Read everything in the world easily.\n' +
                           '# http://readiz.com/\n' +
                           '########################################\n\n' +
-                          'To see executable commands, plz type \'help\'.\n'
+                          'Executable commands:\n' +
+                          'main, about, log, blog, util, feed, bot, \nstock, memo, echo, help\n'
             });
         </script>
     </body>

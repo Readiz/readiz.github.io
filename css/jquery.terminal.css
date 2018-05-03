@@ -74,7 +74,7 @@
 }
 body.terminal {
     /* height: 100%; */
-    min-height: 100vh;
+    /* min-height: 100vh; */
     margin: 0;
 }
 .terminal > div {
