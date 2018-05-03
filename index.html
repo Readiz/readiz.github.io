@@ -23,7 +23,9 @@
                 Readiz.terminalCommandsObject, 
                 Readiz.terminalSettingsObject
             );
-            $(document).on('click', function() { window.Terminal.focus() });
+            setTimeout(function() {
+                $(document).on('click', function() { window.Terminal.focus() })
+            }, 100);
         </script>
     </body>
 </html>
