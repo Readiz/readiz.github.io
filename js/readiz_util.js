@@ -98,14 +98,12 @@ var Readiz = {};
 Readiz.terminalSettingsObject = { 
     ps: '[user@readiz]$', 
     i18n: {
-        welcome: '#######################################\n' +
-            '# Readiz\n' +
-            '# -\n' +
-            '# Read everything in the world easily.\n' +
-            '# <a href="http://readiz.com/">http://readiz.com/</a>\n' +
-            '########################################\n\n' +
-            'Executable Commands:\nhelp, hello, history, clear\n' +
-            'main, about, log, blog, util, feed, bot, \nstock, memo, collected, plogin\n'
+        welcome: 'Readiz\n' +
+            '-\n' +
+            'Read everything in the world easily.\n' +
+            '<a href="http://readiz.com/">http://readiz.com/</a>\n\n' +
+            'Executable Commands:\nhelp, hello, history, clear, main\n' +
+            'about, log, blog, util, feed, bot\nstock, memo, collected, plogin\n'
     }
 };
 Readiz.makePublicPageObject = function(keyword) {
