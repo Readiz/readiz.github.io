@@ -103,7 +103,7 @@ Readiz.terminalSettingsObject = {
             'Read everything in the world easily.\n' +
             '<a href="http://readiz.com/">http://readiz.com/</a>\n\n' +
             'Executable Commands:\nhelp, hello, history, clear, main\n' +
-            'about, log, blog, util, feed, bot\nstock, memo, collected, plogin\n'
+            'about, log, blog, util, feed, bot\nstock, memo, favorite, plogin, cl\n'
     }
 };
 Readiz.makePublicPageObject = function(keyword) {
@@ -145,7 +145,7 @@ Readiz.makePublicPageObject('feed'),
 Readiz.makePublicPageObject('bot'),
 Readiz.makePrivatePageObject('stock'),
 Readiz.makePrivatePageObject('memo'),
-Readiz.makePrivatePageObject('collected'),
+Readiz.makePrivatePageObject('favorite'),
 {
     name : 'plogin',
     method : function(cmd) {
@@ -189,5 +189,24 @@ Readiz.makePrivatePageObject('collected'),
         return cmd;
     },
     help : 'Private login'
+},
+{
+    name : 'cl',
+    method : function(cmd) {
+        var last = $ptty.get_command_option('last');
+        var args = last.split(' ');
+        var arg1 = args[1];
+
+        if (!(arg1)) {
+            cmd.out = 'Redirecting...';
+            location.href = 'https://p.readiz.com/collected';
+            return cmd;
+        }
+
+        cmd.out = 'Redirecting...';
+        location.href = 'https://p.readiz.com/collected/' + arg1;
+        return cmd;
+    },
+    help : 'Redirect to collected folder'
 }
 ];
