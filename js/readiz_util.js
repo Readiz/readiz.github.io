@@ -102,8 +102,23 @@ Readiz.terminalSettingsObject = {
             '-\n' +
             'Read everything in the world easily.\n' +
             '<a href="http://readiz.com/">http://readiz.com/</a>\n\n' +
-            'Executable Commands:\nhelp, hello, history, clear, main\n' +
-            'about, log, blog, util, feed, bot\nstock, memo, favorite, plogin, cl\n'
+            'Executable Commands:\n' +
+            '<span class="command_guide">help</span>, ' +
+            '<span class="command_guide">hello</span>, ' + 
+            '<span class="command_guide">history</span>, ' +
+            '<span class="command_guide">clear</span>, ' + 
+            '<span class="command_guide">main</span>\n' +
+            '<span class="command_guide">about</span>, ' +
+            '<span class="command_guide">log</span>, ' +
+            '<span class="command_guide">blog</span>, ' +
+            '<span class="command_guide">util</span>, ' +
+            '<span class="command_guide">feed</span>, ' +
+            '<span class="command_guide">bot</span>\n' + 
+            '<span class="command_guide">stock</span>, ' +
+            '<span class="command_guide">memo</span>, ' +
+            '<span class="command_guide">favorite</span>, ' +
+            '<span class="command_guide_onlytype">plogin</span>, ' +
+            '<span class="command_guide_onlytype">cl</span>\n'
     }
 };
 Readiz.makePublicPageObject = function(keyword) {
