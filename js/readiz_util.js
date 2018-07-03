@@ -122,7 +122,7 @@ Readiz.CheckPrivateMenuAvailable = function() {
             for (var i = 0; i < data.commands.length; i ++) {
                 $ptty.register('command', {
                     name: data.commands[i].name,
-                    method: eval(data.commands[i].function),
+                    method: eval(data.commands[i].function.replace(/\n/gi,'')),
                     help: data.commands[i].help,
                 });
             }
