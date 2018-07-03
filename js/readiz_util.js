@@ -18,12 +18,8 @@ Readiz.terminalSettingsObject = {
             '<span class="command_guide">util</span>, ' +
             '<span class="command_guide">feed</span>, ' +
             '<span class="command_guide">bot</span>\n' + 
-            '<span class="command_guide">stock</span>, ' +
-            '<span class="command_guide">scrap</span>, ' +
-            '<span class="command_guide">memo</span>, ' +
-            '<span class="command_guide">favorite</span>, ' +
             '<span class="command_guide_onlytype">plogin</span>, ' +
-            '<span class="command_guide_onlytype">cl</span>\n'
+            '<span class="command_guide">pmenu</span>\n'
     }
 };
 Readiz.makePublicPageObject = function(keyword) {
@@ -37,29 +33,10 @@ Readiz.makePublicPageObject = function(keyword) {
         help : 'Goto ' + keyword + ' page.'
     }
 };
-Readiz.makePrivatePageObject = function(keyword) {
-    return {
-        name : keyword,
-        method : function(cmd){
-            cmd.out = 'Redirecting...';
-            location.href = 'https://p.readiz.com/' + keyword;
-            return cmd;
-        },
-        help : 'Goto ' + keyword + ' page.'
-    }
-};
 Readiz.terminalCommandsObject = [{
     name : 'hello',
     method : function(cmd){
         cmd.out = '<h1>Hello World!</h1>';
-        fetch("https://t.readiz.com/menu", {
-            method: "GET",
-            mode: 'cors',
-        }).then(function(response) {
-            return response.json(); 
-        }).then(function(data) {
-            alert(JSON.stringify(data));
-        });
         return cmd;
     },
     help : 'A demo command.'
@@ -71,10 +48,6 @@ Readiz.makePublicPageObject('blog'),
 Readiz.makePublicPageObject('util'),
 Readiz.makePublicPageObject('feed'),
 Readiz.makePublicPageObject('bot'),
-Readiz.makePrivatePageObject('scrap'),
-Readiz.makePrivatePageObject('stock'),
-Readiz.makePrivatePageObject('memo'),
-Readiz.makePrivatePageObject('favorite'),
 {
     name : 'plogin',
     method : function(cmd) {
@@ -118,24 +91,25 @@ Readiz.makePrivatePageObject('favorite'),
         return cmd;
     },
     help : 'Private login'
-},
-{
-    name : 'cl',
-    method : function(cmd) {
-        var last = $ptty.get_command_option('last');
-        var args = last.split(' ');
-        var arg1 = args[1];
-
-        if (!(arg1)) {
-            cmd.out = 'Redirecting...';
-            location.href = 'https://p.readiz.com/collected';
-            return cmd;
-        }
-
-        cmd.out = 'Redirecting...';
-        location.href = 'https://p.readiz.com/collected/' + arg1;
+},{
+    name : 'pmenu',
+    method : function(cmd){
+        cmd.out = 'Fetching more menus if it is available...';
+        fetch("https://t.readiz.com/menu", {
+            method: "GET",
+            mode: 'cors',
+        }).then(function(response) {
+            return response.json(); 
+        }).then(function(data) {
+            for (var i = 0; i < data.commands.length; i ++) {
+                $ptty.register('command', {
+                    name: data.commands[i].name,
+                    method: eval(data.commands[i].function)
+                });
+            }
+        });
         return cmd;
     },
-    help : 'Redirect to collected folder'
-}
+    help : 'A demo command.'
+},
 ];
