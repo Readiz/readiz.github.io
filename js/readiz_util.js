@@ -111,6 +111,6 @@ Readiz.makePublicPageObject('bot'),
         });
         return cmd;
     },
-    help : 'A demo command.'
+    help : 'Fetching Private Menu'
 },
 ];
