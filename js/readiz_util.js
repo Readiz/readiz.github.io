@@ -92,7 +92,7 @@ Readiz.makePublicPageObject('bot'),
         cmd.out = 'Signing In...'
         setTimeout(function() {
             Readiz.CheckPrivateMenuAvailable();
-        }, 3000);
+        }, 1000);
         return cmd;
     },
     help : 'Private login'
