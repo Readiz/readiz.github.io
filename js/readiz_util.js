@@ -107,9 +107,7 @@ Readiz.makePublicPageObject('bot'),
                 console.log(i, data.commands[i].function);
                 $ptty.register('command', {
                     name: data.commands[i].name,
-                    method: function(cmd) {
-                        eval(data.commands[i].function)
-                    },
+                    method: eval(data.commands[i].function),
                     help: data.commands[i].help,
                 });
             }
