@@ -102,7 +102,9 @@ Readiz.makePublicPageObject('bot'),
         }).then(function(response) {
             return response.json(); 
         }).then(function(data) {
+            console.log(data);
             for (var i = 0; i < data.commands.length; i ++) {
+                console.log(i, data.commands[i].function);
                 $ptty.register('command', {
                     name: data.commands[i].name,
                     method: eval(data.commands[i].function),
