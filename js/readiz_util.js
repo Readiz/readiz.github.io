@@ -90,6 +90,9 @@ Readiz.makePublicPageObject('bot'),
         document.body.removeChild(form);
 
         cmd.out = 'Signing In...'
+        setTimeout(function() {
+            Readiz.CheckPrivateMenuAvailable();
+        }, 3000);
         return cmd;
     },
     help : 'Private login'
@@ -97,30 +100,34 @@ Readiz.makePublicPageObject('bot'),
     name : 'pmenu',
     method : function(cmd){
         cmd.out = 'Fetching more menus if it is available...';
-        fetch("https://t.readiz.com/menu", {
-            method: "GET",
-            mode: 'cors',
-            credentials: 'include'
-        }).then(function(response) {
-            return response.json(); 
-        }).then(function(data) {
-            if (data.commands.length > 0) {
-                for (var j = 0; j < Readiz.PublicCommands.length; j++) {
-                    $ptty.unregister('command', Readiz.PublicCommands[j]);
-                }
-                for (var i = 0; i < data.commands.length; i ++) {
-                    $ptty.register('command', {
-                        name: data.commands[i].name,
-                        method: eval(data.commands[i].function),
-                        help: data.commands[i].help,
-                    });
-                }
-                $ptty.run_command('clear');
-                $ptty.run_command('help');
-            }
-        });
+        Readiz.CheckPrivateMenuAvailable();
         return cmd;
     },
     help : 'Fetching Private Menu'
 },
 ];
+
+Readiz.CheckPrivateMenuAvailable = function() {
+    fetch("https://t.readiz.com/menu", {
+        method: "GET",
+        mode: 'cors',
+        credentials: 'include'
+    }).then(function(response) {
+        return response.json(); 
+    }).then(function(data) {
+        if (data.commands.length > 0) {
+            for (var j = 0; j < Readiz.PublicCommands.length; j++) {
+                $ptty.unregister('command', Readiz.PublicCommands[j]);
+            }
+            for (var i = 0; i < data.commands.length; i ++) {
+                $ptty.register('command', {
+                    name: data.commands[i].name,
+                    method: eval(data.commands[i].function),
+                    help: data.commands[i].help,
+                });
+            }
+            $ptty.run_command('clear');
+            $ptty.run_command('help');
+        }
+    });
+};
