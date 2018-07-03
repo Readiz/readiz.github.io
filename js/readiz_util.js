@@ -104,15 +104,15 @@ Readiz.makePublicPageObject('bot'),
         }).then(function(response) {
             return response.json(); 
         }).then(function(data) {
+            for (var j = 0; j < Readiz.PublicCommands.length; j++) {
+                $ptty.unregister('command', Readiz.PublicCommands[j]);
+            }
             for (var i = 0; i < data.commands.length; i ++) {
                 $ptty.register('command', {
                     name: data.commands[i].name,
                     method: eval(data.commands[i].function),
                     help: data.commands[i].help,
                 });
-            }
-            for (var j = 0; j < Readiz.PublicCommands.length; j++) {
-                $ptty.unregister('command', Readiz.PublicCommands[j]);
             }
             $ptty.run_command('clear');
             $ptty.run_command('help');
