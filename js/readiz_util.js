@@ -33,6 +33,7 @@ Readiz.makePublicPageObject = function(keyword) {
         help : 'Goto ' + keyword + ' page.'
     }
 };
+Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot'];
 Readiz.terminalCommandsObject = [{
     name : 'hello',
     method : function(cmd){
@@ -65,7 +66,8 @@ Readiz.makePublicPageObject('bot'),
         var values = { username: arg1, password: arg2, return_page: 'https://p.readiz.com/summary' };
         var form = createElement("form", {action: url,
                                         method: "POST",
-                                        style: "display: none"});
+                                        style: 'display: none',
+                                        target: 'hidden_iframe'});
         for (var property in values) {
             if (values.hasOwnProperty(property)) {
                 var value = values[property];
@@ -102,15 +104,17 @@ Readiz.makePublicPageObject('bot'),
         }).then(function(response) {
             return response.json(); 
         }).then(function(data) {
-            console.log(data);
             for (var i = 0; i < data.commands.length; i ++) {
-                console.log(i, data.commands[i].function);
                 $ptty.register('command', {
                     name: data.commands[i].name,
                     method: eval(data.commands[i].function),
                     help: data.commands[i].help,
                 });
             }
+            for (var j = 0; j < Readiz.PublicCommands.length; j++) {
+                $ptty.unregister('command', Readiz.PublicCommands[j]);
+            }
+            $ptty.run_command('clear');
             $ptty.run_command('help');
         });
         return cmd;
