@@ -21,10 +21,13 @@
         <script src="./js/jquery-2.2.2.min.js"></script>
         <script src="./js/ptty.jquery.min.js"></script>
         <script>
-            loadJS('./js/readiz_util.js?' + Math.floor(Math.random() * 100000), function() {
-                console.log('Util loaded');
-                loadJS('./js/main.js?' + Math.floor(Math.random() * 100000), function() {
-                    console.log('Main loaded');
+            loadJS('./js/common_util.js?' + Math.floor(Math.random() * 100000), function() {
+                console.log('Common Util loaded');
+                loadJS('./js/readiz_util.js?' + Math.floor(Math.random() * 100000), function() {
+                    console.log('Custom Util loaded');
+                    loadJS('./js/main.js?' + Math.floor(Math.random() * 100000), function() {
+                        console.log('Main loaded');
+                    });
                 });
             });
         </script>
