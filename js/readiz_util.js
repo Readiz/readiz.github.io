@@ -84,7 +84,7 @@ Readiz.makePublicPageObject('bot'),
         cmd.out = 'Signing In...'
         setTimeout(function() {
             Readiz.CheckPrivateMenuAvailable();
-        }, 1000);
+        }, 2000);
         return cmd;
     },
     help : 'Private login'
@@ -98,6 +98,18 @@ Readiz.makePublicPageObject('bot'),
     help : 'Fetching Private Menu'
 },
 ];
+
+Readiz.RegisterCommandClickEvent = function() {
+  $('.command_guide').on('click', function() {
+    var string_guide = $(this).html();
+    $('.input').html(string_guide); // This is terminal's prompt!
+    $('.input').trigger({type: 'keydown', which: 13, keyCode: 13});
+  });
+  $('.command_guide_onlytype').on('click', function() {
+    var string_guide = $(this).html();
+    $('.input').html(string_guide + ' '); // This is terminal's prompt!
+  });
+}
 
 Readiz.CheckPrivateMenuAvailable = function() {
     fetch("https://t.readiz.com/menu", {
@@ -130,6 +142,7 @@ Readiz.CheckPrivateMenuAvailable = function() {
             guide += '<br>';
             $ptty.run_command('clear');
             $('#terminal .content').append(guide);
+            Readiz.RegisterCommandClickEvent();
             $ptty.run_command('hello');
         }
     });
