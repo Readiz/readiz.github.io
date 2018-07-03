@@ -115,6 +115,7 @@ Readiz.terminalSettingsObject = {
             '<span class="command_guide">feed</span>, ' +
             '<span class="command_guide">bot</span>\n' + 
             '<span class="command_guide">stock</span>, ' +
+            '<span class="command_guide">scrap</span>, ' +
             '<span class="command_guide">memo</span>, ' +
             '<span class="command_guide">favorite</span>, ' +
             '<span class="command_guide_onlytype">plogin</span>, ' +
@@ -158,6 +159,7 @@ Readiz.makePublicPageObject('blog'),
 Readiz.makePublicPageObject('util'),
 Readiz.makePublicPageObject('feed'),
 Readiz.makePublicPageObject('bot'),
+Readiz.makePrivatePageObject('scrap'),
 Readiz.makePrivatePageObject('stock'),
 Readiz.makePrivatePageObject('memo'),
 Readiz.makePrivatePageObject('favorite'),
