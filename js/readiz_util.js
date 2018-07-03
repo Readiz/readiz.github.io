@@ -34,14 +34,6 @@ Readiz.makePublicPageObject = function(keyword) {
 };
 Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'plogin', 'pmenu'];
 Readiz.terminalCommandsObject = [
-// {
-//     name : 'hello',
-//     method : function(cmd){
-//         cmd.out = '<h1>Hello World!</h1>';
-//         return cmd;
-//     },
-//     help : 'A demo command.'
-// },
 Readiz.makePublicPageObject('main'),
 Readiz.makePublicPageObject('about'),
 Readiz.makePublicPageObject('log'),
@@ -138,7 +130,7 @@ Readiz.CheckPrivateMenuAvailable = function() {
             guide += '<br>';
             $ptty.run_command('clear');
             $('#terminal .content').append(guide);
-            // $ptty.run_command('help');
+            $ptty.run_command('hello');
         }
     });
 };
