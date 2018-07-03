@@ -8,7 +8,6 @@ Readiz.terminalSettingsObject = {
             '<a href="http://readiz.com/">http://readiz.com/</a>\n\n' +
             'Executable Commands:\n' +
             '<span class="command_guide">help</span>, ' +
-            '<span class="command_guide">hello</span>, ' + 
             '<span class="command_guide">history</span>, ' +
             '<span class="command_guide">clear</span>, ' + 
             '<span class="command_guide">main</span>\n' +
@@ -33,15 +32,16 @@ Readiz.makePublicPageObject = function(keyword) {
         help : 'Goto ' + keyword + ' page.'
     }
 };
-Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'plogin'];
-Readiz.terminalCommandsObject = [{
-    name : 'hello',
-    method : function(cmd){
-        cmd.out = '<h1>Hello World!</h1>';
-        return cmd;
-    },
-    help : 'A demo command.'
-},
+Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'plogin', 'pmenu'];
+Readiz.terminalCommandsObject = [
+// {
+//     name : 'hello',
+//     method : function(cmd){
+//         cmd.out = '<h1>Hello World!</h1>';
+//         return cmd;
+//     },
+//     help : 'A demo command.'
+// },
 Readiz.makePublicPageObject('main'),
 Readiz.makePublicPageObject('about'),
 Readiz.makePublicPageObject('log'),
