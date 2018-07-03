@@ -33,7 +33,7 @@ Readiz.makePublicPageObject = function(keyword) {
         help : 'Goto ' + keyword + ' page.'
     }
 };
-Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot'];
+Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'plogin'];
 Readiz.terminalCommandsObject = [{
     name : 'hello',
     method : function(cmd){
@@ -104,18 +104,20 @@ Readiz.makePublicPageObject('bot'),
         }).then(function(response) {
             return response.json(); 
         }).then(function(data) {
-            for (var j = 0; j < Readiz.PublicCommands.length; j++) {
-                $ptty.unregister('command', Readiz.PublicCommands[j]);
+            if (data.commands.length > 0) {
+                for (var j = 0; j < Readiz.PublicCommands.length; j++) {
+                    $ptty.unregister('command', Readiz.PublicCommands[j]);
+                }
+                for (var i = 0; i < data.commands.length; i ++) {
+                    $ptty.register('command', {
+                        name: data.commands[i].name,
+                        method: eval(data.commands[i].function),
+                        help: data.commands[i].help,
+                    });
+                }
+                $ptty.run_command('clear');
+                $ptty.run_command('help');
             }
-            for (var i = 0; i < data.commands.length; i ++) {
-                $ptty.register('command', {
-                    name: data.commands[i].name,
-                    method: eval(data.commands[i].function),
-                    help: data.commands[i].help,
-                });
-            }
-            $ptty.run_command('clear');
-            $ptty.run_command('help');
         });
         return cmd;
     },
