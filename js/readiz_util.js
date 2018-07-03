@@ -54,14 +54,15 @@ Readiz.terminalCommandsObject = [{
         cmd.out = '<h1>Hello World!</h1>';
         fetch("https://t.readiz.com/menu", {
             method: "GET",
+            mode: 'no-cors',
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             body: "Test"
-            }).then(function(res) {
-                alert(JSON.stringify(res));
-            }, function(e) {
-                alert("Error submitting form!");
+        }).then(function(res) {
+            alert(JSON.stringify(res));
+        }, function(e) {
+            alert("Error submitting form!");
         });
         return cmd;
     },
