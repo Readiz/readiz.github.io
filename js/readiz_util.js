@@ -116,11 +116,11 @@ Readiz.CheckPrivateMenuAvailable = function() {
         return response.json(); 
     }).then(function(data) {
         if (data.commands.length > 0) {
-            var guide = '<div>Readiz\n' +
-                        '-\n' +
-                        'Read everything in the world easily.\n' +
-                        '<a href="http://readiz.com/">http://readiz.com/</a>\n\n' +
-                        'Executable Commands:\n' +
+            var guide = 'Readiz<br>' +
+                        '-<br>' +
+                        'Read everything in the world easily.<br>' +
+                        '<a href="http://readiz.com/">http://readiz.com/</a><br><br>' +
+                        'Executable Commands:<br>' +
                         '<span class="command_guide">help</span>, ';
 
             for (var j = 0; j < Readiz.PublicCommands.length; j++) {
@@ -135,7 +135,7 @@ Readiz.CheckPrivateMenuAvailable = function() {
                     help: data.commands[i].help,
                 });
             }
-            guide += '</div>';
+            guide += '<br>';
             $ptty.run_command('clear');
             $('#terminal .content').append(guide);
             // $ptty.run_command('help');
