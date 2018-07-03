@@ -116,10 +116,19 @@ Readiz.CheckPrivateMenuAvailable = function() {
         return response.json(); 
     }).then(function(data) {
         if (data.commands.length > 0) {
+            var guide = 'Readiz\n' +
+                        '-\n' +
+                        'Read everything in the world easily.\n' +
+                        '<a href="http://readiz.com/">http://readiz.com/</a>\n\n' +
+                        'Executable Commands:\n' +
+                        '<span class="command_guide">help</span>, ';
+
             for (var j = 0; j < Readiz.PublicCommands.length; j++) {
                 $ptty.unregister('command', Readiz.PublicCommands[j]);
             }
+
             for (var i = 0; i < data.commands.length; i ++) {
+                guide += '<span class="command_guide">' + data.commands[i].name + '</span>, ';
                 $ptty.register('command', {
                     name: data.commands[i].name,
                     method: eval(data.commands[i].function.replace(/\n/gi,'')),
@@ -127,7 +136,9 @@ Readiz.CheckPrivateMenuAvailable = function() {
                 });
             }
             $ptty.run_command('clear');
-            $ptty.run_command('help');
+
+            $('#terminal .content').append(guide);
+            // $ptty.run_command('help');
         }
     });
 };
