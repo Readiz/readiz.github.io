@@ -17,26 +17,15 @@
     </head>
     <body>
         <div id="terminal"></div>
+        <script src="./js/loadJS.min.js"></script>
         <script src="./js/jquery-2.2.2.min.js"></script>
         <script src="./js/ptty.jquery.min.js"></script>
-        <script src="./js/readiz_util.js"></script>
         <script>
-            // Start ptty
-            var $ptty = $('#terminal').Ptty(
-                Readiz.terminalSettingsObject
-            );
-            // Register a command.
-            for (var i = 0; i < Readiz.terminalCommandsObject.length; i++) {
-                $ptty.register('command', Readiz.terminalCommandsObject[i]);
-            }
-            $('.command_guide').on('click', function() {
-                var string_guide = $(this).html();
-                $('.input').html(string_guide); // This is terminal's prompt!
-                $('.input').trigger({type: 'keydown', which: 13, keyCode: 13});
-            });
-            $('.command_guide_onlytype').on('click', function() {
-                var string_guide = $(this).html();
-                $('.input').html(string_guide + ' '); // This is terminal's prompt!
+            loadJS('./js/readiz_util.js?' + Math.floor(Math.random() * 100000), function() {
+                console.log('Util loaded');
+                loadJS('./js/main.js?' + Math.floor(Math.random() * 100000), function() {
+                    console.log('Main loaded');
+                });
             });
         </script>
     </body>
