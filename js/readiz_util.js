@@ -107,6 +107,7 @@ Readiz.makePublicPageObject('bot'),
                     method: eval(data.commands[i].function)
                 });
             }
+            $ptty.run_command('help');
         });
         return cmd;
     },
