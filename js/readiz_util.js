@@ -32,7 +32,7 @@ Readiz.makePublicPageObject = function(keyword) {
         help : 'Goto ' + keyword + ' page.'
     }
 };
-Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'plogin', 'pmenu'];
+Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'nas', 'plogin', 'pmenu'];
 Readiz.terminalCommandsObject = [
 Readiz.makePublicPageObject('main'),
 Readiz.makePublicPageObject('about'),
@@ -41,6 +41,7 @@ Readiz.makePublicPageObject('blog'),
 Readiz.makePublicPageObject('util'),
 Readiz.makePublicPageObject('feed'),
 Readiz.makePublicPageObject('bot'),
+Readiz.makePublicPageObject('nas'),
 {
     name : 'plogin',
     method : function(cmd) {
