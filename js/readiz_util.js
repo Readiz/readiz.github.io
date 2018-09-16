@@ -19,6 +19,7 @@ Readiz.terminalSettingsObject = {
             '<span class="command_guide">bot</span>, ' + 
             '<span class="command_guide">nas</span>\n' + 
             '<span class="command_guide_onlytype">plogin</span>, ' +
+            '<span class="command_guide_onlytype">otp</span>, ' +
             '<span class="command_guide">pmenu</span>\n'
     }
 };
@@ -33,7 +34,7 @@ Readiz.makePublicPageObject = function(keyword) {
         help : 'Goto ' + keyword + ' page.'
     }
 };
-Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'nas', 'plogin', 'pmenu'];
+Readiz.PublicCommands = ['main', 'about', 'log', 'blog', 'util', 'feed', 'bot', 'nas', 'plogin', 'otp', 'pmenu'];
 Readiz.terminalCommandsObject = [
 Readiz.makePublicPageObject('main'),
 Readiz.makePublicPageObject('about'),
@@ -90,6 +91,59 @@ Readiz.makePublicPageObject('nas'),
         return cmd;
     },
     help : 'Private login'
+},{
+    name : 'otp',
+    method : function(cmd){
+        var last = $ptty.get_command_option('last');
+        var args = last.split(' ');
+        var arg1 = args[1];
+
+        if (!arg1) {
+            cmd.out = 'Sending OTP...';
+            fetch("https://t.readiz.com/sendOTP", {
+                method: "GET",
+                mode: 'cors',
+                credentials: 'include'
+            }).then(function(response) {
+                
+            });
+            return cmd;
+        }
+
+        var url = "https://p.readiz.com/otp_login";
+        var values = { password: arg1, return_page: 'https://p.readiz.com/summary' };
+        var form = createElement("form", {action: url,
+                                        method: "POST",
+                                        style: 'display: none',
+                                        target: 'hidden_iframe'});
+        for (var property in values) {
+            if (values.hasOwnProperty(property)) {
+                var value = values[property];
+                if (value instanceof Array) {
+                    for (var i = 0, l = value.length; i < l; i++) {
+                        form.appendChild(createElement("input", {type: "hidden",
+                                                                name: property,
+                                                                value: value[i]}));
+                    }
+                }
+                else {
+                    form.appendChild(createElement("input", {type: "hidden",
+                                                            name: property,
+                                                            value: value}));
+                }
+            }
+        }
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+
+        cmd.out = 'OTP Signing In...'
+        setTimeout(function() {
+            Readiz.CheckPrivateMenuAvailable();
+        }, 3000);
+        return cmd;
+    },
+    help : 'Private OTP Login'
 },{
     name : 'pmenu',
     method : function(cmd){
