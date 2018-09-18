@@ -94,6 +94,7 @@ Readiz.makePublicPageObject('nas'),
 },{
     name : 'otp',
     method : function(cmd){
+        var opts, $input = $ptty.get_terminal('.prompt .input');
         var last = $ptty.get_command_option('last');
         var args = last.split(' ');
         var arg1 = args[1];
@@ -107,6 +108,14 @@ Readiz.makePublicPageObject('nas'),
             }).then(function(response) {
                 
             });
+
+            opts = {
+                out  : 'OTP?',
+                ps   : 'Input 6-wide word: ',
+                next : 'otp %cmd%',
+            };
+            cmd = false;
+            $ptty.set_command_option(opts);
             return cmd;
         }
 
