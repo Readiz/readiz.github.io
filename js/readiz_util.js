@@ -93,7 +93,10 @@ Readiz.makePublicPageObject('nas'),
     help : 'Private login'
 },{
     name: 'otp',
-    method: '/ptty/',
+    method: function(cmd) {
+        cmd = false;
+        return cmd;
+    },
     options : [1],
     help: 'OTP Login command. Usage: otp [password]' 
 },{

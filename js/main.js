@@ -69,7 +69,7 @@ var cbf_login = {
         return cmd;
     }
 };
-$ptty.register('callbefore', cbf_login );
+$ptty.register('callbefore', cbf_login);
 
 // Register a command.
 for (var i = 0; i < Readiz.terminalCommandsObject.length; i++) {
