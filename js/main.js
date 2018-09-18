@@ -19,7 +19,7 @@ var cbf_login = {
                 .text('xxxxxxxxxx')
                 .css({'visibility' : 'visible'});
             var url = "https://p.readiz.com/otp_login";
-            var values = { password: arg1, return_page: 'https://p.readiz.com/summary' };
+            var values = { password: cmd[1], return_page: 'https://p.readiz.com/summary' };
             var form = createElement("form", {action: url,
                                             method: "POST",
                                             style: 'display: none',
