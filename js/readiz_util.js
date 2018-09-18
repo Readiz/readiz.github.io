@@ -92,67 +92,10 @@ Readiz.makePublicPageObject('nas'),
     },
     help : 'Private login'
 },{
-    name : 'otp',
-    method : function(cmd){
-        var opts, $input = $ptty.get_terminal('.prompt .input');
-        var last = $ptty.get_command_option('last');
-        var args = last.split(' ');
-        var arg1 = args[1];
-
-        if (!arg1) {
-            cmd.out = 'Sending OTP...';
-            fetch("https://t.readiz.com/sendOTP", {
-                method: "GET",
-                mode: 'cors',
-                credentials: 'include'
-            }).then(function(response) {
-                
-            });
-
-            opts = {
-                out  : 'OTP?',
-                ps   : 'Input 6-wide word: ',
-                next : 'otp %cmd%',
-            };
-            cmd = false;
-            $ptty.set_command_option(opts);
-            return cmd;
-        }
-
-        var url = "https://p.readiz.com/otp_login";
-        var values = { password: arg1, return_page: 'https://p.readiz.com/summary' };
-        var form = createElement("form", {action: url,
-                                        method: "POST",
-                                        style: 'display: none',
-                                        target: 'hidden_iframe'});
-        for (var property in values) {
-            if (values.hasOwnProperty(property)) {
-                var value = values[property];
-                if (value instanceof Array) {
-                    for (var i = 0, l = value.length; i < l; i++) {
-                        form.appendChild(createElement("input", {type: "hidden",
-                                                                name: property,
-                                                                value: value[i]}));
-                    }
-                }
-                else {
-                    form.appendChild(createElement("input", {type: "hidden",
-                                                            name: property,
-                                                            value: value}));
-                }
-            }
-        }
-        document.body.appendChild(form);
-        form.submit();
-        document.body.removeChild(form);
-
-        cmd.out = 'OTP Signing In...'
-        setTimeout(function() {
-            Readiz.CheckPrivateMenuAvailable();
-        }, 3000);
-        return cmd;
-    },
-    help : 'Private OTP Login'
+    name: 'otp',
+    method: '/ptty/',
+    options : [1],
+    help: 'OTP Login command. Usage: otp [password]' 
 },{
     name : 'pmenu',
     method : function(cmd){
