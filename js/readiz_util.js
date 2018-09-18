@@ -19,7 +19,7 @@ Readiz.terminalSettingsObject = {
             '<span class="command_guide">bot</span>, ' + 
             '<span class="command_guide">nas</span>\n' + 
             '<span class="command_guide_onlytype">plogin</span>, ' +
-            '<span class="command_guide_onlytype">otp</span>, ' +
+            '<span class="command_guide">otp</span>, ' +
             '<span class="command_guide">pmenu</span>\n'
     }
 };
