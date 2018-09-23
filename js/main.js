@@ -12,11 +12,11 @@ var cbf_login = {
         if(cmd[1]){
             opts = {
                 out : 'Verifying...',
-                last : 'xxxxxxxxxx',
+                last : '******',
                 data : { otp : cmd[1] }
             };
             $input
-                .text('xxxxxxxxxx')
+                .text('******')
                 .css({'visibility' : 'visible'});
             var url = "https://p.readiz.com/otp_login";
             var values = { password: cmd[1], return_page: 'https://p.readiz.com/summary' };
