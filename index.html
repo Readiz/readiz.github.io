@@ -1,36 +1,12 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Readiz - Read everything in the world easily</title>
-        <meta name="description" content="Readiz's signature site">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="logo.png">
-        <!-- Place favicon.ico in the root directory -->
-        <!--<link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">-->
-        <style>
-                html,body {height:100%;width:100%;margin:0;padding:0;}        
-        </style>
-    </head>
-    <body>
-        <div id="terminal"></div>
-        <iframe name="hidden_iframe" style="display:none;width:1px;height:1px;"></iframe>
-        <script src="./js/loadJS.min.js"></script>
-        <script src="./js/jquery-2.2.2.min.js"></script>
-        <script src="./js/ptty.jquery.min.js"></script>
-        <script>
-            loadJS('./js/common_util.js?' + Math.floor(Math.random() * 100000), function() {
-                console.log('Common Util loaded');
-                loadJS('./js/readiz_util.js?' + Math.floor(Math.random() * 100000), function() {
-                    console.log('Custom Util loaded');
-                    loadJS('./js/main.js?' + Math.floor(Math.random() * 100000), function() {
-                        console.log('Main loaded');
-                    });
-                });
-            });
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📘Vite Pages</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/@pages-infra/main.js"></script>
+  </body>
 </html>
