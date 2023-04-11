@@ -5,6 +5,16 @@ export default createTheme({
   logo: <div style={{ fontSize: '20px' }}>📘 Readiz Pages</div>,
   topNavs: [
     { label: 'Home', path: '/' },
+    {
+      label: 'Blog',
+      path: '/blog',
+      activeIfMatch: '/blog',
+    },
+    {
+      label: 'Link',
+      path: '/link',
+      activeIfMatch: '/link'
+    }
     // { label: 'Users', path: '/users', activeIfMatch: '/users' },
     // {
     //   label: 'Guide',
@@ -21,10 +31,10 @@ export default createTheme({
     //   label: 'Vite Pages',
     //   href: 'https://github.com/vitejs/vite-plugin-react-pages',
     // },
-    {
-      label: 'Coding Note',
-      href: './CodingNote/',
-    },
+    // {
+    //   label: 'Coding Note',
+    //   href: './CodingNote/',
+    // },
   ],
   sideNavs: (ctx) => {
     return defaultSideNavs(ctx, {
