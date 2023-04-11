@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite serve --host --port 1523",
-    "build": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",
+    "build": "rimraf docs && vite build --outDir docs -d",
+    "buildserve": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",
     "ssr": "rimraf dist && vite-pages ssr && serve dist"
   },
   "keywords": [],
