@@ -1,4 +1,4 @@
-import{p as c}from"./index_-beaf3b02.js";import{u as o,j as e,a as i,F as s}from"./index-172835f8.js";function l(t){const n=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",a:"a"},o(),t.components);return i(s,{children:[e(n.h1,{id:"useful-links",children:"Useful Links"}),`
+import{p as c}from"./index_-beaf3b02.js";import{u as o,j as e,a as i,F as s}from"./index-232107f3.js";function l(t){const n=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",a:"a"},o(),t.components);return i(s,{children:[e(n.h1,{id:"useful-links",children:"Useful Links"}),`
 `,e(n.h2,{id:"algorithm",children:"Algorithm"}),`
 `,i(n.ul,{children:[`
 `,e(n.li,{children:e(n.a,{href:"https://www.readiz.com/CodingNote/",children:"코딩노트"})}),`
