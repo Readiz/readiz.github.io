@@ -1,0 +1,31 @@
+{
+  "name": "app-demo",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite serve --host --port 1523",
+    "build": "rimraf docs && vite build --outDir docs -d",
+    "buildserve": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",
+    "ssr": "rimraf dist && vite-pages ssr && serve dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
+  },
+  "devDependencies": {
+    "@mdx-js/react": "^2.3.0",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
+    "@vitejs/plugin-react": "^3.1.0",
+    "rimraf": "^4.4.1",
+    "serve": "^14.2.0",
+    "vite": "^4.2.1",
+    "vite-pages-theme-doc": "^4.0.0",
+    "vite-plugin-react-pages": "^4.0.0"
+  }
+}

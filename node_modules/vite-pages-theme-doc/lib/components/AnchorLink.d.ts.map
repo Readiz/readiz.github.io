@@ -1,0 +1,1 @@
+{"version":3,"file":"AnchorLink.d.ts","sourceRoot":"","sources":["../../src/components/AnchorLink.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAA;AAEzB,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,kBAAkB,CAAA;AAGpD,QAAA,MAAM,UAAU,EAAE,KAAK,CAAC,EAAE,CAAC,KAAK,CAAC,iBAAiB,CAAC,YAAY,CAAC,CAAC,GAAG;IAClE,cAAc,EAAE,CAAC,MAAM,EAAE,MAAM,KAAK,IAAI,CAAA;CAYzC,CAAA;AAaD,eAAe,UAAU,CAAA"}
