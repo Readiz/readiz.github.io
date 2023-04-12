@@ -1,4 +1,4 @@
-name: Run TC
+name: Page Build
 
 on:
   push:
