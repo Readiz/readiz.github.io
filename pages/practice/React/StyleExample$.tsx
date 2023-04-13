@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../index.css';
+import './index.module.css';
 
 const Page = () => {
   return (
