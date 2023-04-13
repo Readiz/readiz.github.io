@@ -1,5 +1,6 @@
-import React from 'react'
-import { createTheme, defaultSideNavs } from 'vite-pages-theme-doc'
+import React from 'react';
+import { createTheme, defaultSideNavs } from 'vite-pages-theme-doc';
+import Component404 from './404';
 
 export default createTheme({
   logo: <div style={{ fontSize: '20px' }}>📘 Readiz Pages</div>,
@@ -11,29 +12,20 @@ export default createTheme({
       activeIfMatch: '/blog',
     },
     {
+      label: 'Practice',
+      path: '/practice',
+      activeIfMatch: '/practice'
+    },
+    {
       label: 'Link',
       path: '/link',
       activeIfMatch: '/link'
     }
     // { label: 'Users', path: '/users', activeIfMatch: '/users' },
-    // {
-    //   label: 'Guide',
-    //   path: '/guide/introduce',
-    //   activeIfMatch: '/guide',
-    // },
-    // {
-    //   label: 'Reference',
-    //   path: '/reference/glossary',
-    //   activeIfMatch: '/reference',
-    // },
     // { label: 'Vite', href: 'https://github.com/vitejs/vite' },
     // {
     //   label: 'Vite Pages',
     //   href: 'https://github.com/vitejs/vite-plugin-react-pages',
-    // },
-    // {
-    //   label: 'Coding Note',
-    //   href: './CodingNote/',
     // },
   ],
   sideNavs: (ctx) => {
@@ -56,4 +48,5 @@ export default createTheme({
       },
     })
   },
+  Component404,
 })
