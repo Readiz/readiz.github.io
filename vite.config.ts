@@ -10,6 +10,7 @@ export default defineConfig({
       pagesDir: path.join(__dirname, 'pages'),
     }),
   ],
+  base: '/',
   server: {
     port: 1523
   }
