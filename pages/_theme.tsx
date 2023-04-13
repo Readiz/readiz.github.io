@@ -18,7 +18,7 @@ export default createTheme({
     },
     {
       label: 'Link',
-      path: '/link',
+      path: '/link/list',
       activeIfMatch: '/link'
     }
     // { label: 'Users', path: '/users', activeIfMatch: '/users' },
