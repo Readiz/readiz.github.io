@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite serve --host --port 1523",
-    "build": "rimraf dist && cross-env GITHUB_PAGES_DEPLOY=true vite-pages ssr && rimraf docs && cross-env mv dist docs",
+    "build": "rimraf dist && vite-pages ssr",
     "buildserve": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",
     "ssr": "rimraf dist && vite-pages ssr && serve dist"
   },
