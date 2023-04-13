@@ -1,3 +1,0 @@
-# Readiz Pages
-
-for personal

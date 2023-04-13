@@ -1,8 +1,0 @@
----
-order: 0
-group: practice
----
-
-# 연습 페이지
-
-React 등 여러 기술 연습 공간입니다.
