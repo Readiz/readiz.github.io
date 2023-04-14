@@ -1,0 +1,1 @@
+import{j as o}from"./ssg-client-08ce1c1f.js";import{R as t}from"./rframe-3fd03c57.js";const e=a=>o(t,{url:"https://www.readiz.com/CodingNote/",title:"Coding Note"}),r=Object.freeze(Object.defineProperty({__proto__:null,default:e},Symbol.toStringTag,{value:"Module"})),n={};n.main=r;export{n as default};
