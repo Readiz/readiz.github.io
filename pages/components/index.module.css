@@ -1,6 +1,6 @@
 .example {
   width: 100%;
-  height: calc(100% - 10px);
+  height: calc(100% - 4px);
   border: 0;
   border-radius: 4px;
   overflow: hidden;
