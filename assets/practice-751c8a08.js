@@ -1,0 +1,3 @@
+import{p as r}from"./index_-9d159224.js";import{u as s,j as t,a as c,F as i}from"./ssg-client-7b24cbec.js";import{C as m}from"./Comment-2b846d57.js";function o(n){const e=Object.assign({h1:"h1",p:"p"},s(),n.components);return c(i,{children:[t(e.h1,{id:"연습-페이지",children:"연습 페이지"}),`
+`,t(e.p,{children:"React 등 여러 기술 연습 공간입니다."}),`
+`,t(m,{})]})}function u(n={}){const{wrapper:e}=Object.assign({},s(),n.components);return e?t(e,Object.assign({},n,{children:t(o,n)})):o(n)}const l=Object.freeze(Object.defineProperty({__proto__:null,default:u},Symbol.toStringTag,{value:"Module"})),a={};a.outlineInfo=r;a.main=l;export{a as default};
