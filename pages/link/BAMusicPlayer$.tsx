@@ -3,13 +3,13 @@
  */
 
 import React from 'react';
-import RFrame from '../components/RFrame';
+import IFrame from '../components/IFrame';
 
 interface Props {}
 
 const BAMusicPlayer: React.FC<Props> = (props) => {
   return (
-    <RFrame
+    <IFrame
       url="https://www.readiz.com/BA-music-player/"
       title="Coding Note"
     />

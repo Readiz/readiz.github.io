@@ -5,7 +5,7 @@ interface Props {
   url: string,
   title: string
 }
-const RFrame: React.FC<Props> = (props) => {
+const IFrame: React.FC<Props> = (props) => {
     return (
       <iframe
         className={style.example}
@@ -17,4 +17,4 @@ const RFrame: React.FC<Props> = (props) => {
     )
 }
   
-export default RFrame
+export default IFrame

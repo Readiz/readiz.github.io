@@ -3,13 +3,13 @@
  */
 
 import React from 'react';
-import RFrame from '../../components/RFrame';
+import IFrame from '../../components/IFrame';
 
 interface Props {}
 
 const FirstExample: React.FC<Props> = (props) => {
   return (
-    <RFrame
+    <IFrame
       url="https://codesandbox.io/embed/antd-reproduction-template-6e93z?autoresize=1&fontsize=14&hidenavigation=1&theme=dark"
       title="antd reproduction template"
     />
