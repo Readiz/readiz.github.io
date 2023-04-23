@@ -1,4 +1,4 @@
-import{p as c}from"./index_-3e767d0e.js";import{u as o,j as e,a as i,F as d}from"./ssg-client-09e548ea.js";import{C as a}from"./Comment-65056ba7.js";function t(l){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li"},o(),l.components);return i(d,{children:[e(n.h1,{id:"readiz-blog-mk-2",children:"Readiz Blog mk. 2"}),`
+import{p as c}from"./index_-3e767d0e.js";import{u as o,j as e,a as i,F as d}from"./ssg-client-04659372.js";import{C as a}from"./Comment-47ef3d66.js";function t(l){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li"},o(),l.components);return i(d,{children:[e(n.h1,{id:"readiz-blog-mk-2",children:"Readiz Blog mk. 2"}),`
 `,e(n.p,{children:"기존 티스토리는 카카오계정 연동 후 잃어버려서 소생불가"}),`
 `,e(n.p,{children:"Github Pages 기반으로 새롭게 재구축 중.."}),`
 `,i(n.ul,{children:[`

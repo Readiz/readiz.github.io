@@ -1,4 +1,4 @@
-import{p as s}from"./about_-37560d18.js";import{u as i,j as e,a as o,F as c}from"./ssg-client-09e548ea.js";import{C as l}from"./Comment-65056ba7.js";function a(t){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li",a:"a"},i(),t.components);return o(c,{children:[e(n.h1,{id:"about",children:"About"}),`
+import{p as s}from"./about_-37560d18.js";import{u as i,j as e,a as o,F as c}from"./ssg-client-04659372.js";import{C as l}from"./Comment-47ef3d66.js";function a(t){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li",a:"a"},i(),t.components);return o(c,{children:[e(n.h1,{id:"about",children:"About"}),`
 `,e(n.p,{children:"This is about page."}),`
 `,o(n.ul,{children:[`
 `,e(n.li,{children:e(n.a,{href:"http://about.readiz.com/",children:"About"})}),`

@@ -1,4 +1,4 @@
-import{p as a}from"./index_-79628163.js";import{u as r,j as e,a as i,F as l}from"./ssg-client-09e548ea.js";import{C as d}from"./Comment-65056ba7.js";function c(t){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li"},r(),t.components);return i(l,{children:[e(n.h1,{id:"페이지-목적",children:"페이지 목적"}),`
+import{p as a}from"./index_-79628163.js";import{u as r,j as e,a as i,F as l}from"./ssg-client-04659372.js";import{C as d}from"./Comment-47ef3d66.js";function c(t){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li"},r(),t.components);return i(l,{children:[e(n.h1,{id:"페이지-목적",children:"페이지 목적"}),`
 `,e(n.p,{children:"이 페이지는 흐려져가는 기억을 붙잡기 위한 페이지입니다."}),`
 `,e(n.p,{children:"12 Math님은 같은 이유로 유투브를 하신다고 하는데, 유사한 목적입니다."}),`
 `,e(n.p,{children:"더 늦기 전에(?) 유용한 팁들이나 정보들을 정리합니다."}),`
