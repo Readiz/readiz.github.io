@@ -10,7 +10,7 @@ interface Props {}
 const JSPlaygrounds: React.FC<Props> = (props) => {
   return (
     <IFrame
-      url="http://www.readiz.com/JSPlaygrounds/"
+      url="https://www.readiz.com/JSPlaygrounds/"
       title="JS Playgrounds"
     />
   )
