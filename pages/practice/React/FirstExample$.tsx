@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import IFrame from '../../components/IFrame';
+import IFrame from '@/components/IFrame';
 
 interface Props {}
 

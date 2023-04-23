@@ -17,9 +17,9 @@ export default createTheme({
       activeIfMatch: '/practice'
     },
     {
-      label: 'Link',
-      path: '/link/list',
-      activeIfMatch: '/link'
+      label: 'Showcase',
+      path: '/showcase',
+      activeIfMatch: '/showcase'
     }
     // { label: 'Users', path: '/users', activeIfMatch: '/users' },
     // { label: 'Vite', href: 'https://github.com/vitejs/vite' },

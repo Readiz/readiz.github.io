@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import Comment from '../../components/Comment';
+import Comment from '@/components/Comment';
 import { Link } from 'react-router-dom';
 // import './index.module.css';
 
