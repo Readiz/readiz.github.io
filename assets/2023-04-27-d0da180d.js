@@ -1,4 +1,4 @@
-import{p as c}from"./2023-04-27_-b0552896.js";import{u as r,j as e,a,F as d}from"./ssg-client-334565da.js";import{C as l}from"./Comment-9a96d3f5.js";function o(t){const n=Object.assign({h2:"h2",p:"p"},r(),t.components);return a(d,{children:[e(n.h2,{id:"readiz-homepage-개설-목적",children:"Readiz HomePage 개설 목적"}),`
+import{p as c}from"./2023-04-27_-b0552896.js";import{u as r,j as e,a,F as d}from"./ssg-client-572655df.js";import{C as l}from"./Comment-88d77e33.js";function o(t){const n=Object.assign({h2:"h2",p:"p"},r(),t.components);return a(d,{children:[e(n.h2,{id:"readiz-homepage-개설-목적",children:"Readiz HomePage 개설 목적"}),`
 `,e(n.p,{children:"흐려져가는 기억을 붙잡기 위한 페이지."}),`
 `,e(n.p,{children:"12 Math님도 같은 이유로 유튜브를 한다고 함."}),`
 `,e(n.p,{children:"더 늦기 전에(?) 유용한 팁들이나 정보들을 정리한다."}),`

@@ -1,1 +1,0 @@
-import{j as e,F as r,a as i}from"./ssg-client-334565da.js";const s=d=>e(r,{children:i("div",{style:{border:"1px solid",borderRadius:"5px",padding:10},children:[e("div",{style:{fontSize:40,fontWeight:800},children:"Header Title"}),e("div",{style:{fontSize:15,color:"grey"},children:"Written by Readiz / 2023-04-28 09:30"})]})});export{s as H};

@@ -1,4 +1,4 @@
-import{p as d}from"./CF-867G_-4e96aaef.js";import{u as s,j as i,a as l,F as r}from"./ssg-client-334565da.js";import{C as o}from"./Comment-9a96d3f5.js";function e(c){const n=Object.assign({h1:"h1",ul:"ul",li:"li",a:"a",p:"p",ol:"ol",code:"code",h3:"h3",pre:"pre"},s(),c.components);return l(r,{children:[i(n.h1,{id:"cf-867g",children:"CF-867G"}),`
+import{p as d}from"./CF-867G_-4e96aaef.js";import{u as s,j as i,a as l,F as r}from"./ssg-client-572655df.js";import{C as o}from"./Comment-88d77e33.js";function e(c){const n=Object.assign({h1:"h1",ul:"ul",li:"li",a:"a",p:"p",ol:"ol",code:"code",h3:"h3",pre:"pre"},s(),c.components);return l(r,{children:[i(n.h1,{id:"cf-867g",children:"CF-867G"}),`
 `,l(n.ul,{children:[`
 `,i(n.li,{children:"문제 제목: Magin Triples"}),`
 `,l(n.li,{children:["문제 링크: ",i(n.a,{href:"https://codeforces.com/contest/1822/problem/G1",children:"G1"})," ",i(n.a,{href:"https://codeforces.com/contest/1822/problem/G2",children:"G2"})]}),`
