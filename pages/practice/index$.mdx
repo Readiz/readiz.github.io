@@ -5,6 +5,9 @@ group: practice
 
 import Comment from '@/components/Comment';
 import Header from '@/components/Header';
+import "mafs/core.css";
+import { Mafs, Coordinates, Plot, Theme } from "mafs"
+
 
 # 연습 페이지
 
@@ -15,4 +18,13 @@ React 등 여러 기술 연습 공간입니다.
 ![](../../assets/2023-04-28-11-36-03.png)
 
 <Header />
+
+
+## Math
+<Mafs>
+    <Coordinates.Cartesian />
+    <Plot.OfX y={Math.sin} color={Theme.blue} />
+</Mafs>
+
+
 <Comment />
