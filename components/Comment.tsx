@@ -16,7 +16,8 @@ export default function Comment() {
 
   return (
     <div style={{
-      marginTop: 50
+      marginTop: 50,
+      maxWidth: 800
     }}>
       <div ref={commentsEl} />
     </div>

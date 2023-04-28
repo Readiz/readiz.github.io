@@ -10,6 +10,7 @@ const Header: React.FC<Props> = (props) => {
             border: '1px solid',
             borderRadius: '5px',
             padding: 10,
+            boxShadow: '2px 2px'
           }
         }>
           <div style={
