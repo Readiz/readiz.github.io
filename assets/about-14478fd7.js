@@ -1,4 +1,4 @@
-import{p as s}from"./about_-37560d18.js";import{u as r,j as e,a as o,F as l}from"./ssg-client-572655df.js";import{C as c}from"./Comment-88d77e33.js";function i(t){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li",a:"a"},r(),t.components);return o(l,{children:[e(n.h1,{id:"about",children:"About"}),`
+import{p as s}from"./about_-37560d18.js";import{u as r,j as e,a as o,F as l}from"./ssg-client-51dc9213.js";import{C as c}from"./Comment-1403bddb.js";function i(t){const n=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li",a:"a"},r(),t.components);return o(l,{children:[e(n.h1,{id:"about",children:"About"}),`
 `,e(n.p,{children:"This page is under construction."}),`
 `,e(n.p,{children:"You may see the older version of this page on below link."}),`
 `,o(n.ul,{children:[`

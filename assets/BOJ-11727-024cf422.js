@@ -1,4 +1,4 @@
-import{p as l}from"./BOJ-11727_-0ac3e60c.js";import{u as r,j as e,a as t,F as a}from"./ssg-client-572655df.js";import{C as s}from"./Comment-88d77e33.js";function c(i){const n=Object.assign({h1:"h1",ul:"ul",li:"li",a:"a",p:"p",pre:"pre",code:"code"},r(),i.components);return t(a,{children:[e(n.h1,{id:"boj-11727",children:"BOJ-11727"}),`
+import{p as l}from"./BOJ-11727_-0ac3e60c.js";import{u as r,j as e,a as t,F as a}from"./ssg-client-51dc9213.js";import{C as s}from"./Comment-1403bddb.js";function c(i){const n=Object.assign({h1:"h1",ul:"ul",li:"li",a:"a",p:"p",pre:"pre",code:"code"},r(),i.components);return t(a,{children:[e(n.h1,{id:"boj-11727",children:"BOJ-11727"}),`
 `,t(n.ul,{children:[`
 `,e(n.li,{children:"문제 제목: 2×n 타일링 2"}),`
 `,t(n.li,{children:["문제 링크: ",e(n.a,{href:"https://www.acmicpc.net/problem/11727",children:"https://www.acmicpc.net/problem/11727"})]}),`

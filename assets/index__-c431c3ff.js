@@ -1,4 +1,4 @@
-import{p as s}from"./index_-79628163.js";import{u as i,j as t,a as o,F as a}from"./ssg-client-572655df.js";function c(e){const n=Object.assign({h1:"h1",ul:"ul",li:"li"},i(),e.components);return o(a,{children:[t(n.h1,{id:"index",children:"Index"}),`
+import{p as s}from"./index_-79628163.js";import{u as i,j as t,a as o,F as a}from"./ssg-client-51dc9213.js";function c(e){const n=Object.assign({h1:"h1",ul:"ul",li:"li"},i(),e.components);return o(a,{children:[t(n.h1,{id:"index",children:"Index"}),`
 `,o(n.ul,{children:[`
 `,t(n.li,{children:"블로그 형태의 개인 일기"}),`
 `,t(n.li,{children:"TIL"}),`
