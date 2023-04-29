@@ -5,10 +5,7 @@ group: practice
 
 import Comment from '@/components/Comment';
 import Header from '@/components/Header';
-import "mafs/core.css";
-import mafs from "mafs";
-const { Mafs, Coordinates, Plot, Theme } = mafs;
-
+import HelloGraph from '@/components/HelloGraph';
 
 # 연습 페이지
 
@@ -22,10 +19,7 @@ React 등 여러 기술 연습 공간입니다.
 
 
 ## Math
-<Mafs>
-    <Coordinates.Cartesian />
-    <Plot.OfX y={Math.sin} color={Theme.blue} />
-</Mafs>
+<HelloGraph />
 
 
 <Comment />
