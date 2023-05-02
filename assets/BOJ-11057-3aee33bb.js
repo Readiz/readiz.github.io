@@ -1,4 +1,4 @@
-import{p as l}from"./BOJ-11057_-c9ffb788.js";import{u as r,j as e,a as i,F as a}from"./ssg-client-b076afcb.js";import{C as s}from"./Comment-c9b0c251.js";function c(t){const n=Object.assign({h1:"h1",ul:"ul",li:"li",a:"a",p:"p",pre:"pre",code:"code"},r(),t.components);return i(a,{children:[e(n.h1,{id:"boj-11057",children:"BOJ-11057"}),`
+import{p as l}from"./BOJ-11057_-c9ffb788.js";import{u as r,j as e,a as i,F as a}from"./ssg-client-fd993be6.js";import{C as s}from"./Comment-602269aa.js";function c(t){const n=Object.assign({h1:"h1",ul:"ul",li:"li",a:"a",p:"p",pre:"pre",code:"code"},r(),t.components);return i(a,{children:[e(n.h1,{id:"boj-11057",children:"BOJ-11057"}),`
 `,i(n.ul,{children:[`
 `,e(n.li,{children:"문제 제목: 오르막 수"}),`
 `,i(n.li,{children:["문제 링크: ",e(n.a,{href:"https://www.acmicpc.net/problem/11057",children:"https://www.acmicpc.net/problem/11057"})]}),`

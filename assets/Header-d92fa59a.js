@@ -1,0 +1,1 @@
+import{j as e}from"./ssg-client-fd993be6.js";import{H as o}from"./Header-e206b64d.js";const t=()=>e(o,{}),r=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"})),a={};a.main=r;export{a as default};

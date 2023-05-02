@@ -1,4 +1,4 @@
-import{p as o}from"./Electron_-a2093314.js";import{u as c,j as e,a as i,F as h}from"./ssg-client-b076afcb.js";import{C as t}from"./Comment-c9b0c251.js";function r(l){const n=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",code:"code"},c(),l.components);return i(h,{children:[e(n.h1,{id:"electron-강좌-udemy",children:"Electron 강좌 (Udemy)"}),`
+import{p as o}from"./Electron_-a2093314.js";import{u as c,j as e,a as i,F as h}from"./ssg-client-fd993be6.js";import{C as t}from"./Comment-602269aa.js";function r(l){const n=Object.assign({h1:"h1",h2:"h2",ul:"ul",li:"li",code:"code"},c(),l.components);return i(h,{children:[e(n.h1,{id:"electron-강좌-udemy",children:"Electron 강좌 (Udemy)"}),`
 `,e(n.h2,{id:"basic-of-electron",children:"Basic of Electron"}),`
 `,i(n.ul,{children:[`
 `,e(n.li,{children:"플랫폼. 데스크톱 앱을 만들기 위함."}),`

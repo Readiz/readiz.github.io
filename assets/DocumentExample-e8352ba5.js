@@ -1,4 +1,4 @@
-import{p as c}from"./index_-f69adf9a.js";import{j as n,F as s,u as r,a as _}from"./ssg-client-b076afcb.js";import{C as i}from"./Comment-c9b0c251.js";import{H as m}from"./Header-84037619.js";const l="/assets/2023-04-28-11-36-03-2debf89c.png";const p=t=>n(s,{});function o(t){const e=Object.assign({h1:"h1",p:"p",img:"img",h2:"h2"},r(),t.components);return _(s,{children:[n(e.h1,{id:"연습-페이지",children:"연습 페이지"}),`
+import{p as c}from"./DocumentExample_-f69adf9a.js";import{j as n,F as s,u as r,a as _}from"./ssg-client-fd993be6.js";import{C as i}from"./Comment-602269aa.js";import{H as m}from"./Header-e206b64d.js";const l="/assets/2023-04-28-11-36-03-2debf89c.png";const p=t=>n(s,{});function o(t){const e=Object.assign({h1:"h1",p:"p",img:"img",h2:"h2"},r(),t.components);return _(s,{children:[n(e.h1,{id:"연습-페이지",children:"연습 페이지"}),`
 `,n(e.p,{children:"React 등 여러 기술 연습 공간입니다."}),`
 `,n(e.p,{children:"의미없는 멘트나 컴포넌트들이 노출될 수 있습니다."}),`
 `,n(e.p,{children:n(e.img,{alt:"",src:l})}),`

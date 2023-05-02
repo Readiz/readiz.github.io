@@ -1,4 +1,4 @@
-import{p as s}from"./2023-04-24_-59fa67f8.js";import{u as l,j as e,a as o,F as c}from"./ssg-client-b076afcb.js";import{C as a}from"./Comment-c9b0c251.js";function i(t){const n=Object.assign({h1:"h1",ul:"ul",li:"li",p:"p"},l(),t.components);return o(c,{children:[e(n.h1,{id:"ps-problem-solving",children:"PS (Problem Solving)"}),`
+import{p as s}from"./2023-04-24_-59fa67f8.js";import{u as l,j as e,a as o,F as c}from"./ssg-client-fd993be6.js";import{C as a}from"./Comment-602269aa.js";function i(t){const n=Object.assign({h1:"h1",ul:"ul",li:"li",p:"p"},l(),t.components);return o(c,{children:[e(n.h1,{id:"ps-problem-solving",children:"PS (Problem Solving)"}),`
 `,o(n.ul,{children:[`
 `,e(n.li,{children:"LCA (비트연산, 2^k = 2^(k-1) + 2^(k-1)...) [완료]"}),`
 `,e(n.li,{children:"BOJ 실버 수준 DP 계속 연습하기 [진행 중]"}),`

@@ -1,4 +1,4 @@
-import{p as s}from"./index_-6db1d7ba.js";import{u as c,j as e,a as i,F as t,L as l}from"./ssg-client-b076afcb.js";import{C as d}from"./Comment-c9b0c251.js";function o(r){const n=Object.assign({h1:"h1",p:"p",h3:"h3",ul:"ul",li:"li",a:"a"},c(),r.components);return i(t,{children:[e(n.h1,{id:"showcases",children:"Showcases"}),`
+import{p as s}from"./index_-6db1d7ba.js";import{u as c,j as e,a as i,F as t,L as l}from"./ssg-client-fd993be6.js";import{C as d}from"./Comment-602269aa.js";function o(r){const n=Object.assign({h1:"h1",p:"p",h3:"h3",ul:"ul",li:"li",a:"a"},c(),r.components);return i(t,{children:[e(n.h1,{id:"showcases",children:"Showcases"}),`
 `,e(n.p,{children:"다양한 Toy Project 들을 구경하실 수 있습니다."}),`
 `,e(n.p,{children:"좌측 메뉴를 누르시면 편하게 조회가 가능합니다."}),`
 `,e(n.h3,{id:"페이지-내에서-열기",children:"페이지 내에서 열기"}),`
