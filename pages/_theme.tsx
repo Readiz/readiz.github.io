@@ -12,11 +12,6 @@ export default createTheme({
       activeIfMatch: '/blog',
     },
     {
-      label: 'Practice',
-      path: '/practice',
-      activeIfMatch: '/practice'
-    },
-    {
       label: 'Showcase',
       path: '/showcase',
       activeIfMatch: '/showcase'
