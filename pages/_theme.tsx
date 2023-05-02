@@ -15,12 +15,12 @@ export default createTheme({
       label: 'Showcase',
       path: '/showcase',
       activeIfMatch: '/showcase'
-    }
+    },
     // { label: 'Users', path: '/users', activeIfMatch: '/users' },
     // { label: 'Vite', href: 'https://github.com/vitejs/vite' },
     // {
-    //   label: 'Vite Pages',
-    //   href: 'https://github.com/vitejs/vite-plugin-react-pages',
+    //   label: 'GitHub',
+    //   href: 'https://github.com/Readiz',
     // },
   ],
   sideNavs: (ctx) => {
