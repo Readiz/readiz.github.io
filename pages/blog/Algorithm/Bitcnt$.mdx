@@ -1,0 +1,42 @@
+---
+title: Bitcnt
+---
+import Comment from '@/components/Comment'
+
+# Bitcnt
+
+흔히 builtin_popcount로 사용하지만, 직접 구현할 경우를 살펴본다.
+
+
+### Naive
+
+가장 Naive한 방법은 아래와 같다.
+
+```cpp
+int bitcnt(int v) {
+    int cnt = 0;
+    for(int i = 0, mask = 0x1; i < 32; ++i, mask <<= 1) {
+        if (v & mask) ++cnt;
+    }
+    return cnt;
+}
+```
+
+### Sparse
+
+bit가 sparse하게 있는 경우에는 아래 방법이 유효하다. (켜진 bit수가 적을 것으로 예상되는 경우)
+
+```cpp
+int bitcnt(int v) {
+    int cnt = 0;
+    while (v) {
+        v -= v & -v; // or v &= v - 1;
+        ++cnt;
+    }
+    return cnt;
+}
+```
+
+이 외에도 추후 merge 방법이나, 인접 bit로 더하는 방법을 추가 정리할 예정임.
+
+<Comment />
