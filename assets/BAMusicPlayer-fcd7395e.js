@@ -1,0 +1,1 @@
+import{j as e}from"./ssg-client-32e1d993.js";import{I as r}from"./IFrame-d1335fa7.js";const t=l=>e(r,{url:"https://www.readiz.com/BA-music-player/",title:"BA Music Player"}),o=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"})),a={};a.main=o;export{a as default};
