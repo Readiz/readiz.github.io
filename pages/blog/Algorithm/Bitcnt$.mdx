@@ -5,13 +5,15 @@ import Comment from '@/components/Comment'
 
 # Bitcnt
 
-흔히 `__builtin_popcount`로 사용하지만, 직접 구현할 경우를 살펴본다.
+Bit count는 말 그대로 `int` 나 `long long` 등에 저장된 숫자가 2진법으로 1이 몇개가 켜져있는지를 세는 것을 말한다. 흔히 `__builtin_popcount`로 사용하지만, 직접 구현할 경우를 살펴본다.
 
-`__builtin_popcount`란 gcc 내장 함수로, 아래와 같이 사용한다. (VS에서는 아쉽지만 사용이 불가하다, 유사한건 있지만..)
+`__builtin_popcount`란 gcc 내장 함수로, 아래와 같이 사용한다. (VS에서는 다른 함수가 있다)
 
-`__builtin_popcount(v)`
+```cpp 
+__builtin_popcount(v); // v는 int 형
+```
 
-여기서 `v`는 int 형을 사용한다. 만약 64bit의 bitcnt가 필요하다면, 뒤에 ll이 붙은 `__builtin_popcountll`을 사용한다.
+만약 64bit의 bitcnt가 필요하다면, 뒤에 ll이 붙은 `__builtin_popcountll`을 사용한다.
 
 ### Naive
 
