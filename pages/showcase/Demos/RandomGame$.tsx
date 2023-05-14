@@ -1,5 +1,5 @@
 /**
- * @title Random Game
+ * @title 운빨망겜
  */
 
 import React from 'react';

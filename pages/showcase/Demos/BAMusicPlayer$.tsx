@@ -1,5 +1,6 @@
 /**
  * @title BA Music Player
+ * @order 3
  */
 
 import React from 'react';

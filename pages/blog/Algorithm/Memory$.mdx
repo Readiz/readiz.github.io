@@ -1,0 +1,31 @@
+---
+title: Memory
+writtendate: 2023-05-14
+---
+import Comment from '@/components/Comment'
+import Details from '@/components/Details'
+import Image from '@/components/Image'
+import Header from '@/components/Header'
+
+<Header />
+
+Memory 관련 여러가지 정리. Bit operation으로 /64 줄이기 같은 것을 잘 하려면 알아야 하는 덕목 중 하나이다.
+
+우선 이야기를 시작하기에 앞서, 자료형에 대한 이야기가 필수적이다. 자료형이 메모리에 매핑되는 방식은 아래와 같다.
+
+<Image src="2023-05-14-14-33-44.png" width="300"/>
+
+| 0x01 | b  |  c |  d  |
+| - | :- | -: | :-: |
+| a | b  |  c |  d  |
+| a | b  |  c |  d  |
+| a | b  |  c |  d  |
+
+
+작성 중...
+
+### 참고자료
+
+- C Primer https://www.enlightenment.org/docs/c/start
+
+<Comment />

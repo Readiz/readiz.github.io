@@ -1,5 +1,6 @@
 /**
- * @title Coding Note
+ * @title 코딩노트
+ * @order 0
  */
 
 import React from 'react';

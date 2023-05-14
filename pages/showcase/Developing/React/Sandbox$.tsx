@@ -1,5 +1,5 @@
 /**
- * @title First Example
+ * @title Sandbox
  */
 
 import React from 'react';
