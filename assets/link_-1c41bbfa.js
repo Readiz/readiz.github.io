@@ -1,1 +1,0 @@
-const e=[{depth:1,text:"Private Links",id:"private-links"},{depth:3,text:"Personal",id:"personal"},{depth:3,text:"Problem Solving",id:"problem-solving"},{depth:3,text:"Work",id:"work"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};

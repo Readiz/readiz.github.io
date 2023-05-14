@@ -1,0 +1,1 @@
+const t=[{depth:3,text:"DP Signal",id:"dp-signal"},{depth:3,text:"Editorial DP Contest (Atcoder)",id:"editorial-dp-contest-atcoder"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
