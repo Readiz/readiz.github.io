@@ -23,7 +23,7 @@ const RecentWritings: React.FC<Props> = (props) => {
     return r;
   })();
   return (
-    <ul>
+    <ul className="markdown-el">
         {
             recentWritings.map((item) => (
                 <li key={item[0]}><Link to={item[1]}>{String(item[1]).split('/')[2]} - {item[0]}</Link> | {item[2]}</li>

@@ -3,7 +3,7 @@ import { createTheme, defaultSideNavs, useThemeCtx } from 'vite-pages-theme-doc'
 import Component404 from './404';
 
 export default createTheme({
-  logo: <div style={{ fontSize: '20px' }}><img src="/assets/readiz.jpg" width="28" style={{verticalAlign: "middle"}}/> Readiz</div>,
+  logo: <div style={{ fontSize: '20px' }}><img src="/assets/readiz.jpg" width="20" style={{verticalAlign: "middle"}}/> Readiz</div>,
   topNavs: [
     { label: 'Home', path: '/' },
     {

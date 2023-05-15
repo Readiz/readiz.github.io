@@ -37,7 +37,8 @@ const Header: React.FC<Props> = (props) => {
             textAlign: 'right'
           }
         }>
-          by Readiz {writtendate ? '/ Last update: ' + String(writtendate).substring(0,10) : ''}
+        &nbsp;
+        {writtendate ? 'by Readiz / Last update: ' + String(writtendate).substring(0,10) : ''}
         </div>
         {/* <div>{themeCtx.loadState.routePath}</div>
         <div>{themeCtx.staticData[themeCtx.loadState.routePath].main.title}</div>
