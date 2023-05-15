@@ -1,7 +1,9 @@
 import React from 'react';
 import { useThemeCtx } from 'vite-pages-theme-doc';
 
-interface Props {}
+interface Props {
+  title?: string;
+}
 
 const Header: React.FC<Props> = (props) => {
   const themeCtx = useThemeCtx();
@@ -24,7 +26,7 @@ const Header: React.FC<Props> = (props) => {
               fontWeight: 700
             }
           }>
-            {title}
+            {props.title? props.title : title}
           </div>
         </div>
         <div style={
@@ -35,7 +37,7 @@ const Header: React.FC<Props> = (props) => {
             textAlign: 'right'
           }
         }>
-          Written by Readiz {writtendate ? '/ ' + String(writtendate).substring(0,10) : ''}
+          by Readiz {writtendate ? '/ Last update: ' + String(writtendate).substring(0,10) : ''}
         </div>
         {/* <div>{themeCtx.loadState.routePath}</div>
         <div>{themeCtx.staticData[themeCtx.loadState.routePath].main.title}</div>
