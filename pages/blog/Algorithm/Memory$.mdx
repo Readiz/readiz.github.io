@@ -45,11 +45,36 @@ memset(ptr, 0, sizeof(int) * 1000);
 
 위에서 메모리 주소값에 관한 이야기를 했다면 다음으로는 자료형에 대한 이야기가 필수적이다. 자료형이 메모리에 매핑되는 방식은 아래와 같다.
 
+```cpp
+struct mydata
+{
+   int    number1;
+   char   string1[15];
+   int    number2;
+   double floating_point1;
+   char   char1;
+   float  floating_point2;
+   short  short1;
+   int    number3;
+   double floating_array[3];
+} d;
+
+d.number1 = 1234567;
+strcpy(d.string1, "Hello world!");
+d.number2 = 1;
+d.floating_point1 = 2.0;
+d.char1 = 1;
+d.floating_point2 = 999.999;
+d.short1 = 30000;
+d.number3 = -1;
+d.floating_array[0] = 1.0;
+d.floating_array[1] = 2.0;
+d.floating_array[2] = 3.0;
+```
+
 <Image src="2023-05-14-14-33-44.png" width="450"/>
 
-위 예시는 `Little Endian`을 사용한 예시이다. 이 시스템의 경우 
-
-그런데 주의할 점이자 알면 좋은 점이 두가지가 있다.
+위 예시는 `Little Endian`을 사용한 예시이다. 주의할 점이자 알면 좋은 점이 두가지가 있다.
 
 1. 일반적으로 `int` 형의 경우 `4 byte`를 사용하는데, 위에서 언급한 것처럼, 메모리의 기본 단위는 `1 byte`이다. 즉, `1 byte`를 어떤 순서로 `4 byte`에 배열할 것인가에 대한 문제가 생긴다. 이를 해결하는 방법이 두가지가 있는데, 보통 `Little Endian`, `Big Endian` 이라고 부르곤 한다. 자세한 내용은 검색해보도록 하자.
 2. `C/C++`과 같은 언어는 형변환이 자유롭다. 이를테면 char 형태의 배열을 `int* p = (int*) charArr;`와 같은 식으로 변환해서 접근할 수 있는데, 이렇게 할 경우 `4byte`를 한번에 다룰 수 있다. 이 부분은 가끔 성능을 높이는데에 도움이 될 수 있어서 아래와 같은 예시코드를 하나 첨부한다. 물론 memset 하면 되는 부분인데 대충 이런 느낌이다 하고 이해하기 좋아서 첨부하는 것..

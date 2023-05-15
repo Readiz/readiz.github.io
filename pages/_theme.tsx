@@ -1,6 +1,7 @@
 import React from 'react';
 import { createTheme, defaultSideNavs, useThemeCtx } from 'vite-pages-theme-doc';
 import Component404 from './404';
+import { Link } from 'react-router-dom'
 
 export default createTheme({
   logo: <div style={{ fontSize: '20px' }}><img src="/assets/readiz.jpg" width="20" style={{verticalAlign: "middle"}}/> Readiz</div>,
@@ -65,13 +66,13 @@ export default createTheme({
           title: <b>{'Internal'}</b>,
           items: [
             {
-              icon: '',
-              label: 'Links',
+              icon: <Link to="/link">Links</Link>,
+              label: '  ',
               url: '/link',
             },
             {
-              icon: '',
-              label: 'Jukebox',
+              icon: <Link to="/showcase/Demos/BAMusicPlayer">Jukebox</Link>,
+              label: '  ',
               url: '/showcase/Demos/BAMusicPlayer',
             },
           ],
