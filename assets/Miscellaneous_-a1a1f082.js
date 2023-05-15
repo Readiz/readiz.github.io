@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"Readiz HomePage 개설 목적 정리",id:"readiz-homepage-개설-목적-정리"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
