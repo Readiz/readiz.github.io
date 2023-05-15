@@ -78,7 +78,7 @@ d.floating_array[2] = 3.0;
 
 1. 일반적으로 `int` 형의 경우 `4 byte`를 사용하는데, 위에서 언급한 것처럼, 메모리의 기본 단위는 `1 byte`이다. 즉, `1 byte`를 어떤 순서로 `4 byte`에 배열할 것인가에 대한 문제가 생긴다. 이를 해결하는 방법이 두가지가 있는데, 보통 `Little Endian`, `Big Endian` 이라고 부르곤 한다. 자세한 내용은 검색해보도록 하자.
 2. `C/C++`과 같은 언어는 형변환이 자유롭다. 이를테면 char 형태의 배열을 `int* p = (int*) charArr;`와 같은 식으로 변환해서 접근할 수 있는데, 이렇게 할 경우 `4byte`를 한번에 다룰 수 있다. 이 부분은 가끔 성능을 높이는데에 도움이 될 수 있어서 아래와 같은 예시코드를 하나 첨부한다. 물론 memset 하면 되는 부분인데 대충 이런 느낌이다 하고 이해하기 좋아서 첨부하는 것..
-```c++
+```cpp
 void init(char myArr[1'000'000]) {
     unsigned long long *ullp = (unsigned long long*)myArr;
     for(int i = 0; i < 125'000; ++i)
