@@ -7,7 +7,8 @@
     "dev": "vite serve --host --port 1523",
     "build": "rimraf dist && vite-pages ssr && cp ./assets/* ./dist/assets",
     "buildserve": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",
-    "ssr": "rimraf dist && vite-pages ssr && cp ./assets/* ./dist/assets && export PORT=1523 && serve dist"
+    "ssr": "rimraf dist && vite-pages ssr && cp ./assets/* ./dist/assets && export PORT=1523 && serve dist",
+    "serve": "serve dist"
   },
   "keywords": [],
   "author": "",
