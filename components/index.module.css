@@ -5,3 +5,21 @@
   border-radius: 4px;
   overflow: hidden;
 }
+
+.tagItem {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px;
+  display: inline;
+  margin: 3px;
+}
+
+.tagLink {
+  color: rgb(9, 105, 218);
+  text-decoration-line: none;
+}
+
+.tagLink:hover {
+  text-decoration-line: underline;
+}

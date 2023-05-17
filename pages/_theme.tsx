@@ -66,13 +66,13 @@ export default createTheme({
           title: <b>{'Internal'}</b>,
           items: [
             {
-              icon: <Link to="/link">Links</Link>,
-              label: '  ',
+              icon: '',
+              label: 'Links',
               url: '/link',
             },
             {
-              icon: <Link to="/showcase/Demos/BAMusicPlayer">Jukebox</Link>,
-              label: '  ',
+              icon: '',
+              label: 'Jukebox',
               url: '/showcase/Demos/BAMusicPlayer',
             },
           ],

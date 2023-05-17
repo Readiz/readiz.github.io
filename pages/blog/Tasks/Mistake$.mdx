@@ -4,6 +4,7 @@ writtendate: 2023-05-12
 ---
 import Comment from '@/components/Comment'
 import Header from '@/components/Header'
+import TagList from '@/components/TagList'
 
 <Header />
 
@@ -27,4 +28,5 @@ for (unsigned int i = 0; i <= 0xFFFFFFFFU; ++i) {
 
 `overflow`가 일어나기 때문에 `0xFFFFFFFFU + 1U = 0` 이다. 즉, 위 루프는 얼핏 보면 약 42억번 동작할 것 같지만, 무한루프에 빠진다. 잠시나마 골머리 썩혔던 문제고, 알고나면 별 문제 아닌데, 알고나면 김샌다. 이런 일 없도록 low level의 공부를 게을리 해서는 안될 거 같다.
 
+<TagList />
 <Comment />
