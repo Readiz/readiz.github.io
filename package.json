@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "both": "cd theme-doc && npm run build && cd .. && npm run dev",
     "dev": "vite serve --host --port 1523",
     "build": "rimraf dist && vite-pages ssr && cp ./assets/* ./dist/assets",
     "buildserve": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",

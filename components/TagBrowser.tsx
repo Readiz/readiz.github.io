@@ -29,9 +29,9 @@ const TagBrowser: React.FC<Props> = (props) => {
     if (arr) {
       for(let item of arr) {
         if (themeCtx.staticData[item]?.main?.writtendate) {
-          res.push([item, themeCtx.staticData[item]?.main?.title, String(themeCtx.staticData[item]?.main?.writtendate).substring(0, 10)]);
+          res.push([item, themeCtx.staticData[item]?.main?.title, String(themeCtx.staticData[item]?.main?.writtendate).substring(0, 10), String(item).split('/')[3]]);
         } else {
-          res.push([item, themeCtx.staticData[item]?.main?.title, 'Unknown date']);
+          res.push([item, themeCtx.staticData[item]?.main?.title, 'Unknown date', String(item).split('/')[3]]);
         }
       }
     }
@@ -43,7 +43,7 @@ const TagBrowser: React.FC<Props> = (props) => {
       <ul className="markdown-el">
         {
             writings.map((item) => (
-              <li key={item[0]}><Link to={item[0]}>{String(item[0]).split('/')[2]} - {item[1]}</Link> | {item[2]}</li>
+              <li key={item[0]}><Link to={item[0]}>{item[3]} - {item[1]}</Link> | {item[2]}</li>
             ))
         }
       </ul>

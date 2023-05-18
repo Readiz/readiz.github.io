@@ -33598,7 +33598,9 @@ function defaultSideNavs({
     const subGroupLabel = (_getGroupConfig$label = (_getGroupConfig3 = getGroupConfig(groupKey, subGroupKey)) === null || _getGroupConfig3 === void 0 ? void 0 : _getGroupConfig3.label) !== null && _getGroupConfig$label !== void 0 ? _getGroupConfig$label : subGroupKey;
     const subGroupItems = pages.sort((pageA, pageB) => sortPages(pageA.pageStaticData, pageB.pageStaticData, pageA.pagePath, pageB.pagePath))
     // pages with path params should not be showed in sideNav
-    .filter(page => !page.pagePath.includes('/:')).map(page => {
+    .filter(page => {
+      return !page.pagePath.includes('/:') && page.pagePath.split('/').length < 5;
+    }).map(page => {
       return {
         label: page.pageTitle,
         path: page.pagePath

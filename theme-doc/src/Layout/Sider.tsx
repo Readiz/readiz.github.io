@@ -187,7 +187,9 @@ export function defaultSideNavs(
           )
         )
         // pages with path params should not be showed in sideNav
-        .filter((page) => !page.pagePath.includes('/:'))
+        .filter((page) => {
+          return !page.pagePath.includes('/:') && page.pagePath.split('/').length < 5;
+        })
         .map((page) => {
           return {
             label: page.pageTitle,

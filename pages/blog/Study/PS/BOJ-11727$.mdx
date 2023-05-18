@@ -1,0 +1,48 @@
+---
+title: BOJ 11727 (2xn 타일링)
+writtendate: 2023-05-01
+tags:
+    - PS
+    - BOJ
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+
+<Header />
+
+- 문제 제목: 2×n 타일링 2
+- 문제 링크: https://www.acmicpc.net/problem/11727
+
+간단한 DP 연습 문제. 아래 점화식을 N = 3, 4, 5 반복해보면 관찰할 수 있다.
+
+```
+DP[i] = DP[i-1] + DP[i-2] * 2
+```
+
+N 은 1000보다 작은 정수이므로 위 점화식으로 시간 복잡도 안으로 구하기 가능. 끝.
+
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int DP[1001] = {0, 1, 3};
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    for(int i = 3; i <= N; ++i) {
+        DP[i] = DP[i-1] + (DP[i-2] << 1);
+        DP[i] %= 10007;
+    }
+
+    printf("%d\n", DP[N]);
+
+    return 0;
+}
+```
+
+<TagList />
+<Comment />

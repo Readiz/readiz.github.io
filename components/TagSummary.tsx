@@ -25,15 +25,16 @@ const TagBrowser: React.FC<Props> = (props) => {
     }
     let res = [];
     for(let item of r) {
-        res.push([item[0], String(item[0]).substring(0,1).toUpperCase() + String(item[0]).substring(1)]);
+        res.push([item[0], String(item[0]).substring(0,1).toUpperCase() + String(item[0]).substring(1), item[1].length]);
     }
+    res = res.sort((a, b) => {return b[2] - a[2]});
     return res;
   })();
   return (
     <ul className="markdown-el">
     {
         writings.map((item) => (
-          <li key={item[0]}><Link to={'/blog/tags/' + item[0]}>{item[1]}</Link></li>
+          <li key={item[0]}><Link to={'/blog/tags/' + item[0]}>{item[1]}</Link> | 관련 글 수: {item[2]}</li>
         ))
     }
   </ul>

@@ -32,7 +32,8 @@ const Header: React.FC<Props> = (props) => {
       return '안녕하세요!';
     }
     const sp = themeCtx.loadState.routePath.split('/');
-    return sp[sp.length - 1];
+    if (String(sp[sp.length - 1]).startsWith(':')) { return 'Writings' }
+    else return sp[sp.length - 1];
   })();
   return (
     <div style={{marginBottom: 20}}>
