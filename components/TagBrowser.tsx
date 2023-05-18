@@ -31,7 +31,7 @@ const TagBrowser: React.FC<Props> = (props) => {
         if (themeCtx.staticData[item]?.main?.writtendate) {
           res.push([item, themeCtx.staticData[item]?.main?.title, String(themeCtx.staticData[item]?.main?.writtendate).substring(0, 10), String(item).split('/')[3]]);
         } else {
-          res.push([item, themeCtx.staticData[item]?.main?.title, 'Unknown date', String(item).split('/')[3]]);
+          res.push([item, themeCtx.staticData[item]?.main?.title, '-', String(item).split('/')[3]]);
         }
       }
     }

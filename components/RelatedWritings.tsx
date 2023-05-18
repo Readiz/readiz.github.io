@@ -13,13 +13,19 @@ const RecentWritings: React.FC<Props> = (props) => {
     let r = [];
     for(let item of Object.keys(d)) {
         if (item.includes(themeCtx.loadState.routePath) && item != themeCtx.loadState.routePath) {
-            r.push([item, new Date(d[item]?.main?.writtendate)]);
+          if (d[item]?.main?.writtendate)
+            r.push([item, new Date(d[item]?.main?.writtendate).toLocaleDateString(), new Date(d[item]?.main?.writtendate)]);
+          else
+            r.push([item, '-']);
         }
     }
     r = r.sort((a,b) => {
-        return -(a[1] - b[1]);
+      if (a[1] == '-' && b[1] != '-') return 1;
+      if (b[1] == '-' && a[1] != '-') return -1;
+      if (a[1] == '-' && b[1] == '-') return 1;
+      return -(a[2] - b[2]);
     });
-    r = r.map((_) => [themeCtx.staticData[_[0]]?.main?.title, _[0], new Date(_[1]).toLocaleDateString()]);
+    r = r.map((_) => [themeCtx.staticData[_[0]]?.main?.title, _[0], _[1]]);
     return r;
   })();
   return (

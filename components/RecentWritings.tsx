@@ -2,7 +2,9 @@ import React from 'react';
 import { useThemeCtx } from '../theme-doc/dist';
 import { Link } from 'react-router-dom';
 
-interface Props {}
+interface Props {
+  all: boolean;
+}
 
 const RecentWritings: React.FC<Props> = (props) => {
   const themeCtx = useThemeCtx();
@@ -12,15 +14,19 @@ const RecentWritings: React.FC<Props> = (props) => {
     let d = themeCtx.staticData;
     let r = [];
     for(let item of Object.keys(d)) {
-        if (d[item]?.main?.writtendate) {
-            r.push([item, new Date(d[item]?.main?.writtendate)]);
-        }
+        if (d[item]?.main?.writtendate)
+          r.push([item, new Date(d[item]?.main?.writtendate).toLocaleDateString(), new Date(d[item]?.main?.writtendate)]);
+        else
+          r.push([item, '-']);
     }
     r = r.sort((a,b) => {
-        return -(a[1] - b[1]);
+      if (a[1] == '-' && b[1] != '-') return 1;
+      if (b[1] == '-' && a[1] != '-') return -1;
+      if (a[1] == '-' && b[1] == '-') return 1;
+      return -(a[2] - b[2]);
     });
-    r = r.slice(0,10);
-    r = r.map((_) => [themeCtx.staticData[_[0]]?.main?.title, _[0], new Date(_[1]).toLocaleDateString()]);
+    if (!props.all) r = r.slice(0,15);
+    r = r.map((_) => [themeCtx.staticData[_[0]]?.main?.title, _[0], _[1]]);
     return r;
   })();
   return (
