@@ -1,5 +1,7 @@
 import React from 'react';
 import { useThemeCtx } from 'vite-pages-theme-doc';
+import { Link } from 'react-router-dom';
+import style from './index.module.css';
 
 interface Props {
   title?: string;
@@ -9,6 +11,29 @@ const Header: React.FC<Props> = (props) => {
   const themeCtx = useThemeCtx();
   const title = (themeCtx.staticData[themeCtx.loadState.routePath]?.main?.title) ? (themeCtx.staticData[themeCtx.loadState.routePath]?.main?.title) : 'Untitled';
   const writtendate = (themeCtx.staticData[themeCtx.loadState.routePath]?.main?.writtendate);
+  const crumb = (() => {
+    let fullRoute = themeCtx.loadState.routePath;
+    if (fullRoute == '/') {
+      return [];
+    }
+    if (fullRoute.endsWith('/'))
+      fullRoute = fullRoute.substring(0, fullRoute.length - 1);
+    const items = fullRoute.split('/');
+    const res = [['/', 'Home']];
+    let curPath = '';
+    for(let i = 1; i < items.length - 1; ++i) {
+      curPath += '/' + items[i];
+      res.push([curPath, items[i]]);
+    }
+    return res;
+  })();
+  const last = (() => {
+    if (themeCtx.loadState.routePath == '/') {
+      return '안녕하세요!';
+    }
+    const sp = themeCtx.loadState.routePath.split('/');
+    return sp[sp.length - 1];
+  })();
   return (
     <div style={{marginBottom: 20}}>
         <div style={
@@ -28,6 +53,16 @@ const Header: React.FC<Props> = (props) => {
           }>
             {props.title? props.title : title}
           </div>
+          <ul className={style.breadcrumb}>
+            {
+                crumb.map((item) => (
+                    <li key={item[0]}><Link to={item[0]}>{item[1]}</Link></li>
+                ))
+            }
+            {
+                <li key={last}>{last}</li>
+            }
+          </ul>
         </div>
         <div style={
           {
@@ -40,9 +75,6 @@ const Header: React.FC<Props> = (props) => {
         &nbsp;
         {writtendate ? 'by Readiz / Last update: ' + String(writtendate).substring(0,10) : ''}
         </div>
-        {/* <div>{themeCtx.loadState.routePath}</div>
-        <div>{themeCtx.staticData[themeCtx.loadState.routePath].main.title}</div>
-        <pre>{JSON.stringify(themeCtx, null, 2)}</pre> */}
     </div>
   )
 }

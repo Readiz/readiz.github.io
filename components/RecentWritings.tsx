@@ -1,6 +1,6 @@
 import React from 'react';
 import { useThemeCtx } from 'vite-pages-theme-doc';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 interface Props {}
 

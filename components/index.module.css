@@ -23,3 +23,34 @@
 .tagLink:hover {
   text-decoration-line: underline;
 }
+
+.breadcrumb {
+  padding-inline-start: 0;
+  margin: -10px;
+  margin-top: -5px;
+  display: flex;
+  list-style: none;
+  font-size: 12px;
+}
+.breadcrumb li a:before{
+    content: "";
+    position: absolute;
+    border: 5px solid transparent;
+    border-right: none;
+    border-left: 5px solid rgb(9, 105, 218);
+    top: 50%;
+    right: -5px;
+    transform: translate(0, -50%);
+}
+.breadcrumb li {
+  padding: 5px 8px 5px 12px;
+  position: relative;
+  display: block;
+}
+.breadcrumb li a, .breadcrumb li a:link, .breadcrumb li a:visited {
+  color: rgb(9, 105, 218);
+  text-decoration: none;
+}
+.breadcrumb li a:hover {
+  text-decoration-line: underline;
+}
