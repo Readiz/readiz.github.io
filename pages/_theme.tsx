@@ -1,5 +1,5 @@
 import React from 'react';
-import { createTheme, defaultSideNavs, useThemeCtx } from 'vite-pages-theme-doc';
+import { createTheme, defaultSideNavs, useThemeCtx } from '../theme-doc/dist';
 import Component404 from './404';
 import { Link } from 'react-router-dom'
 
@@ -66,13 +66,13 @@ export default createTheme({
           title: <b>{'Internal'}</b>,
           items: [
             {
-              icon: '',
-              label: 'Links',
+              icon: <Link to="/link">Links</Link>,
+              label: '  ',
               url: '/link',
             },
             {
-              icon: '',
-              label: 'Jukebox',
+              icon: <Link to="/showcase/Demos/BAMusicPlayer">Jukebox</Link>,
+              label: '  ',
               url: '/showcase/Demos/BAMusicPlayer',
             },
           ],

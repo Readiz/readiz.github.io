@@ -1,0 +1,34 @@
+// global style
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+}
+
+// only apply to elements rendered by this theme
+// avoid interfering with user's content
+.vp-local-header a,
+.vp-local-sider a,
+.vp-antd-menu a,
+.vp-antd-anchor a,
+.vp-antd-dropdown-menu a {
+  text-decoration: none;
+}
+
+// appply to markdown footnote heading (#footnote-label)
+// copied from github style
+.markdown-body .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  word-wrap: normal;
+  border: 0;
+}

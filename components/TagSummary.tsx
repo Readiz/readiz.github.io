@@ -1,5 +1,5 @@
 import React from 'react';
-import { useThemeCtx } from 'vite-pages-theme-doc';
+import { useThemeCtx } from '../theme-doc/dist';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 
