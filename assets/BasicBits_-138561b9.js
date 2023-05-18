@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"기초 Reminder",id:"기초-reminder"},{depth:3,text:"C++에서의 2진수 표현",id:"c에서의-2진수-표현"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
