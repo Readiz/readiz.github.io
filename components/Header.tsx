@@ -73,7 +73,7 @@ const Header: React.FC<Props> = (props) => {
           }
         }>
         &nbsp;
-        {writtendate ? 'by Readiz / Last update: ' + String(writtendate).substring(0,10) : ''}
+        {writtendate ? 'by Readiz / Last update: ' + String(writtendate).substring(0,10) : 'by Readiz'}
         </div>
     </div>
   )
