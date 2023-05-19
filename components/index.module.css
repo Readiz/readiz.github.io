@@ -13,12 +13,12 @@
   box-shadow: 1px 1px;
   display: inline-block;
   margin: 3px;
-  line-height: 40px;
 }
 
 .tagLink {
   color: rgb(9, 105, 218);
   text-decoration-line: none;
+  line-height: 40px;
 }
 
 .tagLink:hover {
