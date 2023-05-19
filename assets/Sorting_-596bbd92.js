@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"O(n^2) 알고리즘",id:"on2-알고리즘"},{depth:3,text:"Selection Sort",id:"selection-sort"},{depth:3,text:"작성 중...",id:"작성-중"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
