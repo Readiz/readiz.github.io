@@ -33,6 +33,41 @@ void selSort(T arr[], int size) {
 }
 ```
 
+### Insertion Sort
+
+데이터가 뒤쪽으로 1개씩 추가되는 경우에, O(n)으로 제일 빠르다. 또한 `memory`의 `locality`를 살릴 수 있는 방식으로 유명하다.
+
+#### 작성 중
+
+
+## O(n log n) 알고리즘
+
+### Quick Sort
+
+`stable` 하지는 않지만, 작성이 쉽고 랜덤한 분포를 가지는 데이터에 대해서 성능이 빠르다.
+
+```cpp
+void qSort(T arr[], int s, int e) {
+    int l = s, r = e;
+    T pivot = arr[(s + e) >> 1];
+
+    while(l < r) {
+        while(arr[l] < pivot) ++l;
+        while(pivot < arr[r]) --r;
+        if (i > j) break;
+
+        T tmp = arr[l];
+        arr[l] = arr[r];
+        arr[r] = tmp;
+
+        ++l; --r;
+    }
+    qSort(arr, s, r);
+    qSort(arr, l, e);
+}
+```
+
+
 ### 작성 중...
 
 

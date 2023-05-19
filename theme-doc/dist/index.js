@@ -2,7 +2,7 @@ import './index.css';
 import * as React from 'react';
 import React__default, { createContext, useRef, useState, useMemo as useMemo$1, useContext, useEffect, useLayoutEffect as useLayoutEffect$2, createRef, forwardRef, Children, useCallback, useImperativeHandle, cloneElement as cloneElement$1, Component } from 'react';
 import { Link, useNavigate, matchPath, NavLink, useLocation } from 'react-router-dom';
-import { _ as _typeof$1, u as useMemo, a as _classCallCheck, b as _createClass, c as _objectSpread2$1, w as warning$4, d as _extends$3, e as _defineProperty$2, f as warningOnce, g as _arrayWithHoles, h as _iterableToArray, i as _unsupportedIterableToArray, j as _nonIterableRest, k as _toConsumableArray, l as _objectWithoutProperties, m as _slicedToArray, r as resetWarned, n as useStyleRegister, o as createTheme$1, p as useCacheToken, q as canUseDom, s as updateCSS, t as isEqual, v as removeCSS, x as noteOnce, y as contains } from './legacyLogicalProperties-830ae6ab.js';
+import { _ as _typeof$1, u as useMemo, a as _classCallCheck, b as _createClass, c as _objectSpread2$1, w as warning$4, d as _extends$3, e as _defineProperty$2, f as warningOnce, g as _arrayWithHoles, h as _iterableToArray, i as _unsupportedIterableToArray, j as _nonIterableRest, k as _toConsumableArray, l as _objectWithoutProperties, m as _slicedToArray, r as resetWarned, n as useStyleRegister, o as createTheme$1, p as useCacheToken, q as canUseDom, s as updateCSS, t as isEqual, v as removeCSS, x as noteOnce, y as contains } from './legacyLogicalProperties-d2f60e7e.js';
 import * as ReactDOM from 'react-dom';
 import ReactDOM__default, { createPortal, unstable_batchedUpdates, flushSync } from 'react-dom';
 import { MDXProvider } from '@mdx-js/react';
@@ -33154,7 +33154,7 @@ const Search = props => {
     // https://ant.design/docs/react/faq#how-do-i-prevent-select-dropdown-datepicker-timepicker-popover-popconfirm-scrolling-with-the-page
     ,
     getPopupContainer: trigger => trigger.parentElement,
-    dropdownMatchSelectWidth: false,
+    popupMatchSelectWidth: false,
     style: {
       width: 200
     },
@@ -33488,6 +33488,16 @@ const AppSider = ({
   const menuItems = sideNavsData ? renderMenu(sideNavsData, true, subMenuKeys) : [];
   const layoutCtxVal = useContext(LayoutContext);
   const isSmallScreen = !((_layoutCtxVal$screenW = layoutCtxVal.screenWidth) !== null && _layoutCtxVal$screenW !== void 0 && _layoutCtxVal$screenW.md);
+  let pathTrim = (() => {
+    const spl = themeProps.loadState.routePath.split('/');
+    if (spl.length <= 4) return themeProps.loadState.routePath;
+    let tmp = '';
+    for (let i = 1; i < 4; ++i) {
+      tmp += '/';
+      tmp += spl[i];
+    }
+    return tmp;
+  })();
   return /*#__PURE__*/React__default.createElement("div", {
     className: s$5.sider
   }, sideNavsData && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(Menu$1, {
@@ -33499,7 +33509,7 @@ const AppSider = ({
     // use loadState.routePath instead of location.pathname
     // because location.pathname may contain trailing slash
     ,
-    selectedKeys: [themeProps.loadState.routePath],
+    selectedKeys: [pathTrim],
     defaultOpenKeys: subMenuKeys,
     inlineIndent: 30,
     items: menuItems
@@ -33528,7 +33538,7 @@ const AppSider = ({
     // use loadState.routePath instead of location.pathname
     // because location.pathname may contain trailing slash
     ,
-    selectedKeys: [themeProps.loadState.routePath],
+    selectedKeys: [pathTrim],
     defaultOpenKeys: subMenuKeys,
     inlineIndent: 30,
     items: menuItems
@@ -33601,10 +33611,22 @@ function defaultSideNavs({
     .filter(page => {
       return !page.pagePath.includes('/:') && page.pagePath.split('/').length < 5;
     }).map(page => {
-      return {
-        label: page.pageTitle,
-        path: page.pagePath
-      };
+      let cnt = 0;
+      for (let item in staticData) {
+        if (item == page.pagePath) continue;
+        if (item.includes(page.pagePath)) ++cnt;
+      }
+      if (cnt <= 1) {
+        return {
+          label: page.pageTitle,
+          path: page.pagePath
+        };
+      } else {
+        return {
+          label: page.pageTitle + ` (${cnt})`,
+          path: page.pagePath
+        };
+      }
     });
     if (subGroupItems.length > 0) result.push({
       group: subGroupLabel,

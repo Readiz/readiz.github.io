@@ -24,8 +24,17 @@ const AppSider: React.FC<React.PropsWithChildren<Props>> = ({
     ? renderMenu(sideNavsData, true, subMenuKeys)
     : []
   const layoutCtxVal = useContext(LayoutContext)
-
   const isSmallScreen = !layoutCtxVal.screenWidth?.md
+  let pathTrim = (() => {
+    const spl = themeProps.loadState.routePath.split('/');
+    if (spl.length <= 4) return themeProps.loadState.routePath;
+    let tmp = '';
+    for(let i = 1; i < 4; ++i) {
+      tmp += '/';
+      tmp += spl[i];
+    }
+    return tmp;
+  })();
 
   return (
     <div className={s.sider}>
@@ -38,7 +47,7 @@ const AppSider: React.FC<React.PropsWithChildren<Props>> = ({
             mode="inline"
             // use loadState.routePath instead of location.pathname
             // because location.pathname may contain trailing slash
-            selectedKeys={[themeProps.loadState.routePath]}
+            selectedKeys={[pathTrim]}
             defaultOpenKeys={subMenuKeys}
             inlineIndent={30}
             items={menuItems}
@@ -70,7 +79,7 @@ const AppSider: React.FC<React.PropsWithChildren<Props>> = ({
             mode="inline"
             // use loadState.routePath instead of location.pathname
             // because location.pathname may contain trailing slash
-            selectedKeys={[themeProps.loadState.routePath]}
+            selectedKeys={[pathTrim]}
             defaultOpenKeys={subMenuKeys}
             inlineIndent={30}
             items={menuItems}
@@ -191,9 +200,21 @@ export function defaultSideNavs(
           return !page.pagePath.includes('/:') && page.pagePath.split('/').length < 5;
         })
         .map((page) => {
-          return {
-            label: page.pageTitle,
-            path: page.pagePath,
+          let cnt = 0;
+          for(let item in staticData) {
+            if (item == page.pagePath) continue;
+            if (item.includes(page.pagePath)) ++cnt;
+          }
+          if (cnt <= 1) {
+            return {
+              label: page.pageTitle,
+              path: page.pagePath,
+            }
+          } else {
+            return {
+              label: page.pageTitle + ` (${cnt})`,
+              path: page.pagePath,
+            }
           }
         })
       if (subGroupItems.length > 0)

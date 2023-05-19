@@ -197,7 +197,7 @@ const Search: React.FC<React.PropsWithChildren<Props>> = (props) => {
         popupClassName={s.popup}
         // https://ant.design/docs/react/faq#how-do-i-prevent-select-dropdown-datepicker-timepicker-popover-popconfirm-scrolling-with-the-page
         getPopupContainer={(trigger) => trigger.parentElement}
-        dropdownMatchSelectWidth={false}
+        popupMatchSelectWidth={false}
         style={{ width: 200 }}
         options={keywords ? options : (recentSearchesOptions as any)}
         open={popupOpen}

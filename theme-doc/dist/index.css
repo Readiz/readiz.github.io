@@ -1450,6 +1450,7 @@ g-emoji:is(.markdown-el, .markdown-el *) img {
 }
 .vp-local-footer.vp-local-theme-light .vp-local-footer-bottom-container {
   border-top: none;
+  padding: 20px;
 }
 
 *,
