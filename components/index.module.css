@@ -18,7 +18,7 @@
 .tagLink {
   color: rgb(9, 105, 218);
   text-decoration-line: none;
-  line-height: 40px;
+  line-height: 25px;
 }
 
 .tagLink:hover {
