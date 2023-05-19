@@ -11,8 +11,9 @@
   border-radius: 5px;
   padding: 5px;
   box-shadow: 1px 1px;
-  display: inline;
+  display: inline-block;
   margin: 3px;
+  line-height: 40px;
 }
 
 .tagLink {

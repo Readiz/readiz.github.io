@@ -13,7 +13,7 @@ const TagList: React.FC<Props> = (props) => {
   if (!tags) return null;
   return (
     <div className="tagList" style={{marginTop: 30}}>
-        🏷️ 태그 목록: {
+        🏷️ 주제 목록: {
             tags.map((item) => (
                 <div key={item} className={style.tagItem}><Link className={style.tagLink} to={'/blog/tags/' + item}>#{item}</Link></div>
             ))
