@@ -1,0 +1,3 @@
+import{p as s}from"./index_-35681ce2.js";import{u as r,j as t,a as i,F as c}from"./ssg-client-e469a87f.js";import{H as m}from"./Header-3abeb787.js";import{R as l}from"./RelatedWritings-5609fdb2.js";import"./index.module-d14c9ade.js";function o(e){const n=Object.assign({h2:"h2"},r(),e.components);return i(c,{children:[t(m,{}),`
+`,t(n.h2,{id:"related",children:"Related"}),`
+`,t(l,{})]})}function u(e={}){const{wrapper:n}=Object.assign({},r(),e.components);return n?t(n,Object.assign({},e,{children:t(o,e)})):o(e)}const d=Object.freeze(Object.defineProperty({__proto__:null,default:u},Symbol.toStringTag,{value:"Module"})),a={};a.outlineInfo=s;a.main=d;export{a as default};
