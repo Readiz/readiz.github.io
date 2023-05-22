@@ -1,19 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import ReactGA from "react-ga";
-import { createBrowserHistory } from "history";
-
-const history = createBrowserHistory();
-history.listen((response) => {
-  console.log(response.location.pathname);
-  ReactGA.set({ page: response.location.pathname });
-  ReactGA.pageview(response.location.pathname);
-});
+import { useThemeCtx } from '../theme-doc/dist';
 
 const gaTrackingId = 'G-S0PX98DDKC';
 ReactGA.initialize(gaTrackingId);
-export default function GA() {
+
+interface Props {
+}
+
+const GA: React.FC<Props> = (props) => {
+  const themeCtx = useThemeCtx();
+  ReactGA.set({ page: themeCtx.loadState.routePath });
+  ReactGA.pageview(themeCtx.loadState.routePath);
   return (
       <>
       </>
   );
-}
+};
+
+export default GA;
