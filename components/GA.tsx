@@ -1,17 +1,20 @@
 import React, { useEffect, useRef } from "react";
-import ReactGA from "react-ga4";
+import { ReactGAImplementation } from 'react-ga4';
 import { useThemeCtx } from '../theme-doc/dist';
 
+
+class ReactGA extends ReactGAImplementation {}
+const reactGA = new ReactGA();
 const gaTrackingId = 'G-S0PX98DDKC';
-ReactGA.initialize(gaTrackingId);
+reactGA.initialize(gaTrackingId);
 
 interface Props {
 }
 
 const GA: React.FC<Props> = (props) => {
   const themeCtx = useThemeCtx();
-  ReactGA.set({ page: themeCtx.loadState.routePath });
-  ReactGA.send("pageview");
+  reactGA.set({ page: themeCtx.loadState.routePath });
+  reactGA.send("pageview");
   return (
       <>
       </>
