@@ -67,7 +67,9 @@ const Header: React.FC<Props> = (props) => {
         </div>
         <div style={
           {
-            marginTop: -25,
+            marginTop: -82,
+            marginRight: -7,
+            marginBottom: 85,
             fontSize: 12,
             color: 'grey',
             textAlign: 'right'

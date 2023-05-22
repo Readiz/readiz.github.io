@@ -3,6 +3,7 @@ title: Heap
 writtendate: 2023-05-22
 tags:
     - heap
+    - 자료 구조
 ---
 import Comment from '@/components/Comment'
 import TagList from '@/components/TagList'
@@ -74,29 +75,68 @@ Heap에 삽입된 시점의 `Index`를 저장해주면, 특정 원소의 값을 
 ```cpp
 struct Heap {
     T data[SZ + 1];
-    int oidx[SZ + 1];
+    int posToID[SZ + 1]; // 위치 p에 있는 녀석의 id
+    int idToPos[ID_MAX]; // id가 어느 위치 p에 있는지
     int sz;
 
     void init() { sz = 0; }
-    void push(T v) {
+    void push(int idx, T v) {
         int p = ++sz;
         for(; p > 1; p >>= 1) {
             if (d[p>>1] <= v) break; // 이미 조건을 만족하고 있으면 break
             d[p] = d[p>>1];
+            idToPos[id[p]] = idToPos[id[p>>1]];
+            posToID[p] = posToID[p>>1];
         }
         d[p] = v;
+        posToID[p] = idx;
+        idToPos[idx] = p;
     }
     T pop() {
         T r = d[1];
+        int idx = posToID[sz];
         T val = d[sz--];
         int c = 2; // 왼쪽 자식부터 검사
 
         for(; c <= sz && d[c |= (c < sz && d[c] >= d[c|1])] < val; c <<= 1) {
             d[c>>1] = d[c];
+            idToPos[id[c>>1]] = idToPos[id[c]];
+            posToID[c>>1] = posToID[c];
         }
         d[c>>1] = val;
-
+        posToID[c>>1] = idx;
+        idToPos[idx] = c>>1;
         return r;
+    }
+    T getData(int idx) {
+        return d[idToPos[idx]];
+    }
+    void updateData(int idx, T v) {
+        int spos = idToPos[idx];
+        d[spos] = v;
+
+        // 위로 갱신
+        int p = spos;
+        for(; p > 1; p >>= 1) {
+            if (d[p>>1] <= v) break; // 이미 조건을 만족하고 있으면 break
+            d[p] = d[p>>1];
+            idToPos[id[p]] = idToPos[id[p>>1]];
+            posToID[p] = posToID[p>>1];
+        }
+        d[p] = v;
+        posToID[p] = idx;
+        idToPos[idx] = p;
+
+        // 아래로 갱신
+        int c = spos << 1; // 왼쪽 자식부터 검사
+        for(; c <= sz && d[c |= (c < sz && d[c] >= d[c|1])] < val; c <<= 1) {
+            d[c>>1] = d[c];
+            idToPos[id[c>>1]] = idToPos[id[c]];
+            posToID[c>>1] = posToID[c];
+        }
+        d[c>>1] = val;
+        posToID[c>>1] = idx;
+        idToPos[idx] = c>>1;
     }
 };
 
