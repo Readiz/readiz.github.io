@@ -1,6 +1,6 @@
 ---
 title: Binary Search
-writtendate: 2023-05-23
+writtendate: 2023-05-24
 tags:
     - binary search
 ---
@@ -10,16 +10,49 @@ import Header from '@/components/Header'
 
 <Header />
 
-Binary Search의 구현에 관한 정리
+Binary Search의 구현에 관한 정리. 주제 자체는 `solved.ac` 기준 실버 티어 정도일 수도 있겠지만, 제대로 쓰기까지 상당한 시간이 걸리는 주제이기도 하다. 또, 각종 알고리즘에서 뜬금없이 튀어나오는 1순위. `O(n)`을 `O(log n)`으로 줄여주는 강력한 무기.
 
-## 서론
+# 서론
 
 Binary Search는 항상 구현이 헷갈린다. 범위를 어디까지 해야하는지, `l`, `r` 설정은 어떻게 해야하는지 등등...
 
 여기서 그런 부분들을 한번 정리하고 넘어가고자 한다.
 
 
-### 작성중
+## Binary Search의 STL 사용 구현
+
+우선 표준이 되는 `STL`을 사용한 Binary Search 사용법을 확인해보자. 사용할 때 `vector`는 정렬이 되어 있어야 한다. `lower_bound`는 찾고자 하는 값보다 `크거나 같은` 값이 처음으로 나오는 시점을 반환한다.
+
+```cpp
+auto it = lower_bound(v.begin(), v.end(), tval);
+```
+
+`upper_bound`도 거의 동일하지만 `크거나 같은` 이 아닌 `큰` 이다. 사용법은 완전히 동일하다. (결과만 달라진다)
+
+```cpp
+auto it = upper_bound(v.begin(), v.end(), tval);
+```
+
+`Binary Search`의 의의는 원소를 찾을 때 전체 원소(`O(n)`)를 찾지 않아도 됨에 그 의의가 있다. 절반씩 찾을 원소가 줄어드므로 `Master Theorem`에 의해 시간복잡도가 `O(log n)`으로 줄어들게 된다.
+
+## Binary Search의 직접구현
+
+직접 구현시에 신경써야 할 포인트들이 많이 있다.
+
+1. 경계값 문제
+    - `s`, `e` 범위를 `[s, e]`로 할 것인가? `[s, e)`로 할 것인가?
+2. mid 값 설정 문제
+    - `(s+e)/2` 로 할 것인가, `(s+e+1)/2`로 할 것인가?
+3. loop시 `l`, `r` 조정 문제
+    - 가령 `r = mid`로 할 것인가, `r = mid - 1`로 할 것인가?
+
+하나씩 해치워보자.
+
+### 경계값 문제
+
+이것의 답은 의외로 간단하다. 만약 찾고자 하는 값이 범위에 있는 값을 초과하는 경우를 받아들일 수 있느냐 없느냐의 문제이기도 한데, 
+
+### 작성 중
 
 <TagList />
 <Comment />
