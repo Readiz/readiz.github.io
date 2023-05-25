@@ -1,0 +1,3 @@
+import{p as a}from"./tags_-79628163.js";import{u as r,j as n,a as c,F as i}from"./ssg-client-52216591.js";import{H as m}from"./Header-a57406ea.js";import{T as u}from"./TagSummary-64eddf59.js";import"./index.module-caf545e8.js";function o(e){const t=Object.assign({p:"p"},r(),e.components);return c(i,{children:[n(m,{}),`
+`,n(t.p,{children:"글 목록을 보기 원하는 주제를 아래에서 선택해주세요."}),`
+`,n(u,{})]})}function l(e={}){const{wrapper:t}=Object.assign({},r(),e.components);return t?n(t,Object.assign({},e,{children:n(o,e)})):o(e)}const p=Object.freeze(Object.defineProperty({__proto__:null,default:l},Symbol.toStringTag,{value:"Module"})),s={};s.outlineInfo=a;s.main=p;export{s as default};
