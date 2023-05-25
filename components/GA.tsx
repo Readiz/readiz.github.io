@@ -13,6 +13,8 @@ interface Props {
 
 const GA: React.FC<Props> = (props) => {
   const themeCtx = useThemeCtx();
+  const title = (themeCtx.staticData[themeCtx.loadState.routePath]?.main?.title) ? (themeCtx.staticData[themeCtx.loadState.routePath]?.main?.title) : 'Untitled';
+  if(typeof(document) !== "undefined") document.title = '📘Readiz - ' + title; // to fix ssr error
   reactGA.set({ page: themeCtx.loadState.routePath });
   reactGA.send("pageview");
   return (
