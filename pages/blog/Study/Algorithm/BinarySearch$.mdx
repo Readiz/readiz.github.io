@@ -137,11 +137,11 @@ int upperBound(int arr[], int s, int e, int tval) {
     int l = s, int r = e, mid, ans = e; // ans의 초기값에 유의
     while (l <= r) {
         mid = (l + r) >> 1;
-        if (tval == arr[mid]) {
-            l = mid + 1; // 여기가 바뀐다. 더 큰걸 찾는 거니까 우측으로 계속해서 보면 된다. (lowerBound는 경계값에서 좌측, upper는 우측)
+        if (tval == arr[mid]) { // lowerBound 구현 대비 달라지는 부분
+            l = mid + 1; // 더 큰걸 찾는 거니까 좌측이 아닌 우측으로 계속해서 보면 된다. (lowerBound는 경계값에서 좌측, upper는 우측)
         }
         else if (tval < arr[mid]) {
-            ans = mid; // lowerBound 구현 대비 달라지는 부분
+            ans = mid;
             r = mid - 1;
         } else {
             l = mid + 1;
