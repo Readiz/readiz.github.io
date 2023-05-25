@@ -23,7 +23,15 @@ Binary Search는 항상 구현이 헷갈린다. 범위를 어디까지 해야하
 
 ## Binary Search의 STL 사용 구현
 
-우선 표준이 되는 `STL`을 사용한 Binary Search 사용법을 확인해보자. 사용할 때 `vector`는 정렬이 되어 있어야 한다. `lower_bound`는 찾고자 하는 값보다 `크거나 같은` 값이 처음으로 나오는 시점을 반환한다.
+우선 표준이 되는 `STL`을 사용한 Binary Search 사용법을 확인해보자. 사용할 때 `vector`는 정렬이 되어 있어야 한다. 
+
+`binary_search`는 찾고자 하는 값이 있는지 없는지 여부를 반환한다.
+
+```cpp
+bool isExist = binary_search(v.begin(), v.end(), tval);
+```
+
+`lower_bound`는 찾고자 하는 값보다 `크거나 같은` 값이 처음으로 나오는 시점을 반환한다. 반환값 형태는 `iterator`이다.
 
 ```cpp
 auto it = lower_bound(v.begin(), v.end(), tval);
@@ -53,11 +61,11 @@ auto it = upper_bound(v.begin(), v.end(), tval);
 
 ### 경계값 문제
 
-이것의 답은 의외로 간단하다. 만약 찾고자 하는 값이 범위에 있는 값을 초과하는 경우를 받아들일 수 있느냐 없느냐의 문제이기도 한데, STL의 구현 기준으로, 찾는 값이 없을 경우 `end()`에 해당하는 `iterator`를 리턴하게 되어 있다.
+이 문서에서는 `[s, e]`를 기준으로 한다.
 
 ### mid 값 설정 문제
 
-간단히 하기 위해서 구간은 [s, e]로 통일하는 것이 좋다. 다만, `lower_bound`, `upper_bound`의 구현 시 결과가 `e+1`이 나올 수 있는데, 이 경우는 구간내에 값보다 큰 값이 왔을 경우이다.
+`[s, e]`를 쓰는 경우 구간은 `(s+e)/2`로 하면 충분하다. 다만, `lower_bound`, `upper_bound`의 구현 시 결과가 `e+1`이 나올 수 있는데, 이 경우는 구간 내에 존재하는 값의 최대값보다 보다 큰 값이 왔을 경우이다.
 
 ### loop시 l, r 조정 문제
 
@@ -127,7 +135,7 @@ int lowerBound(int arr[], int s, int e, int tval) {
 }
 ```
 
-`lower_bound`의 경우 위처럼만 수정하면 된다. 같을떄 `return` 하는 것이 아니라 더 찾는 것이 포인트.
+`lower_bound`의 경우 위처럼만 수정하면 된다. 같을때 `return` 하는 것이 아니라 더 찾는 것이 포인트.
 
 `upper_bound`는 아래처럼 해볼 수 있다.
 
