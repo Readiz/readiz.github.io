@@ -18,5 +18,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, "./")
     }
+  },
+  ssr: {
+    "noExternal": ["vite-pages-theme-doc", "mafs"]
   }
 })
