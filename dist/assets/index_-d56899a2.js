@@ -1,1 +1,0 @@
-const t=[{depth:2,text:"Bit 최적화?",id:"bit-최적화"},{depth:2,text:"Related Contents",id:"related-contents"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};

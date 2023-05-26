@@ -1,1 +1,0 @@
-import{j as e}from"./ssg-client-a408e234.js";import{I as o}from"./IFrame-38d5269b.js";import"./index.module-5d0c9a7d.js";const t=a=>e(o,{url:"https://www.readiz.com/RandomGame/",title:"Random Game"}),m=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"})),r={};r.main=m;export{r as default};

@@ -20,6 +20,6 @@ export default defineConfig({
     }
   },
   ssr: {
-    "noExternal": ["vite-pages-theme-doc", "mafs", "react-katex"]
+    noExternal: ["vite-pages-theme-doc", "mermaid", "mafs", "react-katex"]
   }
 })

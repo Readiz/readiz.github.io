@@ -1,1 +1,0 @@
-const e=[{depth:2,text:"Readiz HomePage 개설 목적 정리",id:"readiz-homepage-개설-목적-정리"},{depth:2,text:"인용할만한 책 문구",id:"인용할만한-책-문구"},{depth:2,text:"동기부여 매커니즘",id:"동기부여-매커니즘"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};

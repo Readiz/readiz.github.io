@@ -1,1 +1,0 @@
-const t=[{depth:3,text:"Easy Solution",id:"easy-solution"},{depth:3,text:"Hard Solution",id:"hard-solution"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
