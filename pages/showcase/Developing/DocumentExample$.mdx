@@ -8,6 +8,8 @@ import HelloGraph from '@/components/HelloGraph';
 import TagList from '@/components/TagList';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import { Mermaid } from 'mdx-mermaid/Mermaid';
+
 
 # 연습 페이지
 
@@ -17,6 +19,8 @@ React 등 여러 기술 연습 공간입니다.
 
 ![](../../../assets/2023-04-28-11-36-03.png)
 
+
+## Katax
 <InlineMath>\int_0^\infty x^2 dx</InlineMath>
 
 <InlineMath math="\int_0^\infty x^2 dx"/>
@@ -25,8 +29,20 @@ React 등 여러 기술 연습 공간입니다.
 
 <BlockMath math="\int_0^\infty x^2 dx"/>
 
+## Mermaid
+
+<Mermaid chart={`graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+`} />
+
+## Header
 
 <Header />
+
+## TagList
 <TagList />
 
 ## Table

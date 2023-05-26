@@ -49,24 +49,6 @@ auto it = upper_bound(v.begin(), v.end(), tval);
 
 직접 구현시에 신경써야 할 포인트들이 많이 있다.
 
-1. 경계값 문제
-    - `s`, `e` 범위를 `[s, e]`로 할 것인가? `[s, e)`로 할 것인가?
-2. mid 값 설정 문제
-    - `(s+e)/2` 로 할 것인가, `(s+e+1)/2`로 할 것인가?
-3. loop시 `l`, `r` 조정 문제
-    - 가령 `r = mid`로 할 것인가, `r = mid - 1`로 할 것인가?
-4. `lower_bound`와 `upper_bound`의 실 구현
-
-하나씩 해치워보자.
-
-### 경계값 문제
-
-이 문서에서는 `[s, e]`를 기준으로 한다.
-
-### mid 값 설정 문제
-
-`[s, e]`를 쓰는 경우 구간은 `(s+e)/2`로 하면 충분하다. 다만, `lower_bound`, `upper_bound`의 구현 시 결과가 `e+1`이 나올 수 있는데, 이 경우는 구간 내에 존재하는 값의 최대값보다 보다 큰 값이 왔을 경우이다.
-
 ### loop시 l, r 조정 문제
 
 오름차순으로 정렬된 `arr[]`에서, 원소를 찾으면 원소 index, 못찾으면 -1을 리턴하는 예시를 보자.
@@ -115,7 +97,7 @@ int binarySearch(int arr[], int s, int e, int tval) {
 이 경우 더 분기를 줄이는 방법도 있지만, 구현이 쉬운 방법으로 아래처럼 `binarySearch` 함수를 변경해볼 수 있다.
 
 ```cpp
-// [s, e] 구간 사용
+// [s, e) 구간 사용
 int lowerBound(int arr[], int s, int e, int tval) {
     int l = s, int r = e, mid, ans = e; // ans의 초기값에 유의
     while (l <= r) {
@@ -140,7 +122,7 @@ int lowerBound(int arr[], int s, int e, int tval) {
 `upper_bound`는 아래처럼 해볼 수 있다.
 
 ```cpp
-// [s, e] 구간 사용
+// [s, e) 구간 사용
 int upperBound(int arr[], int s, int e, int tval) {
     int l = s, int r = e, mid, ans = e; // ans의 초기값에 유의
     while (l <= r) {
