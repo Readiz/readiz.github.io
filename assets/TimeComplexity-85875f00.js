@@ -1,8 +1,0 @@
-import{p as u}from"./TimeComplexity_-a5c08a7f.js";import{j as e,F as a,a as c,u as m}from"./ssg-client-4729a2c6.js";import{C as g}from"./Comment-348150eb.js";import{T as y}from"./TagList-c0816301.js";import{H as O}from"./Header-ba4a479d.js";import{M as x,C as b,a as i,T as t,P as s}from"./index-bcd6ebbe.js";import"./index.module-caf545e8.js";const M=r=>{const o=n=>n>0?Math.log2(n+1):0,h=n=>n>0?n*Math.log2(n+1):0,p=n=>n>0?n*n:0,f=n=>n>0?n:0;return e(a,{children:c(x,{zoom:{min:1,max:100},width:600,height:300,viewBox:{x:[-50,1e3],y:[-50,700]},preserveAspectRatio:!1,children:[e(b.Cartesian,{xAxis:{lines:100,labels:n=>n%10==0?n:""},yAxis:{lines:100,labels:n=>n%10==0?n:""}}),e(i,{x:270,y:200,color:t.blue,size:20,children:"O(n)"}),e(s.OfX,{y:f,color:t.blue}),e(i,{x:400,y:50,color:t.pink,size:20,children:"O(log n)"}),e(s.OfX,{y:o,color:t.pink}),e(i,{x:150,y:300,color:t.indigo,size:20,children:"O(n log n)"}),e(s.OfX,{y:h,color:t.indigo}),e(i,{x:80,y:500,color:t.green,size:20,children:"O(n^2)"}),e(s.OfX,{y:p,color:t.green})]})})};function l(r){const o=Object.assign({p:"p",h2:"h2",h3:"h3"},m(),r.components);return c(a,{children:[e(O,{}),`
-`,e(o.p,{children:"시간 복잡도 관련 정리"}),`
-`,e(o.h2,{id:"주요-시간-복잡도",children:"주요 시간 복잡도"}),`
-`,e(M,{}),`
-`,e(o.h2,{id:"masters-theorem",children:"Master's Theorem"}),`
-`,e(o.h3,{id:"작성중",children:"작성중"}),`
-`,e(y,{}),`
-`,e(g,{})]})}function C(r={}){const{wrapper:o}=Object.assign({},m(),r.components);return o?e(o,Object.assign({},r,{children:e(l,r)})):l(r)}const j=Object.freeze(Object.defineProperty({__proto__:null,default:C},Symbol.toStringTag,{value:"Module"})),d={};d.outlineInfo=u;d.main=j;export{d as default};
