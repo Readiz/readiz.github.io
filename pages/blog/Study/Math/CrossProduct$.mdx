@@ -10,6 +10,8 @@ import Details from '@/components/Details'
 import Image from '@/components/Image'
 import Header from '@/components/Header'
 import TagList from '@/components/TagList'
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 <Header />
 
@@ -19,47 +21,88 @@ import TagList from '@/components/TagList'
 
 평면에서의 외적값은 기본적으로 3차원으로 생각한다. 왜냐면, 물리학에서 배웠던 `무슨무슨 왼손법칙`처럼 기본적으로 외적값이라는 것은 방향 개념이 따라오는데, 이 방향이 2차원 축을 뚫고 나가기 때문이다. `i`, `j`, `k`가 각각 3차원의 기본 방향 성분이라고 할 때, 다음이 성립한다.
 
-1. `i`*`j` = `k`
-2. `j`*`k` = `i`
-3. `k`*`i` = `j`
+<BlockMath math='\vec{i} \times \vec{j} = \vec{k}' />
+<BlockMath math='\vec{j} \times \vec{k} = \vec{i}' />
+<BlockMath math='\vec{k} \times \vec{i} = \vec{j}' />
 
 또한, 방향 개념이 있기 때문에, 만약 순서를 반대로 곱한다면 음수가 붙는 것처럼 된다. (방향이 반대라는 뜻)
 
-1. `j`*`i` = -`k`
-2. `k`*`j` = -`i`
-3. `i`*`k` = -`j`
+<BlockMath math='\vec{j} \times \vec{i} = -\vec{k}' />
+<BlockMath math='\vec{k} \times \vec{j} = -\vec{i}' />
+<BlockMath math='\vec{i} \times \vec{k} = -\vec{j}' />
 
 ## 외적의 계산
 
-위 식은 이제 unit vector에 대한 이야기이고, 실제로 임의의 두 벡터의 값은 어떻게 구할까? 일단 평면상에 두 점이 있다고 하면, `k` 값은 `0`으로 고정시킬 수 있을 것이다. 이 때의 외적값은 `a = (x1, y1)`, `b = (x2, y2)` 라고 하면, `a*b = (0,0,x1y2 - x2y1)` 이 된다. 이것은 다음을 의미한다.
+위 식은 이제 unit vector에 대한 이야기이고, 실제로 임의의 두 벡터의 값은 어떻게 구할까? 일단 평면상에 두 점이 있다고 하면, `k` 방향값은 `0`으로 고정시킬 수 있을 것이다. 이 경우 다음 두 벡터를 생각하자.
+
+<BlockMath math='\vec{A} = \begin{pmatrix}x1 & y1 & 0\end{pmatrix} \begin{pmatrix}\vec{i}\\\vec{j}\\\vec{k}\end{pmatrix}' />
+<BlockMath math='\vec{B} = \begin{pmatrix}x2 & y2 & 0\end{pmatrix} \begin{pmatrix}\vec{i}\\\vec{j}\\\vec{k}\end{pmatrix}' />
+
+이 때의 외적값은 아래처럼 된다.
+
+<BlockMath math='\vec{A} \times \vec{B} = \begin{pmatrix}0 & 0 & x1y2 - x2y1\end{pmatrix} \begin{pmatrix}\vec{i}\\\vec{j}\\\vec{k}\end{pmatrix}' />
 
 1. 방향은 평면에서 오른손으로 `a -> b` 방향으로 감싸쥔 방향으로 적용된다. (z축이냐, -z축이냐의 차이만 있다)
 2. 벡터의 크기는 `x1y2 - x2y1`이다.
 
-그렇다면 일반적인 임의의 두 벡터의 외적은 어떻게 계산될까? 두 벡터를 (x1, y1, z1), (x2, y2, z2)로 정의하면, 결과값의 `x`, `y`, `z`를 나눠서 보면 아래처럼 된다.
+그렇다면 일반적인 임의의 두 벡터의 외적은 어떻게 계산될까? 두 벡터를 `(x1, y1, z1)`, `(x2, y2, z2)`로 정의하면, 각 방향 성분은 아래와 같다.
 
-1. `x` = `y1z2 - y2z1`
-2. `y` = `z1x2 - x1z2`
-3. `z` = `x1y2 - y1x2`
+<BlockMath math='\vec{A} \times \vec{B} = 
+\begin{vmatrix}
+   y1 & z1 \\
+   y2 & z2
+\end{vmatrix} \vec{i} +
+\begin{vmatrix}
+   x1 & z1 \\
+   x2 & z2
+\end{vmatrix} \vec{j} +
+\begin{vmatrix}
+   x1 & y1 \\
+   x2 & y2
+\end{vmatrix} \vec{k} \newline =
+\begin{pmatrix}
+   y1  z2 - y2  z1 &
+   z1  x2 - z2  x1 &
+   x1  y2 - x2  y1
+\end{pmatrix}
+\begin{pmatrix}
+    \vec{i} \\
+    \vec{j} \\
+    \vec{k}
+\end{pmatrix}
+' />
 
-신기하게도 `x`를 구할 때에는 `x`가 없는 형태이다. 이를 `3*3` 행렬식으로는 아래처럼도 나타낸다. `x`자 모양으로 세번 곱해서 빼는 형태로도 기억할 수 있다.
+외우기 쉽게 생각하면 `x`를 구할 때에는 `x`가 없는 형태이다. 이를 `3*3` 행렬식으로는 아래처럼도 나타낸다.
 
-|i |j |k |
-|:-:|:-:|:-:|
-|x1|y1|z1|
-|x2|y2|z2|
+
+<BlockMath math='\vec{A} \times \vec{B} = \begin{vmatrix}
+   \vec{i} & \vec{j} & \vec{k} \\
+   x1 & y1 & z1 \\
+   x2 & y2 & z2
+\end{vmatrix}' />
 
 ## 외적의 크기
 
 이는 쉽게 증명될 수 있지만 결과만 기억하자.
 
-- `|a*b| = |a|*|b|*sinΘ`
+<BlockMath math='|\vec{A} \times \vec{B}| = |\vec{A}||\vec{B}|sin\theta' />
 
 `sin` 값은 `180도`, `360도`에서 0이 되고, 이는 벡터가 왜 평행일 때 외적값이 0이 되는지를 알려준다.
 
 ## 오목과 볼록
 
-오목과 볼록은 정하기 나름이지만, 아무튼 위 sinΘ 성질을 생각하면, `180도` 기준으로 그 부호가 바뀌는 것은 명백하다. 오목, 볼록의 기준을 나누는 값이 `180도`가 되므로, 음수, 양수에 따라 오목, 볼록을 판정하면 된다. `Convex Hull` 과 같은 알고리즘에서 사용되는 성질이다. 사실 이거 때문에 간만에 외적을 다시 봤다.
+오목과 볼록은 정하기 나름이지만, 아무튼 위 <InlineMath math='sin\theta' />의 성질을 생각하면, `180도` 기준으로 그 부호가 바뀌는 것은 명백하다. 오목, 볼록의 기준을 나누는 값이 `180도`가 되므로, 음수, 양수에 따라 오목, 볼록을 판정하면 된다. `Convex Hull` 과 같은 알고리즘에서 사용되는 성질이다. 사실 이거 때문에 간만에 외적을 다시 봤다. 주로 알고리즘에서 `CCW`라고 부르는 판별방식을 알아보자.
 
+### CCW
+
+`CCW`는 Counter-Clockwise, 즉 반시계 방향으로 두 벡터가 정렬되었는지를 알게 해주는 값이다. 이를 구하기 위해서 세 점 `A`, `B`, `C`가 있다고 하자. (사이점이 B이다) 이때, 두 벡터 <InlineMath math='\overrightarrow{BA}' />와 <InlineMath math='\overrightarrow{BC}' />를 정의할 수 있다. 각각의 벡터값을 `(x1, y1)`, `(x2, y2)` 라 하면,
+
+<BlockMath math='\overrightarrow{BA} \times \overrightarrow{BC} = \begin{pmatrix}0 & 0 & x1y2 - x2y1\end{pmatrix} \begin{pmatrix}\vec{i}\\\vec{j}\\\vec{k}\end{pmatrix}' />
+
+이 된다. 따라서 `k` 방향의 값만 존재하고, 이 값은 또한 아래와 같다.
+
+<BlockMath math='|\overrightarrow{BA} \times \overrightarrow{BC}| = |\overrightarrow{BA}||\overrightarrow{BC}|sin\theta = x1y2 - x2y1' />
+
+즉, `x1y2 - x2y1` 값이 양수이면 두 벡터가 예각을 이루고, 음수이면 둔각을 이룬다. CCW는 음수일 때로 판정하면 되겠다.
 <TagList />
 <Comment />
