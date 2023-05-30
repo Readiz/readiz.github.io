@@ -57,6 +57,15 @@ struct Hash {
         p->next->idx = idx;
         p->next->val = val;
     }
+    void insert(int idx, T val) {
+        // 중복값이 확실히 없음을 알 때
+        Node* p = head[getKey(idx)];
+        Node* opnext = p->next;
+        p->next = newNode();
+        p->next->idx = idx;
+        p->next->val = val;
+        p->next->next = opnext;
+    }
     T get(int idx) {
         Node* p = head[getKey(idx)];
         for(;p->next != 0; p = p->next) {
