@@ -87,7 +87,7 @@ int getKey(char d[]) {
     for(int i = 0; d[i] != 0 && i < 8; ++i) {
         buf[i] = d[i];
     }
-    return ((unsigned long long *) buf) % HMAX;
+    return (*(unsigned long long *) buf) % HMAX;
 }
 ```
 
