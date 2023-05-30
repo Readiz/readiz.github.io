@@ -1,1 +1,0 @@
-const t=[{depth:2,text:"기초를 튼튼히",id:"기초를-튼튼히"},{depth:2,text:"외적의 계산",id:"외적의-계산"},{depth:2,text:"외적의 크기",id:"외적의-크기"},{depth:2,text:"오목과 볼록",id:"오목과-볼록"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
