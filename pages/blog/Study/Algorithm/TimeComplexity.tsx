@@ -5,21 +5,30 @@ import { Mafs, Coordinates, Plot, Theme, Text } from "mafs";
 interface Props {}
 
 const TimeComplexity: React.FC<Props> = (props) => {
-  const ln = (x: number) => Math.log2(x)
-  const xln = (x: number) => x * Math.log2(x)
-  const square = (x: number) => x * x
-  const identity = (x: number) => x
+  const ln = (x: number) => x > 0 ? Math.log2(x + 1): 0
+  const xln = (x: number) => x > 0 ? x * Math.log2(x + 1): 0
+  const square = (x: number) => x > 0 ? x * x: 0
+  const identity = (x: number) => x > 0 ? x : 0
   return (
     <>
-      <Mafs viewBox={{x: [1, 30], y:[-3, 10]}}>
-          <Coordinates.Cartesian />
-          <Text x={11.5} y={10} color={Theme.blue} size={20}>O(n)</Text>
+      <Mafs zoom={{min:1, max:100}} width={600} height={300} viewBox={{x: [-1, 1000], y:[-10, 700]}} preserveAspectRatio={false}>
+          <Coordinates.Cartesian 
+            xAxis={{
+              lines: 100,
+              labels: (n) => (n % 10 == 0 ? n : ""),
+            }}
+            yAxis={{
+              lines: 100,
+              labels: (n) => (n % 10 == 0 ? n : ""),
+            }}
+          />
+          <Text x={270} y={200} color={Theme.blue} size={20}>O(n)</Text>
           <Plot.OfX y={identity} color={Theme.blue} />
-          <Text x={11.5} y={3} color={Theme.pink} size={20}>O(log n)</Text>
+          <Text x={400} y={50} color={Theme.pink} size={20}>O(log n)</Text>
           <Plot.OfX y={ln} color={Theme.pink} />
-          <Text x={7.5} y={12} color={Theme.indigo} size={20}>O(n * log n)</Text>
+          <Text x={150} y={300} color={Theme.indigo} size={20}>O(n log n)</Text>
           <Plot.OfX y={xln} color={Theme.indigo} />
-          <Text x={2.5} y={14} color={Theme.green} size={20}>O(n^2)</Text>
+          <Text x={80} y={500} color={Theme.green} size={20}>O(n^2)</Text>
           <Plot.OfX y={square} color={Theme.green} />
           
       </Mafs>
