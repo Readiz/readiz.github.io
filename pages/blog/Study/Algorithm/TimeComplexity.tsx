@@ -11,7 +11,7 @@ const TimeComplexity: React.FC<Props> = (props) => {
   const identity = (x: number) => x > 0 ? x : 0
   return (
     <>
-      <Mafs zoom={{min:1, max:100}} width={600} height={300} viewBox={{x: [-1, 1000], y:[-10, 700]}} preserveAspectRatio={false}>
+      <Mafs zoom={{min:1, max:100}} width={600} height={300} viewBox={{x: [-50, 1000], y:[-50, 700]}} preserveAspectRatio={false}>
           <Coordinates.Cartesian 
             xAxis={{
               lines: 100,
