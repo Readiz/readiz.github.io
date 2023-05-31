@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2019",
+    "outDir": "../../dist/client",
+    "module": "ESNext",
+    "allowJs": true
+  }
+}

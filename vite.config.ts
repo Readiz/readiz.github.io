@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import * as path from 'path'
 import react from '@vitejs/plugin-react'
 // import mdx from 'vite-plugin-mdx'
-import pages from 'vite-plugin-react-pages'
+import pages from './buildPlugin/dist/node-esm/index.mjs'
 
 export default defineConfig({
   plugins: [
@@ -24,6 +24,6 @@ export default defineConfig({
     }
   },
   ssr: {
-    noExternal: ["vite-pages-theme-doc", "mermaid", "mafs", "react-katex"]
+    noExternal: ["mermaid", "mafs", "react-katex"] // "vite-pages-theme-doc"
   }
 })

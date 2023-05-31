@@ -6,9 +6,9 @@
   "scripts": {
     "both": "cd theme-doc && npm run build && cd .. && npm run dev",
     "dev": "vite serve --host --port 1523",
-    "build": "rimraf dist && vite-pages ssr && cp ./assets/* ./dist/assets",
+    "build": "rimraf dist && ./buildPlugin/bin/vite-pages.js ssr && cp ./assets/* ./dist/assets",
     "buildserve": "rimraf docs && vite build --outDir docs -d && export PORT=1523 && serve -s docs",
-    "ssr": "rimraf dist && vite-pages ssr && cp ./assets/* ./dist/assets && export PORT=1523 && serve dist",
+    "ssr": "rimraf dist && ./buildPlugin/bin/vite-pages.js ssr && cp ./assets/* ./dist/assets && export PORT=1523 && serve dist",
     "serve": "serve dist"
   },
   "keywords": [],
@@ -36,7 +36,6 @@
     "serve": "^14.2.0",
     "tailwindcss": "^3.3.1",
     "vite": "^4.2.1",
-    "vite-plugin-mdx": "^3.5.11",
-    "vite-plugin-react-pages": "^4.0.0"
+    "vite-plugin-react-pages": "^4.1.2"
   }
 }
