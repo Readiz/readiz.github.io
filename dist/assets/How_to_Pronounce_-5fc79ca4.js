@@ -1,0 +1,1 @@
+const t=[{depth:1,text:"How to Pronounce Appropriately",id:"how-to-pronounce-appropriately"},{depth:2,text:"핵심 요약",id:"핵심-요약"},{depth:3,text:"호흡",id:"호흡"},{depth:3,text:"발성",id:"발성"},{depth:3,text:"발음",id:"발음"},{depth:2,text:"훈련 방법",id:"훈련-방법"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
