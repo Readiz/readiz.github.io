@@ -15,7 +15,7 @@ const TagList: React.FC<Props> = (props) => {
     <div className="tagList" style={{marginTop: 30}}>
         🏷️ 주제 목록: {
             tags.map((item) => (
-                <div key={item} className={style.tagItem}><Link className={style.tagLink} to={'/blog/tags/' + item}>#{item}</Link></div>
+                <div key={item} className={style.tagItem}><Link className={style.tagLink} to={'/blog/tags/' + item}>#{String(item).substring(0,1).toUpperCase() + String(item).substring(1)}</Link></div>
             ))
         }
     </div>
