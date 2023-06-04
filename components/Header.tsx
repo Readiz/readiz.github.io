@@ -19,11 +19,11 @@ const Header: React.FC<Props> = (props) => {
     if (fullRoute.endsWith('/'))
       fullRoute = fullRoute.substring(0, fullRoute.length - 1);
     const items = fullRoute.split('/');
-    const res = [['/', 'Home']];
+    const res = [];
     let curPath = '';
     for(let i = 1; i < items.length - 1; ++i) {
       curPath += '/' + items[i];
-      res.push([curPath, items[i]]);
+      res.push([curPath, String(items[i]).substring(0,1).toUpperCase() + String(items[i]).substring(1)]);
     }
     return res;
   })();
@@ -31,7 +31,8 @@ const Header: React.FC<Props> = (props) => {
     if (themeCtx.loadState.routePath == '/') {
       return '안녕하세요!';
     }
-    const sp = themeCtx.loadState.routePath.split('/');
+    let sp = themeCtx.loadState.routePath.split('/');
+    sp[sp.length - 1] = [String(sp[sp.length - 1]).substring(0,1).toUpperCase() + String(sp[sp.length - 1]).substring(1)];
     if (String(sp[sp.length - 1]).startsWith(':')) { return 'Writings' }
     else return sp[sp.length - 1];
   })();
