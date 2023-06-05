@@ -1,0 +1,54 @@
+---
+title: BOJ 2252 (줄 세우기)
+writtendate: 2023-06-05
+tags:
+    - PS
+    - BOJ
+    - graph
+    - topological sort
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+
+<Header />
+
+- 문제 제목: 줄 세우기
+- 문제 링크: https://www.acmicpc.net/problem/2252
+
+풀이를 보면 매우 당연하지만, 그래프에 대한 개념이 확실히 되어 있지 않다면 아이디어 발상이 어려울 수 있다. 어떤 순서를 강제하는 것을 `edge` 연결로 볼 수 있고, 이런 조건을 만족하게끔 해둔 다음에 방문하지 않은 노드부터 차례대로 `dfs`로 방문해 나가면, 제일 끝에 도달하는 녀석이 `leaf`가 될 것이다. 그리고, 그 다음 녀석은 `leaf-1`이 되고, 이것이 반복되면 결국 `root`까지 반복된다. `root`는 제일 뒤에 있는 녀석에 대응되고, `leaf`는 제일 앞에 있는 녀석에 대응되므로, 이 순서대로 `dfs`로 출력해주면 끝나는 문제이다.
+
+`위상 정렬`, 즉 `topological sort`는 이러한 방식으로 이루어지며, 만약에 `dfs`가 아닌 방식으로 구현한다고 하면, `dfs`함수에서 나올 때 순서를 기록한 다음에 해당 순서대로 정렬을 하면 되겠다.
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int visited[32001];
+vector<int> edges[100001];
+void dfs(int v) {
+    if (visited[v]) return;
+    visited[v] = 1;
+
+    for(int t: edges[v]) {
+        dfs(t);
+    }
+    printf("%d ", v);
+}
+int main() {
+    int N, M; scanf("%d %d", &N, &M);
+    for(int i = 0; i < M; ++i) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        edges[b].push_back(a);
+    }
+    for(int i = 1; i <= N; ++i) {
+        dfs(i);
+    }
+    printf("\n");
+    return 0;
+}
+```
+
+<TagList />
+<Comment />
