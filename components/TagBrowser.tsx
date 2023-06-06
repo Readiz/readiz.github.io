@@ -37,9 +37,10 @@ const TagBrowser: React.FC<Props> = (props) => {
     }
     return res;
   })();
+  const tagNameUppercase = String(tagName).substring(0, 1).toUpperCase() + String(tagName).substring(1);
   return (
     <>
-      <Header title={tagName + '와 관련된 글 목록'} />
+      <Header title={tagNameUppercase + '와 관련된 글 목록'} />
       <ul className="markdown-el">
         {
             writings.map((item) => (
