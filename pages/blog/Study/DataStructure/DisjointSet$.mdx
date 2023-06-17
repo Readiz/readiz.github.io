@@ -1,0 +1,49 @@
+---
+title: Disjoint Set
+writtendate: 2023-06-17
+tags:
+    - data structure
+    - disjoint set
+    - union find
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+`MST`의 크루스칼과 같은 알고리즘에서 유용하게 쓰이는 `Disjoint Set`에 대한 간단한 정리
+
+## Implementation Overview
+
+```cpp
+struct DisjointSet {
+    int parent[SIZE];
+    int rank[SIZE];
+    void init() {
+        for(int i = 0; i < SIZE; ++i) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    }
+    int getRoot(int v) {
+        if (v == parent[v]) return v;
+        return parent[v] = getRoot(parent[v]);
+    }
+    void merge(int a, int b) {
+        int a = getRoot(a);
+        int b = getRoot(b);
+        if (a == b) return; // already merged
+        parent[b] = a;
+    }
+};
+```
+
+## Time Complexity
+
+블로그나 책 찾아보면 `Rank`와 `Path Compression`을 둘 다 사용하면 애커만 함수라고 불리는 거의 $O(1)$과 유사한 시간복잡도가 나온다고 하지만, 위 코드처럼 `Path Compression`만 구현하는 것도 $O(\log n)$이 보장되기 때문에 이 정도만 해둬도 된다고 생각한다. 어차피 다른 알고리즘과 합쳐서 쓸 것인데(`Union Find` 만으로 된 문제는 잘 없으므로..), 이 경우에 $O(\log n)$은 어차피 base에 가까운 시간복잡도이기 때문에 이것까지 줄일 필요는 없다고 본다.
+
+
+<TagList />
+<Comment />
