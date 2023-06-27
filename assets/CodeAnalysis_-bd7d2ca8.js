@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"랜덤 코드 분석하기",id:"랜덤-코드-분석하기"},{depth:3,text:"Puzzle Game",id:"puzzle-game"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
