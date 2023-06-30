@@ -1,0 +1,1 @@
+import{j as o}from"./ssg-client-3daf4037.js";import{I as r}from"./IFrame-8dc424e8.js";import"./index.module-caf545e8.js";const t=l=>o(r,{url:"https://www.readiz.com/JSPlaygrounds/",title:"JS Playgrounds"}),e=Object.freeze(Object.defineProperty({__proto__:null,default:t},Symbol.toStringTag,{value:"Module"})),a={};a.main=e;export{a as default};
