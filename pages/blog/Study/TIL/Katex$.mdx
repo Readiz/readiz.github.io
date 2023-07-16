@@ -1,13 +1,13 @@
 ---
 title: Katex 문법 정리
-writtendate: 2023-05-27
+writtendate: 2023-07-16
 tags:
     - katex
 ---
-import Comment from '@/components/Comment'
-import Details from '@/components/Details'
-import Header from '@/components/Header'
-import TagList from '@/components/TagList'
+import Comment from '@/components/Comment';
+import Details from '@/components/Details';
+import Header from '@/components/Header';
+import TagList from '@/components/TagList';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 
@@ -17,10 +17,13 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 `Katex`는 주로 수학 수식을 나타내기 위한 플러그인이다. 여기서는 각종 예시들로 해당 문법을 사용한 예시들을 보자.
 
-## 문자 꾸밈
+## 각종 예시
 
-- 벡터
-<BlockMath math='\overrightarrow{F} = ma' />
+- 벡터: $\overrightarrow{F} = ma$
+- 로그: $\log_{a}b$
+- 행렬
+<BlockMath math='\vec{A} = \begin{pmatrix}x1 & y1 & 0\end{pmatrix} \begin{pmatrix}\vec{i}\\\vec{j}\\\vec{k}\end{pmatrix}' />
+- 루트: $O(\sqrt N)$
 
 ### 참고 사이트
 
