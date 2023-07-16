@@ -8,6 +8,7 @@ tags:
 import Comment from '@/components/Comment'
 import TagList from '@/components/TagList'
 import Header from '@/components/Header'
+import Image from '@/components/Image'
 import 'katex/dist/katex.min.css'
 
 <Header />
@@ -22,6 +23,8 @@ import 'katex/dist/katex.min.css'
 
 SIMD는 Single Instruction Multiple Data의 약자이다. `Vectorization`과 관련있는데, 보통 그래픽 세계에서는 하나의 `Instruction`으로 여러개의 위치에 있는 데이터를 동시에 조작할 필요가 있다. 예를 들어, 색상을 반전시키는 operation의 경우 전체 픽셀에 대해 색상 비트를 뒤집어야 할 것이다. 이러한 작업들은 꼭 그래픽에 국한되지 않더라도, 일반적으로 필요한 경우들이 많이 있다. 머신러닝에서라던지.. 그래서 예전부터 major한 CPU들에서 지원이 이루어지고 있으며, Intel CPU는 이를 `avx` 라는 이름으로 지원한다.
 
+<Image src="2023-07-16-12-58-07.png" />
+- 이미지 출처: [Algorithmica SIMD 소개](https://en.algorithmica.org/hpc/simd/)
 
 ## AVX
 
