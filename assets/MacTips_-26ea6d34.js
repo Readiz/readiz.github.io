@@ -1,1 +1,0 @@
-const e=[{depth:1,text:"나만 보는 Mac 팁들",id:"나만-보는-mac-팁들"},{depth:2,text:"스크린샷 단축키",id:"스크린샷-단축키"},{depth:2,text:"PS 기초 셋업",id:"ps-기초-셋업"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
