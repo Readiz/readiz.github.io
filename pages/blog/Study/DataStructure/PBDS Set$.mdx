@@ -1,9 +1,10 @@
 ---
 title: PBDS Set
-writtendate: 2023-06-30
+writtendate: 2023-07-18
 tags:
     - PBDS
     - set
+    - ordered set
     - data structure
 ---
 import Comment from '@/components/Comment'
@@ -110,6 +111,62 @@ void solve() {
         printf("%d ", N - cdist - 1);
     }
     printf("\n");
+}
+```
+
+- BOJ 1572: https://www.acmicpc.net/problem/1572
+
+이 문제의 경우 딱 읽기만 해도 Ordered Set이 사용되면 편하게 풀 수 있겠다는 생각이 든다. 슬라이딩 윈도우 기법으로 원소를 넣고 빼다가, (K - 1) / 2 번째 원소를 빠르게 찾을 수 있기만 하면 쉽게 구현이 되는 문제이다.
+
+- 선언부
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+
+struct Node {
+    int degree;
+    int id;
+    bool operator<(const Node& t) const {
+        if (degree != t.degree) return degree < t.degree;
+        return id < t.id;
+    }
+    bool operator>(const Node& t) const {
+        return t < *this;
+    }
+};
+#define ordered_set tree<Node, null_type, less<Node>, rb_tree_tag,tree_order_statistics_node_update>
+
+ordered_set v;
+```
+
+id의 경우 중복값 처리를 위해 존재한다. (중복되서 사라지는 것을 방지)
+
+- 로직 작성
+```cpp
+int A[250000];
+int main() {
+    int N, K; scanf("%d %d", &N, &K);
+    for(int i = 0; i < N; ++i) scanf("%d", &A[i]);
+    int cur = 0;
+    for(int i = 0; i < K; ++i) {
+        v.insert({A[i], i});
+    }
+    int mid = (K - 1) / 2;
+    long long ans = v.find_by_order(mid)->degree;
+
+    int l = 0;
+    int r = K;
+    for(; r < N; ++r, ++l) {
+        v.insert({A[r], r});
+        v.erase(v.find({A[l], l}));
+        ans += v.find_by_order(mid)->degree;
+    }
+    printf("%lld\n", ans);
+    return 0;
 }
 ```
 
