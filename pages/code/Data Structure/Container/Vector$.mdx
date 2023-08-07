@@ -1,0 +1,52 @@
+---
+title: Vector
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Simple Vector
+
+```cpp
+template<typename T>
+struct Vector {
+    T *data;
+    int capa, size;
+    Vector() {
+        capa = 10;
+        size = 0;
+        data = new T[capa];
+    }
+    void insert(T v) {
+        if (capa == size) {
+            auto old = data;
+            data = new T[capa * 2];
+            for(int i = 0; i < capa; ++i) data[i] = old[i];
+            capa *= 2;
+            delete[] old;
+        }
+        data[size++] = v;
+    }
+    bool erase(T v) { // Erase 1st element that is matched
+        for(int i = 0; i < size; ++i) {
+            if (data[i] == v) {
+                data[i] = data[--size];
+                return true;
+            }
+        }
+        return false;
+    }
+};
+```
+
+## Time Complexity
+
+- Insert: $O(1)$
+- Erase: $O(n)$
+
+<Comment />

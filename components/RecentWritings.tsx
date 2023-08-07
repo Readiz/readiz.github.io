@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 interface Props {
   all: boolean;
+  filter?: string;
 }
 
 const RecentWritings: React.FC<Props> = (props) => {
@@ -14,6 +15,7 @@ const RecentWritings: React.FC<Props> = (props) => {
     let d = themeCtx.staticData;
     let r = [];
     for(let item of Object.keys(d)) {
+      if (!props.filter || (props.filter && String(item).indexOf(props.filter) > -1))
         if (d[item]?.main?.writtendate)
           r.push([item, new Date(d[item]?.main?.writtendate).toLocaleDateString(), new Date(d[item]?.main?.writtendate)]);
         else
