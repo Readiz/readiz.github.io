@@ -13,18 +13,17 @@ import 'katex/dist/katex.min.css'
 ## Quick Sort
 
 ```cpp
-template <typename T>
 void qSort(int s, int e) {
     if (s >= e) return;
     int l = s, r = e;
-    T pivot = data[(l+r)/2];
+    auto pivot = data[(l+r)/2];
 
     while(l < r) {
         while(pivot < data[r]) --r;
         while(data[l] < pivot) ++l;
         if (l >= r) break;
 
-        T tmp = data[l];
+        auto tmp = data[l];
         data[l] = data[r];
         data[r] = tmp;
 

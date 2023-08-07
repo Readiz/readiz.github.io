@@ -14,15 +14,19 @@ import 'katex/dist/katex.min.css'
 Offline Query가 가능해야 함, 아래와 같이 쿼리 정렬
 - $sqrtN = \sqrt N$
 ```cpp
-bool operator<(const struct Q& t) const {
-    if (e / sqrtN == t.e / sqrtN) return s < t.s;
-    return e / sqrtN < t.e / sqrtN;
-}
+struct Q { // Query
+    int s, e;
+    int oidx; // Original Index
+    bool operator<(const struct Q& t) const {
+        if (e / sqrtN == t.e / sqrtN) return s < t.s;
+        return e / sqrtN < t.e / sqrtN;
+    }
+};
 ```
 
 ## Time Complexity
 
-- 구간 길이 N / 쿼리 M개 일 때,
+- 구간 길이 N이고, 쿼리 M개 일 때,
     - $O((N+M) \sqrt N)$
 
 <Comment />
