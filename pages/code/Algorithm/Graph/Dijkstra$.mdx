@@ -1,0 +1,87 @@
+---
+title: Dijkstra
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Dijkstra Algorithm
+
+- adj[v] = \{next, dist\}
+- 음수 간선이 있으면 안됨.
+
+```cpp
+int d[MAX_V], visited[MAX_V];
+fill(d, d + MAX_V, INF);
+fill(visited, visited + MAX_V, 0);
+d[S] = 0;
+
+priority_queue<pii> pq;
+pq.push({0, S});
+
+while(pq.size()) {
+    auto cur = pq.top(); pq.pop();
+    int v = cur.second;
+    if (visited[v]) continue;
+    visited[v] = 1;
+
+    for(auto& t: adj[v]) {
+        int newDist = -cur.first + t.second;
+        if (newDist < d[t.first]) {
+            d[t.first] = newDist;
+            pq.push({-newDist, t.first});
+        }
+    }
+}
+```
+
+## Shortest Path Construction
+
+```cpp
+int d[MAX_V], visited[MAX_V], pre[MAX_V];
+fill(d, d + MAX_V, INF);
+fill(pre, pre + MAX_V, -1);
+fill(visited, visited + MAX_V, 0);
+d[S] = 0;
+
+priority_queue<pii> pq;
+pq.push({0, S});
+
+while(pq.size()) {
+    auto cur = pq.top(); pq.pop();
+    int v = cur.second;
+    if (visited[v]) continue;
+    visited[v] = 1;
+
+    for(auto& t: adj[v]) {
+        int newDist = -cur.first + t.second;
+        if (newDist < d[t.first]) {
+            d[t.first] = newDist;
+            pre[t.first] = v;
+            pq.push({-newDist, t.first});
+        }
+    }
+}
+
+vector<int> getPath(int t) {
+    vector<int> res;
+    for(int p = t; p != S; p = pre[p]) {
+        res.push_back(p);
+    }
+    res.push_back(S);
+    reverse(res.begin(), res.end());
+
+    return res;
+}
+```
+
+## Time Complexity
+
+- $O((V+E)\log V)$
+
+<Comment />

@@ -1,0 +1,65 @@
+---
+title: Floyd Warshall
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Floyd Warshall Algorithm
+
+```cpp
+int d[MAX_V][MAX_V];
+for(int k = 0; k < MAX_V; ++k) {
+    for(int i = 0; i < MAX_V; ++i) {
+        for(int j = 0; j < MAX_V; ++j) {
+            int newDist = d[i][k] + d[k][j];
+            if (newDist < d[i][j]) {
+                d[i][j] = newDist;
+            }
+        }
+    }
+}
+```
+
+## Shortest Path Construction
+
+```cpp
+int d[MAX_V][MAX_V];
+int next[MAX_V][MAX_V];
+for(int i = 0; i < MAX_V; ++i) {
+    for(int j = 0; j < MAX_V; ++j) {
+        next[i][j] = j;
+    }
+}
+for(int k = 0; k < MAX_V; ++k) {
+    for(int i = 0; i < MAX_V; ++i) {
+        for(int j = 0; j < MAX_V; ++j) {
+            int newDist = d[i][k] + d[k][j];
+            if (newDist < d[i][j]) {
+                d[i][j] = newDist;
+                next[i][j] = next[i][k];
+            }
+        }
+    }
+}
+
+vector<int> getPath(int i, int j) {
+    vector<int> res; res.push_back(i);
+    while(i != j) {
+        res.push_back(next[i][j]);
+        i = next[i][j];
+    }
+    return res;
+}
+```
+
+## Time Complexity
+
+- Obviously, $O(V^3)$
+
+<Comment />

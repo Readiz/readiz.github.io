@@ -1,0 +1,29 @@
+---
+title: Prime
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Simple isPrime
+
+```cpp
+bool isPrime(int num) {
+    for(int i = 2; i * i <= num; ++i) {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
+```
+
+
+## Time Complexity
+
+- Simple isPrime: $O(\sqrt N)$
+
+<Comment />

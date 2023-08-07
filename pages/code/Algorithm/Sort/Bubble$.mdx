@@ -1,0 +1,36 @@
+---
+title: Bubble Sort
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Bubble Sort
+
+```cpp
+template <typename T>
+void sort() {
+    for(int i = 0; i < N; ++i) {
+        for(int j = i + 1; j < N; ++j) {
+            if (data[i] > data[j]) {
+                T tmp = data[i];
+                data[i] = data[j];
+                data[j] = tmp;
+            }
+        }
+    }
+}
+```
+
+
+## Time Complexity
+
+- Average: $O(N^2)$
+- Worst: $O(N^2)$
+
+<Comment />

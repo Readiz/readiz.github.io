@@ -11,9 +11,62 @@ import 'katex/dist/katex.min.css'
 
 
 ## Binary Search
+```cpp
+bool find(int v) {
+    int l = 0; int r = N - 1;
+    while (l <= r) {
+        int m = (l + r) / 2; // overflow prevent: l + (r - l) / 2;
+        if (arr[m] == v) return true;
+        if (arr[m] < v) {
+            l = m + 1;
+        } else {
+            r = m - 1;
+        }
+    }
+    return false;
+}
+```
+
+## Lower Bound
+```cpp
+int lb(int v) {
+    int l = 0; int r = N - 1;
+    int ans = -1;
+    while (l <= r) {
+        int m = (l + r) / 2; // overflow prevent: l + (r - l) / 2;
+        if (arr[m] >= v) {
+            r = m - 1;
+            ans = m;
+        } else {
+            l = m + 1;
+        }
+    }
+    return ans;
+}
+```
+
+## Upper Bound
+```cpp
+int lb(int v) {
+    int l = 0; int r = N - 1;
+    int ans = -1;
+    while (l <= r) {
+        int m = (l + r) / 2; // overflow prevent: l + (r - l) / 2;
+        if (arr[m] > v) {
+            r = m - 1;
+            ans = m;
+        } else {
+            l = m + 1;
+        }
+    }
+    return ans;
+}
+```
 
 ## Time Complexity
 
-- 
+- Find: $O(\log N)$
+- LowerBound: $O(\log N)$
+- UpperBound: $O(\log N)$
 
 <Comment />

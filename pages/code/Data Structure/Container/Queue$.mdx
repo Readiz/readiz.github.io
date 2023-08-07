@@ -1,0 +1,44 @@
+---
+title: Queue
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Circluar Queue
+
+```cpp
+constexpr int MAX_QUEUE = 1'000'000;
+template<typename T>
+struct Queue {
+    T q[MAX_QUEUE];
+    int qf, qr; // queue front, rear
+    void init() {
+        qf = qr = 0;
+    }
+    bool isEmpty() {
+        return qf == qr;
+    }
+    void insert(T v) {
+        q[qr++] = v;
+        qr %= MAX_QUEUE;
+    }
+    T pop() {
+        T res = q[qf++];
+        qf %= MAX_QUEUE;
+        return res;
+    }
+};
+```
+
+## Time Complexity
+
+- Insert: $O(1)$
+- Pop: $O(1)$
+
+<Comment />

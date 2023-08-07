@@ -1,0 +1,45 @@
+---
+title: Quick Sort
+writtendate: 2023-08-07
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Quick Sort
+
+```cpp
+template <typename T>
+void qSort(int s, int e) {
+    if (s >= e) return;
+    int l = s, r = e;
+    T pivot = data[(l+r)/2];
+
+    while(l < r) {
+        while(pivot < data[r]) --r;
+        while(data[l] < pivot) ++l;
+        if (l >= r) break;
+
+        T tmp = data[l];
+        data[l] = data[r];
+        data[r] = tmp;
+
+        ++l, --r;
+    }
+    
+    qSort(s, r);
+    qSort(l, e);
+}
+```
+
+
+## Time Complexity
+
+- Average: $O(N\log N)$
+- Worst: $O(N^2)$
+
+<Comment />
