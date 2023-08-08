@@ -1,0 +1,27 @@
+---
+title: Edmonds-Karp
+writtendate: 2023-08-08
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Edmonds-Karp
+
+Ford-Fulkerson 방법을 BFS로 구현한 것을 Edmonds-Karp Algorithm이라고 한다.
+
+```cpp
+
+```
+
+## Time Complexity
+
+- Basic Flow Algorithm (Reference): $O(fE)$
+- Worst: $O(VE^2)$ (상한 - 실제로는 더 빠르다.)
+    - 증가 경로를 최대 $VE$ 번 이상 찾지 않고(증명되어 있음), 한번 찾을때 최대 $E$ 개의 Edge를 거칠 수 있으므로 나오는 시간복잡도
+
+<Comment />

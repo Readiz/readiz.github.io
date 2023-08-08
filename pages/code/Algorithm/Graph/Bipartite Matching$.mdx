@@ -1,0 +1,30 @@
+---
+title: Bipartite Matching
+writtendate: 2023-08-08
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Bipartite Matching
+
+- 이분매칭, 이분 그래프가 주어졌을 때 최대 Matching을 찾는 것
+- 시간 복잡도는 BFS(Edmonds-Karp), DFS(Ford-Fulkerson) 동일하지만 DFS 방법이 코드가 더 간결하고 성능도 우수
+
+```cpp
+
+```
+
+## Time Complexity
+
+- Basic Flow Algorithm (Reference): $O(fE)$
+- Worst: $O(VE)$
+    - 이분그래프에서 $f \leq V$ 이기 때문
+    - 디닉을 끼얹으면 Hopcroft-Karp Algorithm이라고 하며, 시간복잡도는 $O(E\sqrt V)$가 된다고 함
+
+
+<Comment />
