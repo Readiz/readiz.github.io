@@ -1,0 +1,1 @@
+const t=[{depth:2,text:"Bipartite Matching",id:"bipartite-matching"},{depth:2,text:"Time Complexity",id:"time-complexity"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
