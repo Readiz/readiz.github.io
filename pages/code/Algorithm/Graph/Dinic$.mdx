@@ -12,10 +12,62 @@ import 'katex/dist/katex.min.css'
 
 ## Dinic Algorithm
 
-Graph에 Level을 부여해서 BFS + DFS 를 짬뽕해 구현한 Edmonds-Karp Algorithm을 개선한 알고리즘
+- Graph에 Level을 부여해서 BFS + DFS 를 짬뽕해 구현한 Edmonds-Karp Algorithm을 개선한 알고리즘
+- BFS + DFS 알고리즘이라고 기억하자.
+    - Level Graph를 그리는데에 BFS를, 실제로 유량을 흘려줄 때 DFS를 쓴다.
+    - Level Graph를 그린 이후에 더이상 흘릴 유량이 없을 때까지 DFS를 반복
 
 ```cpp
+// 함수 1. BFS
+int makeLevelGraph() {
+    fill(level, level + MAX_V, -1);
+    // bfs
+    queue<int> q;
+    q.push(S);
+    level[S] = 0;
 
+    while(q.size()) {
+        int cur = q.front(); q.pop();
+        for(auto& e: adj[cur]) {
+            if (level[e.t] != -1 && e.getResidual() > 0) {
+                level[e.t] = level[cur] + 1;
+                q.push(e.t);
+            }
+        }
+    }
+
+    return (level[T] != -1);
+}
+// 함수2. DFS
+int dfsFlow(int from, int cFlow) {
+    if (from == T) return cFlow; // dfs 종료조건
+
+    for(auto& e: adj[from]) {
+        if (level[e.t] == level[from] + 1 && e.getResidual() > 0) {
+            int minFlow = min(cFlow, e.getResidual());
+            int tmp = dfsFlow(e.t, minFlow);
+
+            if (tmp > 0) {
+                e.flow += tmp;
+                e.back->flow -= tmp;
+                return tmp; // 경로 하나 찾으면 리턴. 어차피 dfs 반복함.
+            }
+        }
+    }
+
+    return 0; // 흘릴 유량이 없으면 0
+}
+
+
+// 아래가 이제 로직 사용 부분
+int totalFlow = 0;
+while(makeLevelGraph()) {
+    while(true) {
+        int curFlow = dfsFlow(S, INF);
+        if (curFlow == 0) break;
+        totalFlow += curFlow;
+    }
+}
 ```
 
 ## Time Complexity
