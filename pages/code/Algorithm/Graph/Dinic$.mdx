@@ -42,7 +42,9 @@ int makeLevelGraph() {
 int dfsFlow(int from, int cFlow) {
     if (from == T) return cFlow; // dfs 종료조건
 
-    for(auto& e: adj[from]) {
+    // &i : 탐색 캐시를 위한 테크닉
+    for(int &i = adjStart[from]; adj[from].size(); ++i) {
+        auto& e = adj[from][i];
         if (level[e.t] == level[from] + 1 && e.getResidual() > 0) {
             int minFlow = min(cFlow, e.getResidual());
             int tmp = dfsFlow(e.t, minFlow);
@@ -62,6 +64,7 @@ int dfsFlow(int from, int cFlow) {
 // 아래가 이제 로직 사용 부분
 int totalFlow = 0;
 while(makeLevelGraph()) {
+    fill(adjStart, adjStart + MAX_V, 0); // 탐색 cache
     while(true) {
         int curFlow = dfsFlow(S, INF);
         if (curFlow == 0) break;
