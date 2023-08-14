@@ -1,0 +1,51 @@
+---
+title: 구름톤 챌린지 1주 차 학습 일기 - 1
+writtendate: 2023-08-14
+tags:
+    - PS
+    - 구름톤
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 서론
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여하려고 한다. 이번주부터 1주차이며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+
+## 문제 풀이
+
+- 문제 제목: 운동 중독 플레이어
+- 문제 링크: https://level.goorm.io/exam/195683/%EC%9A%B4%EB%8F%99-%EC%A4%91%EB%8F%85-%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B4/quiz/1
+
+### 풀이 접근
+
+이 문제의 경우, 문제에서 아래와 같은 식을 확인할 수 있다. 단순히 입력받은 숫자를 아래 수식에 대입하기만 하면 정답이 된다.
+
+- $W \times (1 + \frac R {30})$
+
+주의해야 할 점은, 최종 정답을 소수점 자리를 제거하고 정수만 출력하라고 했지, 중간 과정에서 소수점을 짤라먹어도 된다고는 하지 않았다는 것이다. 따라서, R, W의 입력은 `C++`의 경우 `double`과 같은 자료형으로 계산하다가, 최종 출력을 `int`와 같은 정수형으로 해야겠다. `Python`의 경우 `/` 을 사용해서 소수점 연산을 하고, 최종적으로 `int`로 형변환 하면 된다. (또는 formatting 함수를 쓰면 된다)
+
+이 문제의 경우 간단했기 때문에 굳이 `C++`을 사용하지 않고 `Python`을 사용해서 작성했다. `구름 IDE`를 통해 작성하면 되었기 때문에 따로 추가적인 툴을 PC에 설치할 필요는 없었다.
+
+
+### 샘플 정답 코드
+
+```python
+w, r = map(int, input().split())
+ans = w * (1 + r / 30)
+print(int(ans))
+```
+
+`Python`의 경우 `C++`과 다르게 한 줄의 여러 정수를 입력받으려면, `split()` 함수를 활용해서 나눠받아야 한다는 것에 유의.
+
+
+<TagList />
+<Comment />
