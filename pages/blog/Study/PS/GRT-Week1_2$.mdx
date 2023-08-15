@@ -1,0 +1,56 @@
+---
+title: 구름톤 챌린지 1주 차 학습 일기 - 2
+writtendate: 2023-08-15
+tags:
+    - PS
+    - 구름톤
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 구름톤 챌린지란?
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여 중이다. 이벤트 기간 동안 문제가 꾸준이 올라오며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+
+## 문제 풀이
+
+- 문제 제목: 프로젝트 매니징
+- 문제 링크: https://level.goorm.io/exam/195684/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%A4%EB%8B%88%EC%A7%95/quiz/1
+
+### 풀이 접근
+
+이 문제의 경우, 1일차 문제보다 다소 입력이 많아졌지만, 역시나 간단하게 제시된 대로 구현만 하면 되는 문제이다. 문제에서는 1번 기능부터 순서대로 개발한다고 되어 있지만, 사실 순서는 중요치 않고 기능을 개발하는 데에 걸리는 총 시간 합이 중요할 것이다.
+
+편의상, 문제에서 주어진 개발 시작 시간을 $StartTime = T \times 60 + M$ 이라고 정의하면, 개발이 완료된 시간 $FinishTime$은 아래처럼 구해진다.
+
+- $FinishTime = StartTime + \sum C_i$
+
+이제 구해진 $FinishTime$을 출력 시간 체계인 $HH:MM$으로 나타내주기만 하면 된다. 단, $HH$가 24를 넘어가면 날짜가 바뀌므로 24로 나눈 나머지를 출력해야한다.
+
+### 샘플 정답 코드
+
+```python
+N=int(input())
+T,M=map(int,input().split())
+C=[int(input()) for _ in range(N)]
+time=T*60+M
+for i in range(N):
+	time += C[i]
+M=time%60
+T=time//60%24
+print(str(T) + ' ' + str(M))
+```
+
+`Python`의 경우 여러 줄의 입력을 하나의 배열로 받으려면 위와 같이 `for`문을 `inline`으로 활용하면 된다. 만약 한 줄로 온다면 `map`과 `list` 함수를 조합하면 된다.
+
+
+<TagList />
+<Comment />
