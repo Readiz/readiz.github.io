@@ -1,0 +1,1 @@
+const t=[{depth:2,text:"구름톤 챌린지란?",id:"구름톤-챌린지란"},{depth:2,text:"문제 풀이",id:"문제-풀이"},{depth:3,text:"풀이 접근",id:"풀이-접근"},{depth:3,text:"샘플 정답 코드",id:"샘플-정답-코드"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
