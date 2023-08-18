@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"입력 받기",id:"입력-받기"},{depth:3,text:"참고할 만한 링크",id:"참고할-만한-링크"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
