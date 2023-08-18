@@ -1,0 +1,52 @@
+---
+title: 나만 보는 Python 배움 과정
+writtendate: 2023-08-18
+tags:
+    - python
+    - PS
+---
+import Comment from '@/components/Comment'
+import Details from '@/components/Details'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
+
+<Header />
+
+
+PS 뿐만 아니라 ML 분야에서도 `Python`이 대세이니, 그리고 현업에서 사용하고 있지 않기 때문에 조금씩 관련 내용을 정리하려고 한다.
+
+## 입력 받기
+
+- 숫자 하나 받기
+```python
+N = int(input())
+```
+
+- 고정 수의 요소 받기
+```python
+a, b, c = map(int, input().split())
+```
+
+- 한 줄로 오는 여러 수 받기
+```python
+my_list = list(map(int, input().split()))
+```
+
+- 여러 줄로 오는 수를 받기
+```python
+my_list = [int(input()) for _ in range(N)]
+```
+
+- 빈값으로 초기화
+```python
+empty_list = [0 for _ in range(N)]
+```
+
+### 참고할 만한 링크
+
+- 다차원 배열 초기화: https://velog.io/@ayoung0073/python-list
+
+<TagList />
+<Comment />
