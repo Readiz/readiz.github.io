@@ -1,0 +1,67 @@
+---
+title: 구름톤 챌린지 1주 차 학습 일기 - 5
+writtendate: 2023-08-18
+tags:
+    - PS
+    - 구름톤
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 구름톤 챌린지란?
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여 중이다. 이벤트 기간 동안 문제가 꾸준이 올라오며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+- 풀이 사용 컨테이너(구름 컨테이너): https://goor.me/8jsC9vbx5TCeaCcRA
+
+## 문제 풀이
+
+- 문제 제목: 이진수 정렬
+- 문제 링크: https://level.goorm.io/exam/195687/%EC%9D%B4%EC%A7%84%EC%88%98-%EC%A0%95%EB%A0%AC/quiz/1
+
+### 풀이 접근
+
+이 문제는 단순 정렬을 구현하는 문제이다. 정렬 조건을 커스텀하기 위해, 구조체를 하나 만들어서 그 구조체의 `operator`를 `overloading` 해서 구현하는 방법을 나는 주로 사용한다.
+
+문제에서 정렬 조건은 두가지가 있으며, 1이 동일할 때 2를 적용한다.
+
+1. 수에 포함된 1의 수가 많은 순으로 내림차순 정렬
+2. 그 수 자체가 큰 순으로 내림차순 정렬
+
+1의 구현은 `gcc`의 경우에 내장함수인 `__builtin_popcount`를 사용하면 된다. 정렬 뒤 K번째 원소를 출력하면 된다. 시간복잡도는 $O(N \log N)$이 이다.
+
+### 샘플 정답 코드
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+struct Number {
+	int v;
+	bool operator<(const struct Number& t) const {
+		if (__builtin_popcount(v) != __builtin_popcount(t.v))
+			return __builtin_popcount(v) > __builtin_popcount(t.v);
+		return v > t.v;
+	}
+};
+int main() {
+	int N, K; scanf("%d %d", &N, &K);
+	vector<Number> A;
+	for(int i = 0; i < N; ++i) {
+		int tmp; scanf("%d", &tmp);
+		A.push_back({tmp});
+	}
+	sort(A.begin(), A.end());
+	printf("%d\n", A[K - 1].v);
+	return 0;
+}
+```
+
+<TagList />
+<Comment />
