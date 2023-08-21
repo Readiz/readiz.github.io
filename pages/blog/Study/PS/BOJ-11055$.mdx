@@ -1,0 +1,140 @@
+---
+title: BOJ 11055 (가장 큰 증가하는 부분 수열)
+writtendate: 2023-08-21
+tags:
+    - PS
+    - BOJ
+    - DP
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import Details from '@/components/Details'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+- 문제 제목: 가장 큰 증가하는 부분 수열
+- 문제 링크: https://www.acmicpc.net/problem/11055
+
+$O(N^2)$ 부분 수열은 어느 정도 마스터했다고 생각했는데 또 다시 막힌 문제. 그만 막히고 싶다.
+
+## 풀이
+
+일단 범위는 정직하게 $N \leq 1000$이기 때문에, 전형적인 $O(N^2)$ `DP` 임을 알 수 있다. 부분 수열 문제는 `LIS` 정도 제외하면 $N^2$ 로 풀이하는 것이 거의 정석이라.. 다만 여전히 익숙하지 않은지 많은 `WA`를 내고 말았다. 처음 잘못 접근한 풀이부터 보자.
+
+### 틀린 코드 (TLE)
+
+처음에 접근했던 방식은 `map` 을 활용해서 구해보려 했으나 결과적으로는 $O(N^3)$ 이상의 풀이가 되고 말았다. 가능한 모든 `sum` 을 구하고, 더 이상 업데이트가 없을 때까지 반복해서 루프를 도는 방식인데, 가능한 모든 `sum`은 엄청 많기 때문에 애시당초에 `DP` 접근이 아니다. `DP`는 상태 공간을 줄이는 것이 핵심인데, 합을 기준으로 줄이는 것은 상태공간을 전혀 줄이지 못한다. (결론적인 이야기이지만)
+
+처음에 잘못 생각했던 이유가 $A_i \leq 1000$ 이라는 조건 때문이었다. 전체 i 개수가 1000개까지라서 생각보다 `sum` 결과의 상태공간이 크지 않을 것이라고 생각했으나(최댓값이 백만이다), 결과적으로는 `TLE`.
+
+<Details>
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef unsigned long long ull;
+typedef long long ll;
+typedef pair<int,int> pii;
+#define FOR(i,a,b) for(int i=(a); ((i)^(b)); ++i)
+#ifndef ONLINE_JUDGE
+    bool isDebug = true;
+    #define _D(...) printf(__VA_ARGS__)
+#else
+    bool isDebug = false;
+    #define _D(...)
+#endif
+
+map<int, int> pos;
+int main() {
+    int N; scanf("%d", &N);
+    vector<int> A; A.resize(N + 1);
+    for(int i = 1; i <= N; ++i) {
+        scanf("%d", &A[i]);
+        if (pos.find(A[i]) == pos.end()) pos[A[i]] = i;
+    }
+
+    while (true) {
+        bool isUpdated = false;
+        for(auto it = pos.begin(); it != pos.end();) {
+            bool isPartialUpdated = false;
+            auto& item = *it;
+            int csum = item.first;
+            int lpos = item.second;
+            for(int i = lpos + 1; i <= N; ++i) {
+                if (A[lpos] < A[i]) {
+                    int nsum = csum + A[i];
+                    if (pos.find(nsum) == pos.end()) {
+                        isPartialUpdated = isUpdated = true;
+                        pos[nsum] = i;
+                    } else {
+                        if (pos[nsum] > i) { // 더 빠르게 도달 가능한 합을 찾음
+                            isPartialUpdated = isUpdated = true;
+                            pos[nsum] = i;
+                        }
+                    }
+                }
+            }
+            if (isPartialUpdated) {
+                it = pos.begin();
+                continue;
+            } else {
+                ++it;
+            }
+        }
+        if (!isUpdated) break;
+    }
+
+    printf("%d\n", pos.rbegin()->first);
+
+    return 0;
+}
+```
+</Details>
+
+### 최종 정답 코드
+
+그렇다면 상태 공간을 어떻게 줄일 수 있을까? 그것은 `LIS`의 $O(N^2)$ 풀이에서 봤던 것처럼, index 기준으로 줄일 수 있다. $DP[i]$ 에는 $i$ 번째에서 가질 수 있는 증가하는 부분 수열의 최댓값을 기록해두면 된다. 그러면, $A_j \leq A_i$가 되는 조건에서, $DP[i] = max(DP[i], DP[j] + A[i])$ 로 업데이트 할 수 있다. 그러면 해당 위치에서의 값을 계속해서 캐싱해서 쓰는 것과 같은 효과이며, 낮은 index부터 기록하면 빠짐없이 모든 경우의 수를 체크할 수 있다.
+
+최종적인 정답은 $DP[i]$ 중에 제일 큰 녀석이다.
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+int main() {
+    int N; scanf("%d", &N);
+    vector<ll> A(N+1);
+    vector<ll> DP(N+1);
+
+    for(int i = 1; i <= N; ++i) scanf("%lld", &A[i]);
+
+    // DP[i] -> i에서의 증가하는 부분 수열의 최대 합
+    // N^2 알고리즘으로 점점 채워 나간다.
+    DP[1] = A[1]; // 1: 1까지의 최대 합
+    ll maxval; maxval = A[1];
+
+    // 상태 전이 식은 아래와 같이 정의할 수 있다.
+    // DP[i] = max(DP[i], DP[j] + A[i]) (Only A[j] < A[i] 인 경우에만)
+    for(int i = 2; i <= N; ++i) {
+        for(int j = 0; j <= i; ++j) {
+            if(A[j] < A[i]) {
+                DP[i] = max(DP[i], DP[j] + A[i]);
+            }
+        }
+        if (DP[i] > maxval) maxval = DP[i];
+    }
+
+    printf("%lld\n", maxval);
+
+    return 0;
+}
+
+```
+
+<TagList />
+<Comment />
