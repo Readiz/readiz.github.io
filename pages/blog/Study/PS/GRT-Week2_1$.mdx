@@ -39,10 +39,10 @@ import 'katex/dist/katex.min.css'
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
-int main() {
-	int N; scanf("%d", &N);
-	char buf[110]; scanf("%s", buf);
-	string full = buf;
+    int main() {
+    int N; scanf("%d", &N);
+    char buf[110]; scanf("%s", buf);
+    string full = buf;
     set<string> mlist;
     for(int i = 1; i < N - 1; ++i) {
         for(int j = i + 1; j < N; ++j) {
@@ -54,7 +54,7 @@ int main() {
             mlist.insert(c);
         }
     }
-    
+
     int maxidx = 0;
     for(int i = 1; i < N - 1; ++i) {
         for(int j = i + 1; j < N; ++j) {
@@ -67,10 +67,10 @@ int main() {
             if (aidx + bidx + cidx > maxidx) maxidx = aidx + bidx + cidx;
         }
     }
-	
+
     printf("%d\n", maxidx);
-    
-	return 0;
+
+    return 0;
 }
 ```
 
