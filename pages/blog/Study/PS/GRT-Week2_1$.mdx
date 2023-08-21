@@ -1,0 +1,78 @@
+---
+title: 구름톤 챌린지 2주 차 학습 일기 - 1
+writtendate: 2023-08-21
+tags:
+    - PS
+    - 구름톤
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 구름톤 챌린지란?
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여 중이다. 이벤트 기간 동안 문제가 꾸준이 올라오며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+- 풀이 사용 컨테이너(구름 컨테이너): https://goor.me/8jsC9vbx5TCeaCcRA
+
+## 문제 풀이
+
+- 문제 제목: 문자열 나누기
+- 문제 링크: https://level.goorm.io/exam/195688/%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%82%98%EB%88%84%EA%B8%B0/quiz/1
+
+### 풀이 접근
+
+이 문제의 경우 1주차보다 난이도가 있는 문제이지만, 여전히 특별한 알고리즘을 사용한다기보다는 `PS`의 기초가 되는 완전탐색을 해서 풀이하는 문제이다. 문자열을 3부분으로 하나 이상의 문자열을 포함해서 나누는 것의 완전탐색은 일종의 `well-known` 알고리즘이다. 빠짐없이 모든 경우의 수를 순회하려면, 사이를 칸막이 치는 느낌으로 변수 i, j를 도입하면 되는데, `i`는 $[1, N - 1)$ 범위로, `j`는 $[i + 1, N)$ 범위로 순회해주면 된다.
+
+2중 루프를 도는 풀이로 보여서 시간복잡도가 $O(N^2)$으로 보이지만, 사실 `substr`의 시간복잡도가 $O(N)$이기 때문에, 아래 샘플 코드의 전체 시간복잡도는 $O(N^4 \log N)$이 된다. 여기서 로그는 `set`을 사용하기 때문에 붙었다. 하지만 이 비효율적인 시간복잡도에도 문제 조건에서 $N \leq 100$ 이기 때문에 충분히 통과하는 코드이다.
+
+최종적인 답을 구하기 위해 `set` 내에서 자기 자신이 몇 번째에 위치하는지 찾기 위해서는 `distance` 함수를 사용하면 되고, 만약 $N$ 조건이 빡세다면, `PBDS Set`을 활용해서 시간복잡도를 더 떨굴 수도 있겠다.
+
+### 샘플 정답 코드
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+	int N; scanf("%d", &N);
+	char buf[110]; scanf("%s", buf);
+	string full = buf;
+    set<string> mlist;
+    for(int i = 1; i < N - 1; ++i) {
+        for(int j = i + 1; j < N; ++j) {
+            string a = full.substr(0, i);
+            string b = full.substr(i, j - i);
+            string c = full.substr(j);
+            mlist.insert(a);
+            mlist.insert(b);
+            mlist.insert(c);
+        }
+    }
+    
+    int maxidx = 0;
+    for(int i = 1; i < N - 1; ++i) {
+        for(int j = i + 1; j < N; ++j) {
+            string a = full.substr(0, i);
+            string b = full.substr(i, j - i);
+            string c = full.substr(j);
+            int aidx = distance(mlist.begin(), mlist.find(a)) + 1;
+            int bidx = distance(mlist.begin(), mlist.find(b)) + 1;
+            int cidx = distance(mlist.begin(), mlist.find(c)) + 1;
+            if (aidx + bidx + cidx > maxidx) maxidx = aidx + bidx + cidx;
+        }
+    }
+	
+    printf("%d\n", maxidx);
+    
+	return 0;
+}
+```
+
+<TagList />
+<Comment />
