@@ -1,0 +1,97 @@
+---
+title: 구름톤 챌린지 3주 차 학습 일기 - 1
+writtendate: 2023-08-28
+tags:
+    - PS
+    - 구름톤
+    - greedy
+    - DP
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 구름톤 챌린지란?
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여 중이다. 이벤트 기간 동안 문제가 꾸준이 올라오며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+- 풀이 사용 컨테이너(구름 컨테이너): https://goor.me/8jsC9vbx5TCeaCcRA
+
+## 문제 풀이
+
+- 문제 제목: 통증
+- 문제 링크
+    - 통증 1: https://level.goorm.io/exam/195690/%ED%86%B5%EC%A6%9D/quiz/1
+    - 통증 2: https://level.goorm.io/exam/195693/%ED%86%B5%EC%A6%9D-2/quiz/1
+
+구름톤 블로깅이 좀 밀려 있었는데, 마침 통증 1 문제와 통증 2 문제가 결이 거의 같은 문제지만 풀이가 달라서 한번에 포스팅하게 되었다.
+
+### 통증 1 풀이 접근
+
+통증 1의 경우에는, 각 수치가 배수 관계이다. 이 경우에는 유명한 거스름돈 문제처럼 `greedy` 하게 풀 수 있다. 왜냐면, 큰 동전이 커버할 수 있는 양을 더 적은 양의 동전으로도 항상 커버할 수 있기 때문이다. 따라서, 단순하게 그냥 나머지만 구하면서 더해나가면 정답이 된다. 구름톤의 모범답안을 보면, 언제 `greedy` 하게 풀 수 있는지에 대해서 정석적으로 서술해 놓았는데, 해당 해설을 첨부한다.
+
+- 현재의 최적의 선택이 다음 선택에 영향을 미치지 않는다.
+- 현재의 선택이 최종 선택의 최적 해결 방법에 포함된다.
+
+`greedy` 문제의 경우 풀었다고 좋아할 게 아니라, 왜 해당 조건으로 풀이가 가능한지에 대해서 증명이 어렴풋이 가능한 정도로 되어야 해당 문제를 제대로 풀었다 할 것이다.
+
+#### 내 풀이
+
+```python
+N=int(input())
+ans=0
+while N >= 14:
+	ans+=N//14
+	N=N%14
+while N >= 7:
+	ans+=N//7
+	N=N%7
+ans+=N
+print(ans)
+```
+
+### 통증 2 풀이 접근
+
+이 문제의 경우 통증 1과 다르게 대놓고 두 가지의 아이템의 효과가 배수 관계가 아니다. 이럴 때는 $a$를 먼저 사용하고 $b$를 사용하는 식의 접근은 최적을 보장하지 못한다.
+
+`DP` 문제 중에 유명한 `배낭 채우기` 문제가 있는데, 해당 문제 풀이에서 상태 전이를 `배낭 무게` 기준으로 하는 부분이 있다. 이 문제에서도 유사한 방식을 사용할 수 있다. 상태 전이를 약을 사용한 횟수 기준이 아니라, 현재 사용한 아이템의 용량 기준으로 하면, 아래와 같은 깔끔한 `DP` 식을 세울 수 있다.
+
+$DP[i] = \min(DP[i], DP[i - a] + 1)$
+
+$DP[i]$는 $i$만큼의 통증을 정확히 없앨 수 있는 아이템의 최소 사용 개수이다. 문제 조건에서 $N \leq 1,000,000$ 이라고 했는데 이것이 통증 수치 기준으로 $DP$를 사용하라는 일종의 힌트이다. 나는 이것을 일종의 `DP Signal`로 판단한다. 이 $N$ 값이 만약에 `통증 1` 문제처럼 $N \leq 1,000,000,000$ 이었다면, 메모리 제한 조건에 걸려서 다른 풀이를 생각했어야 할 것이다.
+
+아무튼 해당 문제는 이러한 이슈가 없고, 위 정의된 $DP$ 식으로 낮은 효과 수치에서 높은 효과 수치 순으로 배열을 채워나가면, $i$ == $N$에서의 값이 정답이 된다. `base condition`은 $DP[0] = 0$ 이다.
+
+#### 내 풀이
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int N; scanf("%d", &N);
+    vector<int> DP(N+1);
+    constexpr int INF = 987654321;
+    fill(DP.begin(), DP.end(), INF);
+    int a, b; scanf("%d %d", &a, &b);
+    DP[0] = 0;
+
+    for(int i = 1; i <= N; ++i) {
+        if (i - a >= 0) DP[i] = min(DP[i], DP[i - a] + 1);
+        if (i - b >= 0) DP[i] = min(DP[i], DP[i - b] + 1);
+    }
+
+    if (DP[N] == INF) printf("-1\n");
+    else printf("%d\n", DP[N]);
+    return 0;
+}
+```
+
+<TagList />
+<Comment />
