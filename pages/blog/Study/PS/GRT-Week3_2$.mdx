@@ -1,0 +1,83 @@
+---
+title: 구름톤 챌린지 3주 차 학습 일기 - 2
+writtendate: 2023-08-29
+tags:
+    - PS
+    - 구름톤
+    - BFS
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 구름톤 챌린지란?
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여 중이다. 이벤트 기간 동안 문제가 꾸준이 올라오며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+- 풀이 사용 컨테이너(구름 컨테이너): https://goor.me/8jsC9vbx5TCeaCcRA
+
+## 문제 풀이
+
+- 문제 제목: 발전기
+- 문제 링크: https://level.goorm.io/exam/195694/%EB%B0%9C%EC%A0%84%EA%B8%B0/quiz/1
+
+### 풀이 접근
+
+이 문제의 경우 조금 논란이 있을 수 있겠다. 왜냐하면, 아무리 봐도 구름 IDE에서 스택 메모리에 대한 제약조건이 보이지 않기 때문이다. 만약 일반적인 윈도우 환경이라면 보통 스택 메모리를 `1MB` 정도로 보는데, 그럴 경우에는 `DFS`로 맵 탐색을 구현하면 전체 맵의 크기가 $1000 \times 1000$ 이므로, `stack overflow`가 날 수 있다. 하지만 이것은 환경에 따라 달라질 수 있는 값이므로, `DFS`로 풀었다고 `RTE`가 나는 것은 조금 넌센스라고 할 수 있겠다. (아니면 문제 조건에 스택 메모리 크기를 명시하면 된다.)
+
+아무튼 문제 자체는 간단히 `BFS`로 구현할 수 있는 간단한 맵 탐색 문제이다. 맵을 탐색하다가 $1$을 발견하면 해당 좌표 기점으로 연결되는 것들을 0으로 만들고 계속 탐색하고를 반복해주면 된다. 간단한 문제인데 위 이슈로 삽질을 좀 했다.
+
+```cpp
+#include <stdio.h>
+
+int M[1010][1010];
+int dy[4] = {0, 1, 0, -1};
+int dx[4] = {1, 0, -1, 0};
+
+struct P {
+    int y, x;
+};
+P q[2000000];
+int qf, qr;
+void clear(int y, int x) {
+    qf = qr = 0;
+    q[qr++] = {y, x};
+    while(qf != qr) {
+        auto& cur = q[qf++];
+        if (M[cur.y][cur.x] == 0) continue;
+        M[cur.y][cur.x] = 0;
+        for(int i = 0; i < 4; ++i) {
+            if (M[cur.y + dy[i]][cur.x + dx[i]] == 1)
+                q[qr++] = {cur.y + dy[i], cur.x + dx[i]};
+        }
+    }
+}
+int main() {
+    int N; scanf("%d", &N);
+    for(int i = 1; i <= N; ++i) {
+        for(int j = 1; j <= N; ++j) {
+            scanf("%d", &M[i][j]);
+        }
+    }
+    int ans = 0;
+    for(int i = 1; i <= N; ++i) {
+        for(int j = 1; j <= N; ++j) {
+            if (M[i][j]) {
+                clear(i, j);
+                ++ans;
+            }
+        }
+    }
+    printf("%d\n", ans);
+    return 0;
+}
+```
+
+<TagList />
+<Comment />
