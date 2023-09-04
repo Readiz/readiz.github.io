@@ -1,0 +1,92 @@
+---
+title: 구름톤 챌린지 4주 차 학습 일기 - 1
+writtendate: 2023-09-04
+tags:
+    - PS
+    - 구름톤
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 구름톤 챌린지란?
+
+`구름` 이라는 곳에서 문제 풀이 챌린지(구름톤 챌린지)를 한다고 해서 참여 중이다. 이벤트 기간 동안 문제가 꾸준이 올라오며, 주에 2회씩 (혹은 그 이상) 챌린지 문제들에 대해 풀이가 가능한 문제들을 풀이해보고, 후기를 남겨보려고 한다.
+
+- 문제 푸는 곳: https://level.goorm.io/l/challenge/goormthon-challenge
+- 학습 일기 작성 가이드: https://goorm.notion.site/5ad9e8eef00f4c19b083572c2000d7f8
+- 풀이 사용 컨테이너(구름 컨테이너): https://goor.me/8jsC9vbx5TCeaCcRA
+
+이제 마지막 주차인 4주차다. 4주차의 첫 문제는 그래프가 출제되었다.
+
+## 문제 풀이
+
+- 문제 제목: 연합
+- 문제 링크: https://level.goorm.io/exam/195698/%EC%97%B0%ED%95%A9/quiz/1
+
+### 풀이 접근
+
+이 문제는 나의 경우 `Union Find`로 접근했다. 같은 집합에 속하는 녀석들을 관리할 때는 이것만큼 간단한 방법이 없기에..
+
+특이할 만한 조건은 양방향으로 연결될 때에만 `연합`으로 인정한다는 것이다. 이를 해결하기 위해, 일단 입력을 쭉 받은 이후, 다시한번 루프를 돌면서 연합을 이루는 녀석들은 `merge` 해준다. 이 후, `set`을 활용해서, 루트 정점을 집어넣어준 뒤 `unique` 한 녀석들의 수를 세어주면 쉽게 풀 수 있다.
+
+내 풀이의 시간 복잡도는 정점간의 연결을 체크하는 부분 때문에 $O(N^2)$가 된다. 만약 이 연결을 체크하는 부분을 인접배열로 관리한다면, 시간복잡도를 $(O(M + N))$으로 줄일 수 있겠다.
+
+#### 내 풀이
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+bool conn[2001][2001];
+int N, M;
+
+struct UF {
+    int parent[2001];
+    UF() {
+        for(int i = 0; i <= 2000; ++i) parent[i] = i;
+    }
+    int getRoot(int v) {
+        if (v == parent[v]) return v;
+        return parent[v] = getRoot(parent[v]);
+    }
+    void merge(int a, int b) {
+        a = getRoot(a);
+        b = getRoot(b);
+        if (a == b) return;
+        parent[b] = a;
+    }
+} uf;
+
+int main() {
+    scanf("%d %d", &N, &M);
+
+    for(int i = 0; i < M; ++i) {
+        int a, b; scanf("%d %d", &a, &b);
+        conn[a][b] = true;
+    }
+
+    for(int a = 1; a <= N; ++a) {
+        for(int b = a + 1; b <= N; ++b) {
+            if (conn[a][b] == true && conn[b][a] == true) {
+                uf.merge(a, b);
+            }
+        }
+    }
+
+    set<int> uq;
+    for(int a = 1; a <= N; ++a) {
+        uq.insert(uf.getRoot(a));
+    }
+
+    printf("%d\n", (int)uq.size());
+    return 0;
+}
+```
+
+<TagList />
+<Comment />
