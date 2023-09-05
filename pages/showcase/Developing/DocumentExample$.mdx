@@ -6,6 +6,7 @@ import Comment from '@/components/Comment';
 import Header from '@/components/Header';
 import HelloGraph from '@/components/HelloGraph';
 import TagList from '@/components/TagList';
+import SolvedTier, {TierName} from '@/components/SolvedTier';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 // import { Mermaid } from 'mdx-mermaid/Mermaid';
@@ -19,6 +20,15 @@ React 등 여러 기술 연습 공간입니다.
 의미없는 멘트나 컴포넌트들이 노출될 수 있습니다.
 
 ![](../../../assets/2023-04-28-11-36-03.png)
+
+## SolvedTier
+
+<SolvedTier tierName={TierName.Bronze} grade={5} />
+<SolvedTier tierName={TierName.Silver} grade={4} />
+<SolvedTier tierName={TierName.Gold} grade={3} />
+<SolvedTier tierName={TierName.Platinum} grade={2} />
+<SolvedTier tierName={TierName.Diamond} grade={1} />
+<SolvedTier tierName={TierName.Ruby} grade={5} />
 
 ## Built-in Math
 
