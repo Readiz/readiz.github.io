@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"Binary Search Tree",id:"binary-search-tree"},{depth:2,text:"Time Complexity (with Random Key)",id:"time-complexity-with-random-key"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
