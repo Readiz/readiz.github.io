@@ -1,0 +1,98 @@
+---
+title: Binary Search Tree
+writtendate: 2023-10-06
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Binary Search Tree
+
+Worst 때문에 쓸 일 없겠지만 basic 중의 basic. 
+
+```cpp
+struct Node {
+    int key;
+    Node* l;
+    Node* r;
+};
+
+Node* newNode(int key) {
+    Node* ret = new Node();
+    ret->key = key;
+    ret->l = ret->r = 0;
+    return ret;
+}
+
+struct BST {
+    Node* root;
+    void insert(int key) {
+        if (root == 0) {
+            root = v;
+            return;
+        }
+        Node* p = root;
+        Node* myNode = newNode(key);
+        while(true) {
+            if (p->key == key) return; // duplicate
+            else if (p->key > key) {
+                if (p->l) {
+                    p->l = myNode;
+                    return;
+                }
+                p = p->l;
+            } else {
+                if (p->r) {
+                    p->r = myNode;
+                    return;
+                }
+                p = p->r;
+            }
+        }
+    }
+    Node* find(int key) {
+        if (root == 0) return 0;
+        Node* p = root;
+        while(true) {
+            if (p->key == key) return p;
+            else if (p->key > key) {
+                if (p->l == 0) {
+                    return 0;
+                }
+                p = p->l;
+            } else {
+                if (p->r == 0) {
+                    return 0;
+                }
+                p = p->r;
+            }
+        }
+    }
+    void erase(int key) {
+        Node* p = find(key);
+        if (p == 0) return; // no exist
+        if (p->l == 0 && p->r == 0) { // leaf
+            delete p;
+        } else if (p->l && p->r) {
+
+        } else if (p->l) {
+            
+        } else if (p->r) {
+
+        }
+    }
+} bst;
+
+```
+
+## Time Complexity (with Random Key)
+
+- Insert: $O(\log N)$
+- Erase: $O(\log N)$
+- Find: $O(\log N)$
+
+<Comment />
