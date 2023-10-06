@@ -1,0 +1,75 @@
+---
+title: Splay Tree
+writtendate: 2023-10-06
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Splay Tree
+
+Splay 연산은 해당되는 `Node`를 루트로 올리는 연산이다. 이를 수행하기 위해 `Rotaate` 함수를 만드는데, 이 함수는 해당 노드를 부모로 올리는 역할이다.
+
+`Node`는 이 연산을 위해 부모의 pointer도 가지고 있어야한다.
+
+```cpp
+struct Node {
+    int key;
+    Node* l;
+    Node* r;
+    Node* p;
+
+    void rotate() {
+        Node* p = p;
+        Node* a = l;
+        Node* b = r;
+    }
+
+    void printInorder() {
+        if (l) l->printInorder();
+        printf("%d ", key);
+        if (r) r->printInorder();
+    }
+};
+Node* newNode(int key) {
+    Node* ret = new Node();
+    ret->key = key;
+    ret->l = ret->r = ret->p = 0;
+    return ret;
+}
+
+struct SplayTree {
+    Node* root;
+    Node util;
+    BST() {
+        root = 0;
+    }
+    void insert(int key) {
+
+    }
+    bool find(int key) {
+
+    }
+    void splay() {
+
+    }
+    void print() {
+        if(root) root->printInorder();
+        printf("\n");
+    }
+};
+
+```
+
+## Time Complexity
+
+- Insert: $O(\log N)$
+- Erase: $O(\log N)$
+- Find: $O(\log N)$
+- K-th: $O(\log N)$
+
+<Comment />

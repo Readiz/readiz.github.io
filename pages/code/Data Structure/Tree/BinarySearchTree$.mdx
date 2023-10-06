@@ -19,6 +19,12 @@ struct Node {
     int key;
     Node* l;
     Node* r;
+
+    void printInorder() {
+        if (l) l->printInorder();
+        printf("%d ", key);
+        if (r) r->printInorder();
+    }
 };
 
 Node* newNode(int key) {
@@ -30,9 +36,12 @@ Node* newNode(int key) {
 
 struct BST {
     Node* root;
+    BST() {
+        root = 0;
+    }
     void insert(int key) {
         if (root == 0) {
-            root = v;
+            root = newNode(key);
             return;
         }
         Node* p = root;
@@ -40,13 +49,13 @@ struct BST {
         while(true) {
             if (p->key == key) return; // duplicate
             else if (p->key > key) {
-                if (p->l) {
+                if (p->l == 0) {
                     p->l = myNode;
                     return;
                 }
                 p = p->l;
             } else {
-                if (p->r) {
+                if (p->r == 0) {
                     p->r = myNode;
                     return;
                 }
@@ -72,18 +81,9 @@ struct BST {
             }
         }
     }
-    void erase(int key) {
-        Node* p = find(key);
-        if (p == 0) return; // no exist
-        if (p->l == 0 && p->r == 0) { // leaf
-            delete p;
-        } else if (p->l && p->r) {
-
-        } else if (p->l) {
-            
-        } else if (p->r) {
-
-        }
+    void print() {
+        if(root) root->printInorder();
+        printf("\n");
     }
 } bst;
 
@@ -92,7 +92,6 @@ struct BST {
 ## Time Complexity (with Random Key)
 
 - Insert: $O(\log N)$
-- Erase: $O(\log N)$
 - Find: $O(\log N)$
 
 <Comment />
