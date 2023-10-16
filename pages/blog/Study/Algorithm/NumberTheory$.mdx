@@ -1,6 +1,6 @@
 ---
 title: 정수론
-writtendate: 2023-05-18
+writtendate: 2023-10-16
 tags:
     - GCD
     - LCM
@@ -55,7 +55,7 @@ int LCM(int a, int b) {
 ```cpp
 bool isPrime(int N) {
     for(int i = 2; i < N; ++i) {
-        if (i % N == 0) return false;
+        if (N % i == 0) return false;
     }
     return true;
 }
@@ -68,7 +68,7 @@ bool isPrime(int N) {
 ```cpp
 bool isPrime(int N) {
     for(int i = 2; i * i <= N; ++i) {
-        if (i % N == 0) return false;
+        if (N % i == 0) return false;
     }
     return true;
 }
