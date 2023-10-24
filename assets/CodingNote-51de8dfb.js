@@ -1,1 +1,0 @@
-import{j as o}from"./ssg-client-dac0cb56.js";import{I as t}from"./IFrame-bfc08a66.js";import"./index.module-caf545e8.js";const e=m=>o(t,{url:"https://www.readiz.com/CodingNote/",title:"Coding Note"}),r=Object.freeze(Object.defineProperty({__proto__:null,default:e},Symbol.toStringTag,{value:"Module"})),i={};i.main=r;export{i as default};
