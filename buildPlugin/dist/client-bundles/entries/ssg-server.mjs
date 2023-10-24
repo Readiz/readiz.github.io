@@ -1,7 +1,7 @@
 import 'react';
 import ReactDOM from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import { d as dataCacheCtx, A as App } from './App-caf536e2.js';
+import { d as dataCacheCtx, A as App } from './App-6f1db792.js';
 import ssrData from '/@react-pages/ssrData';
 export { default as ssrData } from '/@react-pages/ssrData';
 import { jsx } from 'react/jsx-runtime';

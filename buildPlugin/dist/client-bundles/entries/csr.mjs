@@ -1,7 +1,7 @@
 import 'react';
 import { createRoot } from 'react-dom/client';
-import { C as ClientAppWrapper } from './ClientAppWrapper-cf222eb7.js';
-import { A as App } from './App-caf536e2.js';
+import { C as ClientAppWrapper } from './ClientAppWrapper-c6221fa9.js';
+import { A as App } from './App-6f1db792.js';
 import { jsx } from 'react/jsx-runtime';
 import 'react-router-dom';
 import 'dequal';
