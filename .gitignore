@@ -1,7 +1,4 @@
 node_modules
 .DS_Store
-./dist
 *.local
-theme-doc/node_modules
 .vscode
-dist
