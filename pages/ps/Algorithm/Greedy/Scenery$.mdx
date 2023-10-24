@@ -2,6 +2,7 @@
 title: Scenery
 writtendate: 2023-10-24
 ---
+import Image from '@/components/Image'
 import Comment from '@/components/Comment'
 import TagList from '@/components/TagList'
 import Header from '@/components/Header'
@@ -11,8 +12,11 @@ import 'katex/dist/katex.min.css'
 
 ## Scenery
 
+<Image src="2023-10-24-23-02-12.png" />
+
 ICPC 유명 문제 `Scenery` 에 대한 풀이 정리
 
+- 문제 링크: https://www.acmicpc.net/problem/14640
 - koosaga님의 Unit Scheduling 설명: <a href="/assets/koosaga_scheduling.pdf">PDF 다운로드</a>
 - 위 글에 나온 논문: <a href="/assets/doi_0210018.pdf">PDF 다운로드</a>
 
@@ -26,6 +30,9 @@ ICPC 유명 문제 `Scenery` 에 대한 풀이 정리
 - 어떤 시점에서 일을 하겠다고 했을 때 데드라인이 큰 일을 선택하는 것은 작은 일을 수행하는 것과 바꿀 수 있기 때문.
 
 $T$가 그보다 큰 경우에는 오히려 할당하지 않는 것이 유리해지는 경우가 존재한다. 이를 제어하기 위해 도입된 것이 `Forbidden Regions` 라고 보면 된다.
+
+<Image src="2023-10-24-23-04-02.png" />
+- `Scenery` 문제와 달리 논문에 나온 `Forbidden Regions`는 딱히 정수 구간으로 제한되지 않았다...
 
 ### Naiiiive한 구현
 
@@ -43,8 +50,15 @@ $T$가 그보다 큰 경우에는 오히려 할당하지 않는 것이 유리해
 
 우선, `Forbidden Regions`은 최대 $O(N)$ 개의 구간을 가진다. 왜냐면, 추가한 구간의 형태는 $(r_{last} - T, r_i)$ 였기 때문에, 끝점의 개수는 $O(N)$ 개로 고정되고, 그들 중 최대 길이를 가지는 녀석은 1개가 되므로 전체 구간 수가 $O(N)$이 되는 것. 이 기본 사실을 바탕으로 연산을 아래와 같이 줄일 수 있다.
 
-간단한 관찰을 하면, 어떤 구간 $[r_i, *]$을 잡았을 때 `Forbidden Region`는 항상 그 구간의 왼쪽에 형성된다. 역으로 말하자면, 선택한 구간 $[r_i, *]$로 생성되는 `Forbidden Region`은 $r_i \gt r_j$인 구간에서만 생성된다는 것이다. 따라서 위의 Naive한 구현의 1번에서 `임의의` 구간을 선택하는 것이 아니라, 뒤쪽부터 선택하면서 보면 한번 처리한 후보를 다시 처리할 필요가 없어진다. 여기까지 하면 하나의 구간을 처리하는데 $O(N)$, 많아야 $O(N^2)$ 번 과정을 수행하면 되므로 시간복잡도는 이 둘을 곱해서 $O(N^3)$ 이다.
+간단한 관찰을 하면, 어떤 구간 $[r_i, *]$을 잡았을 때 `Forbidden Region`는 항상 그 구간의 왼쪽에 형성된다. 다시 말하자면, 선택한 구간 $[r_i, *]$로 생성되는 `Forbidden Region`은 $r_i \gt r_j$인 구간만 만들 수 있다는 것이다. 따라서 위의 Naive한 구현의 1번에서 `임의의` 구간을 선택하는 것이 아니라, 뒤쪽부터 선택하면서 보면 한번 처리한 후보를 다시 처리할 필요가 없어진다. 여기까지 하면 하나의 구간을 처리하는데 $O(N)$, 많아야 $O(N^2)$ 번 과정을 수행하면 되므로 시간복잡도는 이 둘을 곱해서 $O(N^3)$ 이다.
 
 여기서, 구간을 $r_i$가 증가하는 순으로 미리 정렬하면, 중복 계산을 제거하여 $O(N^2)$으로 만들 수 있다. $f(i, j)$를 $[r_i, d_j]$ 구간에서의 `Forbidden Regions` 생성 결과라고 하면, $f(i + 1, j)$를 알면, 마치 `Mo's` 알고리즘 처럼 $O(1)$ 시간만에 추가되는 녀석을 고려한 새로운 `Forbidden Regions`를 구할 수 있게 된다.
+
+### Deep dive Algorithm
+
+서두에 소개된 논문에서 $O(N \log N)$ 으로 줄일 수 있는 방법에 대해서 소개하고 있다. 아직 완전히 이해하지 못해서 적지 못하지만, 논문에서 핵심은 아래라고 한다.
+
+> The key to obtaining a speed-up from $O(N^2)$ to $O(N \log N)$ involves a basic shift in the way we deal with critical times. Instead of keeping track of each $c_i$ individually, so that the current value of any $c_i$ can be found in constant time (the approach of Algorithm A), we shall keep track of a smaller amount of information, which will be sufficient for determining the current value of any $c_i$ in time $O(\log n)$. This will permit us to use more efficient procedures for organizing and updating the data structures neded for computing the $c_i$ values.
+
 
 <Comment />
