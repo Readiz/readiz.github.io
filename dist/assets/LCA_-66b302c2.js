@@ -1,1 +1,0 @@
-const t=[{depth:2,text:"O(n^2)",id:"on2"},{depth:2,text:"O(n)",id:"on"},{depth:2,text:"O(log n)",id:"olog-n"},{depth:3,text:"2진수의 힘",id:"2진수의-힘"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
