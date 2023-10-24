@@ -1026,7 +1026,7 @@ g-emoji:is(.markdown-el, .markdown-el *) img {
 }
 .vp-local-layout .vp-local-body .vp-local-sider {
   padding: 40px 0px;
-  width: 300px;
+  width: 200px;
   height: 100%;
   max-height: calc(100vh - 64px);
   overflow: hidden;

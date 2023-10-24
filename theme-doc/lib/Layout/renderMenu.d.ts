@@ -1,6 +1,8 @@
 import React from 'react';
+import type { MenuProps } from 'antd';
 import type { PathPattern } from 'react-router-dom';
-export declare const renderMenuHelper: (isTopNav: boolean) => (menuConfig: ReadonlyArray<MenuConfig>, isFirstLevel?: boolean, collectMenuKeys?: string[]) => import("antd/es/menu/hooks/useItems").ItemType[];
+type ItemTypes = NonNullable<MenuProps['items']>;
+export declare const renderMenuHelper: (isTopNav: boolean) => (menuConfig: ReadonlyArray<MenuConfig>, isFirstLevel?: boolean, collectMenuKeys?: string[]) => ItemTypes;
 export type MenuConfig = {
     readonly label: string;
     /**
@@ -37,4 +39,5 @@ export type MenuConfig = {
     readonly group: string;
     readonly children: ReadonlyArray<MenuConfig>;
 };
+export {};
 //# sourceMappingURL=renderMenu.d.ts.map
