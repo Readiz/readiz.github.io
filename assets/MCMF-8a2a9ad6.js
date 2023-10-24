@@ -1,0 +1,10 @@
+import{p as l}from"./MCMF_-48743c9d.js";import{u as i,j as e,a,F as r}from"./ssg-client-878c1a33.js";import{C as c}from"./Comment-69e488e6.js";import"./index.module-caf545e8.js";import{H as o}from"./Header-f888c9ef.js";import"./katex.min-4ed993c7.js";function m(t){const n=Object.assign({h2:"h2",ul:"ul",li:"li",span:"span",math:"math",semantics:"semantics",mrow:"mrow",mi:"mi",mo:"mo",annotation:"annotation"},i(),t.components);return a(r,{children:[e(o,{}),`
+`,e(n.h2,{id:"mcmf",children:"MCMF"}),`
+`,a(n.ul,{children:[`
+`,e(n.li,{}),`
+`]}),`
+`,e(n.h2,{id:"time-complexity",children:"Time Complexity"}),`
+`,a(n.ul,{children:[`
+`,a(n.li,{children:["Average: ",e(n.span,{className:"math math-inline",children:a(n.span,{className:"katex",children:[e(n.span,{className:"katex-mathml",children:e(n.math,{xmlns:"http://www.w3.org/1998/Math/MathML",children:a(n.semantics,{children:[a(n.mrow,{children:[e(n.mi,{children:"O"}),e(n.mo,{stretchy:"false",children:"("}),e(n.mi,{children:"f"}),e(n.mi,{children:"V"}),e(n.mi,{children:"E"}),e(n.mo,{stretchy:"false",children:")"})]}),e(n.annotation,{encoding:"application/x-tex",children:"O(fVE)"})]})})}),e(n.span,{className:"katex-html","aria-hidden":"true",children:a(n.span,{className:"base",children:[e(n.span,{className:"strut",style:{height:"1em",verticalAlign:"-0.25em"}}),e(n.span,{className:"mord mathnormal",style:{marginRight:"0.02778em"},children:"O"}),e(n.span,{className:"mopen",children:"("}),e(n.span,{className:"mord mathnormal",style:{marginRight:"0.10764em"},children:"f"}),e(n.span,{className:"mord mathnormal",style:{marginRight:"0.22222em"},children:"V"}),e(n.span,{className:"mord mathnormal",style:{marginRight:"0.05764em"},children:"E"}),e(n.span,{className:"mclose",children:")"})]})})]})})]}),`
+`]}),`
+`,e(c,{})]})}function h(t={}){const{wrapper:n}=Object.assign({},i(),t.components);return n?e(n,Object.assign({},t,{children:e(m,t)})):m(t)}const d=Object.freeze(Object.defineProperty({__proto__:null,default:h},Symbol.toStringTag,{value:"Module"})),s={};s.outlineInfo=l;s.main=d;export{s as default};
