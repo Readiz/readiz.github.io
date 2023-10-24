@@ -1,1 +1,0 @@
-const e=[{depth:2,text:"Job Scheduling",id:"job-scheduling"},{depth:3,text:"작업 배정을 할지 안할지만 결정",id:"작업-배정을-할지-안할지만-결정"},{depth:3,text:"작업 수행 시간이 T = 1인 경우",id:"작업-수행-시간이-t--1인-경우"},{depth:2,text:"Time Complexity",id:"time-complexity"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
