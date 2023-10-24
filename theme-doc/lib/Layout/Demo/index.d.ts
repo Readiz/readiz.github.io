@@ -10,6 +10,6 @@ interface Props {
     className?: string;
     isDemo: boolean;
 }
-export declare function Demo({ default: DemoComp, demoMeta, isDemo, style, className, }: Props): JSX.Element;
+export declare function Demo({ default: DemoComp, demoMeta, isDemo, style, className, }: Props): React.JSX.Element;
 export {};
 //# sourceMappingURL=index.d.ts.map

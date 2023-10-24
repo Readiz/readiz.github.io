@@ -1,1 +1,1 @@
-{"version":3,"file":"useLocaleSelector.d.ts","sourceRoot":"","sources":["../../src/Layout/useLocaleSelector.tsx"],"names":[],"mappings":";AASA,wBAAgB,iBAAiB;;EA8DhC"}
+{"version":3,"file":"useLocaleSelector.d.ts","sourceRoot":"","sources":["../../src/Layout/useLocaleSelector.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAA;AASzB,wBAAgB,iBAAiB;;EA8DhC"}

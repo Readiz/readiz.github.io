@@ -4,6 +4,6 @@ interface Props {
     readonly className?: `language-${Language}` | '' | string;
     readonly style?: React.CSSProperties;
 }
-declare const CodeBlock: ({ children, className, style: propStyle, }: React.PropsWithChildren<Props>) => JSX.Element;
+declare const CodeBlock: ({ children, className, style: propStyle, }: React.PropsWithChildren<Props>) => React.JSX.Element;
 export default CodeBlock;
 //# sourceMappingURL=CodeBlock.d.ts.map

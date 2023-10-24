@@ -55,5 +55,5 @@ export type FooterConfig = {
      */
     theme?: 'light' | 'dark';
 };
-export declare const Footer: () => JSX.Element | null;
+export declare const Footer: () => React.JSX.Element | null;
 //# sourceMappingURL=Footer.d.ts.map
