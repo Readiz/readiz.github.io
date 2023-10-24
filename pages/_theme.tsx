@@ -14,9 +14,9 @@ export default createTheme({
       activeIfMatch: '/blog',
     },
     {
-      label: 'Code Snippet',
-      path: '/code',
-      activeIfMatch: '/code',
+      label: 'PS Snippet',
+      path: '/ps',
+      activeIfMatch: '/ps',
     },
     {
       label: 'Showcase',

@@ -28,6 +28,7 @@ const TagBrowser: React.FC<Props> = (props) => {
         res.push([item[0], String(item[0]).substring(0,1).toUpperCase() + String(item[0]).substring(1), item[1].length]);
     }
     res = res.sort((a, b) => {return b[2] - a[2]});
+    if (res.length > 10) res = res.slice(0, 15);
     return res;
   })();
   return (
