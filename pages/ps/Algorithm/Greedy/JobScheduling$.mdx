@@ -113,6 +113,50 @@ void solve() {
 }
 ```
 
+### Release Time, Deadline 이 존재하며, 주어진 특정 시간에만 작업을 수행하는 유형
+
+- 소가 길을 건너간 이유 4 문제: https://www.acmicpc.net/problem/14464
+- 위 유형의 열화판.
+    - Release Time이 빠른 녀석부터 보면서 Deadline을 PQ에 저장하는 것까지는 똑같은데, 특정 시간에만 작업잉 수행이 가능하다는 것은 특정 시간만 보면 된다는 의미이고, 특정 시간을 순회하면서 체크하면 된다.
+
+```cpp
+void solve() {
+    int N, M; scanf("%d %d", &N, &M);
+    vector<int> chicken(N);
+    vector<pair<int,int>> cow(M);
+    for(auto& item: chicken) scanf("%d", &item);
+    for(auto& item: cow) scanf("%d %d", &item.x, &item.y);
+
+    sort(cow.begin(), cow.end());
+    sort(chicken.begin(), chicken.end());
+
+    // deadline을 순서대로 넣자. 현재 유효한 녀석들만 들어가 있게 된다.
+    priority_queue<int, vector<int>, greater<>> pq;
+    int cowPtr = 0;
+    int ans = 0;
+    
+    for(auto& c: chicken) {
+        int cur = c; // 현재 보는 chicken의 T_i
+        for(; cowPtr < M; ++cowPtr) {
+            if (cow[cowPtr].y < cur) continue; // 버린다. 이미 다 지나갔다.
+            if (cow[cowPtr].x <= cur && cur <= cow[cowPtr].y) {
+                pq.push(cow[cowPtr].y); // deadline 순서로 정렬하는 pq에 넣기.
+            } else {
+                // 앞으로 쓸 녀석들을 만났다. 더이상 pq에 넣지않고 종료
+                break;
+            }
+        }
+        while(pq.size() && pq.top() < cur) pq.pop(); // 유효하지 않은것 버리기
+        if (pq.size()) {
+            // printf("[d] deadline: %d / chicken: %d matched!\n", pq.top(), cur);
+            pq.pop();
+            ++ans;
+        }
+    }   
+    printf("%d\n", ans);
+}
+```
+
 ### 전부 할당해야할 때 필요한 최소 기계의 수를 계산하는 유형
 
 - 강의실 배정 문제: https://www.acmicpc.net/problem/11000
