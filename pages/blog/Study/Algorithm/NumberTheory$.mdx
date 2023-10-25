@@ -92,7 +92,7 @@ vector<int> getPrimes (int MAX) {
         if (memo[i] != 0) continue;
         res.push_back(i);
         for(int j = i; j <= MAX; j += i) {
-            memo[i] = 1;
+            memo[j] = 1;
         }
     }
     return res;
@@ -110,7 +110,7 @@ vector<int> getPrimes (int MAX) {
         if (memo[i] != 0) continue;
         res.push_back(i);
         for(int j = i * i; j <= MAX; j += i) {
-            memo[i] = 1;
+            memo[j] = 1;
         }
     }
     for(; i <= MAX; ++i)

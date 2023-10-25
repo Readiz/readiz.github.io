@@ -1,0 +1,203 @@
+---
+title: 정수론 일반
+writtendate: 2023-10-25
+---
+import Details from '@/components/Details'
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## 정수론 기본 정리
+
+- rkm0959 님의 PS 정수론 백과사전: <a href="/assets/NumberTheory.pdf">PDF 다운로드</a>
+- rkm0959 님의 블로그: https://rkm0959.tistory.com/
+
+## Basic Functions
+
+### GCD (유클리드 호제법)
+
+- $GCD(a, b) = GCD(b, r)$ (단, $r$은 $a$를 $b$로 나누었을 떄의 나머지)의 구현이다.
+
+```cpp
+int gcd(int a, int b) {
+    return (b == 0) ? a : gcd(b, a % b); // a % b = r
+}
+```
+
+```cpp
+int gcd(int a, int b) {
+    while (b != 0) {
+        int r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
+```
+
+### LCM
+
+```cpp
+int lcm(int a, int b) {
+    return a * b / gcd(a, b);
+}
+```
+
+### Simple isPrime
+
+- 루트 시간복잡도이기 때문에 $N \lt 1,000,000$ 정도일 때, 상당히 유효하다.
+
+```cpp
+bool isPrime(int num) {
+    for(int i = 2; i * i <= num; ++i) {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
+```
+
+### 밀러라빈 isPrime
+
+- 확률적 소수 판정이지만, 특정 수들에 대해서 모두 체크함으로써 확정적으로 소수 체크 가능
+- casterian님 코드 참고: https://casterian.net/archives/396
+
+<Details>
+```cpp
+typedef unsigned long long ull;
+
+ull checker[] = {2ULL, 325ULL, 9375ULL, 28178ULL, 450775ULL, 9780504ULL, 1795265022ULL};
+// int checker[] = {2, 7, 61}; // int 범위일 때
+ull N;
+
+ull addmod(ull x, ull y, ull m) {
+    if (x >= m - y) {
+        return x - (m - y);
+    } else {
+        return x + y;
+    }
+}
+ull mulmod(ull x, ull y, ull m) {
+    ull r = 0ULL;
+    while (y > 0) {
+        if (y % 2 == 1)
+            r = addmod(r, x, m);
+        x = addmod(x, x, m);
+        y /= 2;
+    }
+    return r;
+}
+ull powmod(ull x, ull y, ull m) {
+    ull r = 1ULL;
+    while (y > 0) {
+        if (y % 2 == 1) {
+            r = mulmod(r, x, m);
+        }
+        x = mulmod(x, x, m);
+        y /= 2;
+    }
+    return r;
+}
+
+// Miller-Rabin checker
+// true를 리턴한다고 해서 무조건 소수인 것은 아님. (확률적 소수)
+// 그러나 특정 수들에 대해 (checker 배열) 모두 검사한다면, 확정적으로 소수임을 판별가능.
+// (log n)^3 알고리즘
+bool MR(ull N, ull A) {
+    ull d = N - 1;
+    while (d % 2 == 0) {
+        if (powmod(A, d, N) == N - 1) {
+            return true;
+        }
+        d /= 2;
+    }
+
+    ull tmp = powmod(A, d, N);
+    if (tmp == N - 1 || tmp == 1) { // a^(d*2^r) mod n = -1 판정 하는 부분임
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isPrime(ull N) {
+    if (N <= 1) {
+        return false;
+    } else if (N == 2) {
+        return true;
+    } else if (N <= 10000000000ULL) { // 기존 방법이 빠른 구간 + 밀러라빈 checker 수보다 작은 구간
+        for (ull i = 3ULL; i * i <= N; i += 2) { // 홀수만 검사한다.
+            if (N % i == 0ULL) return false; // 나누어 떨어지면, 소수
+        }
+        return true;
+    } else {
+        for (int i = 0; i < 7; i++) { // 7: checker size
+            ull A = checker[i];
+            if (MR(N, A) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+</Details>
+
+### 에라스토테네스의 채(Sieve)
+
+```cpp
+vector<int> getPrimes(int MAX) {
+    vector<int> memo(MAX + 1, 0);
+    vector<int> res;
+    int i;
+    for(i = 2; i * i <= MAX; ++i) {
+        if (memo[i] != 0) continue;
+        res.push_back(i);
+        for(int j = i * i; j <= MAX; j += i) {
+            memo[j] = 1;
+        }
+    }
+    for(; i <= MAX; ++i)
+        if (memo[i] == 0)
+            res.push_back(i);
+
+    return res;
+}
+```
+
+### Linear Sieve
+
+- `sp` 에 들어있는 해당 숫자의 제일 작은 소인수는 덤이다.
+
+```cpp
+vector<int> getPrimes(int MAX) {
+    vector<int> sp(MAX + 1, 0);
+    vector<int> res;
+    for(int i = 2; i <= MAX; ++i) {
+        if (sp[i] == 0) res.push_back(i);
+        for(auto& j: res) {
+            if (i * j > MAX) break;
+            sp[i * j] = j;
+            if (i % j == 0) break; // 이미 체로 걸러졌으므로 더이상 보지 않음
+        }
+    }
+    return res;
+}
+```
+
+
+## Time Complexity
+
+- GCD: $O(\log A + \log B)$
+    - 한번 재귀를 돌 때마다 적어도 수가 $\frac 1 2$이 되므로, 로그 시간복잡도가 된다.
+- LCM: $O(\log A + \log B)$
+    - GCD에 달려있다.
+- Simple isPrime: $O(\sqrt N)$
+- 밀러라빈 isPrime: $O(k \log^3 N)$
+    - k는 테스트해야하는 숫자의 수
+- 에라스토테네스의 채 구성: $O(\N \log \log N)$
+- Linear Sieve 구성: $O(N)$
+
+<Comment />
