@@ -70,7 +70,6 @@ typedef unsigned long long ull;
 
 ull checker[] = {2ULL, 325ULL, 9375ULL, 28178ULL, 450775ULL, 9780504ULL, 1795265022ULL};
 // int checker[] = {2, 7, 61}; // int 범위일 때
-ull N;
 
 ull addmod(ull x, ull y, ull m) {
     if (x >= m - y) {
@@ -127,7 +126,7 @@ bool isPrime(ull N) {
         return false;
     } else if (N == 2) {
         return true;
-    } else if (N <= 10000000000ULL) { // 기존 방법이 빠른 구간 + 밀러라빈 checker 수보다 작은 구간
+    } else if (N <= 10'000'000'000ULL) { // 기존 방법이 빠른 구간 + 밀러라빈 checker 수보다 작은 구간
         for (ull i = 3ULL; i * i <= N; i += 2) { // 홀수만 검사한다.
             if (N % i == 0ULL) return false; // 나누어 떨어지면, 소수
         }
