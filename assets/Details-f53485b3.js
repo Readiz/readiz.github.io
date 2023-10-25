@@ -1,1 +1,0 @@
-import{r as n,a as i,F as a,j as e}from"./ssg-client-39647068.js";const c=t=>{const[s,o]=n.useState(!1);function r(){o(!s)}return i(a,{children:[e("div",{onClick:r,style:{fontWeight:700,cursor:"pointer"},children:s?"👆 닫기":"👉 펼치기"}),e("div",{style:{display:s?"block":"none"},children:t.children})]})};export{c as D};
