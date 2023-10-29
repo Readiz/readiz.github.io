@@ -8,13 +8,77 @@ tags:
 import Comment from '@/components/Comment'
 import Header from '@/components/Header'
 import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
 
 <Header />
 
 # ABC 326 Upsolving
 
+<Image src="2023-10-29-21-50-05.png" />
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#00C0C0'}}>1214</span> (Rank: 1852)
 - Round 링크: [Top](https://atcoder.jp/contests/abc326) / [Tasks](https://atcoder.jp/contests/abc326/tasks)
 
+## A - 2UP3DOWN
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_a
+- Score: 100점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={5} width={15} />
+
+조건에 맞게 Takahashi가 계단을 탈지 엘베를 탈지 결정해주면 된다.
+
+
+## B - 326-like Numbers
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_b
+- Score: 200점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={5} width={15} />
+
+문제에서 항상 이런 숫자가 존재한다고 했기 때문에 그냥 구현하면 되었다. 증명하라고 하면 쉽지 않을 듯.
+
+
+## C - Peak
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_c
+- Score: 300점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={5} width={15} />
+
+N의 범위가 $N \le 3 \times 10^5$ 이고, 숫자의 범위 $A_i \le 10^9$ 이기 때문에, 정렬 후 `lower_bound`를 통해 적절한 구간 $(x, x + M)$안에 속한 원소들의 수를 구해주면 되는 문제였다. 만약 숫자의 범위가 작다면 완탐이 오히려 빠를 수도 있지만 이 문제의 경우에는 아니었다.
+
+
+## D - ABC Puzzle
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_d
+- Score: 450점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={3} width={15} />
+
+조금 까다로운 조건의 문제였다. 가지치기 dfs로 접근했는데 풀이가 뇌절의 뇌절을 거듭한 가운데 종료 5분전에 제출 할 수 있었다. 덕분에 다른 문제들도 풀만한 것들이었는데 풀 시간이 없었다..
+
+처음에 dfs를 2개로 나누어 생각했지만 이것은 오히려 패착이었다. 간단한 조건으로 푸는게 항상 옳다. 그냥 $x$ -\> $x + 1$로 전이 시키고, $x$ == $N - 1$이 될 때 다음 row로 가게 하는 dfs가 유효했다. 다음에는 이런 유형 나올 때 너무 어렵게 접근하지 말자..
+
+
+## E - Revenge of "The Salary of AtCoder Inc." (To be upsolved..)
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_e
+- Score: 450점
+- 문제 예상 티어: ??
+
+`확률 DP`라고 한다. 개인적으로 풀어보지 못한 유형이고, `DP Contest` `I` 번이 이 유형이라고 하니, 둘 다 한번 정리해 두어야겠다.
+
+
+## F - Robot Rotation (To be upsolved..)
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_f
+- Score: 525점
+- 문제 예상 티어: ??
+
+$N \le 80$ 조건에서 `MITM`의 냄새를 강하게 느꼈지만, 확신은 없었다. 방향이 2방향이라 양방향에서 출발하면 경우의 수가 $2^40$ 이고 이는 꽤 큰 수이기 때문.. 이 풀이가 유효한지 한번 도전해보려고 한다. (아니면 어쩔 수 없고..)
+
+## G
+
+Skip
 
 
 <TagList />

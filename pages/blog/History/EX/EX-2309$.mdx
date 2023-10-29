@@ -1,0 +1,30 @@
+---
+title: EX 2307
+writtendate: 2023-07-31
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+
+<Header />
+
+23년 7월 출제 문제 풀이 정리
+
+## Score 식 분석
+
+활동을 할 때마다 점수가 증가하는 식이다. 사용하는 함수는 `scan`, `rotate`, `move`가 있다.
+
+## 기본 구현
+
+이동할 지역의 `score`를 계산해서 저장해두는 `heap`을 두고, 이것이 최소가 되는 지역으로 이동하는 것이 최적이다.
+
+## 점수 줄이기
+
+꼼수가 1가지 있었다. 바로, `move`의 패널티가 적다는 것을 이용해서, 일단 `scan` 없이 이동하고 보는것이다. 다행히, 실패했을 경우 알려준다.
+
+## Hash를 사용한 점수 줄이기
+
+`subtask`가 10개 있기 때문에, 기존 맵을 저장해 둘 수 있었다.

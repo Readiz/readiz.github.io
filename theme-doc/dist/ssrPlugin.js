@@ -1,5 +1,5 @@
 import React__default from 'react';
-import { z as createCache, S as StyleProvider, A as extractStyle } from './legacyLogicalProperties-8db330f4.js';
+import { z as createCache, S as StyleProvider, A as extractStyle } from './legacyLogicalProperties-b2a4d038.js';
 
 var ssrPlugin = {
   id: 'vite-pages-theme-doc-antd-ssr',

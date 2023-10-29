@@ -1108,7 +1108,7 @@ g-emoji:is(.markdown-el, .markdown-el *) img {
   display: none;
   padding-bottom: 40px;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .vp-local-layout .vp-local-body .vp-local-outline {
     display: block;
   }
