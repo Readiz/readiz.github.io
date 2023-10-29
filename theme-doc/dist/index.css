@@ -945,7 +945,7 @@ g-emoji:is(.markdown-el, .markdown-el *) img {
 }
 @media screen and (min-width: 768px) {
   .vp-local-layout .vp-local-header .vp-local-logoArea {
-    min-width: 260px;
+    min-width: 160px;
   }
 }
 .vp-local-layout .vp-local-header .vp-local-logoArea .vp-local-logoLink {

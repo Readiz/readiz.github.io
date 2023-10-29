@@ -146,6 +146,23 @@ bool isPrime(ull N) {
 
 ### 에라스토테네스의 채(Sieve)
 
+### Slow version
+```cpp
+vector<int> getPrimes int MAX) {
+    vector<int> memo(MAX + 1, 0);
+    vector<int> res;
+    for(int i = 2; i <= MAX; ++i) {
+        if (memo[i] != 0) continue;
+        res.push_back(i);
+        for(int j = i; j <= MAX; j += i) {
+            memo[j] = 1;
+        }
+    }
+    return res;
+}
+```
+
+### Fast version
 ```cpp
 vector<int> getPrimes(int MAX) {
     vector<int> memo(MAX + 1, 0);

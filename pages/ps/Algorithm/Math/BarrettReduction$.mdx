@@ -14,7 +14,7 @@ import TagList from '@/components/TagList'
 
 ## Barrett Reduction
 
-조각코드 저장용으로 만든 페이지이다. `Assembly Level`에서 가장 느린 Arithmetic 연산을 꼽으라고 한다면, `modular` 연산일 것이다. 보통 PS에서는 나눗셈 연산이 소수값이 나오지 않도록 하기 위해서 modular 연산을 한 값을 출력하도록 하는 경우가 많은데, 이 경우 일단 modular 연산 자체를 줄이는게 첫번째고, 도저히 안될 경우 차선책으로 사용할 수 있는 방법이다.
+`Assembly Level`에서 가장 느린 Arithmetic 연산을 꼽으라고 한다면, `modular` 연산일 것이다. 보통 PS에서는 나눗셈 연산이 소수값이 나오지 않도록 하기 위해서 modular 연산을 한 값을 출력하도록 하는 경우가 많은데, 이 경우 일단 modular 연산 자체를 줄이는게 첫번째고, 도저히 안될 경우 차선책으로 사용할 수 있는 방법이다.
 
 이 방법은 modular 연산을 곱셈과 if 분기로 처리하게 된다. 단, modular를 수행할 값을 미리 알고 있어야 한다. (즉, `MOD`가 계속 바뀌면 안된다.) 또한, 이 MOD는 32비트 자료형 안에 들어갈 수 있는 자료형이어야 한다고 한다.
 

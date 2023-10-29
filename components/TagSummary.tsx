@@ -35,7 +35,7 @@ const TagBrowser: React.FC<Props> = (props) => {
     <ul className="markdown-el">
     {
         writings.map((item) => (
-          <li key={item[0]}><Link to={'/blog/tags/' + item[0]}>{item[1]}</Link> | 관련 글 수: {item[2]}</li>
+          <li key={item[0]}><Link to={'/tags/' + item[0]}>{item[1]}</Link> | 관련 글 수: {item[2]}</li>
         ))
     }
   </ul>
