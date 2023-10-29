@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"Score 식 분석",id:"score-식-분석"},{depth:2,text:"기본 구현",id:"기본-구현"},{depth:2,text:"점수 줄이기",id:"점수-줄이기"},{depth:2,text:"Hash를 사용한 점수 줄이기",id:"hash를-사용한-점수-줄이기"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
