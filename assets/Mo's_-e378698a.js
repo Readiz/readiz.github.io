@@ -1,1 +1,0 @@
-const e=[{depth:2,text:"Bucket Challenge",id:"bucket-challenge"},{depth:2,text:"Mo's Algorithm",id:"mos-algorithm"},{depth:2,text:"Time Complexity",id:"time-complexity"},{depth:3,text:"참고 링크",id:"참고-링크"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
