@@ -68,16 +68,16 @@ const Header: React.FC<Props> = (props) => {
         </div>
         <div style={
           {
-            marginTop: -82,
-            marginRight: -7,
-            marginBottom: 85,
-            fontSize: 12,
+            marginTop: 20,
+            marginLeft: -13,
+            marginBottom: 0,
+            fontSize: 14,
             color: 'grey',
-            textAlign: 'right'
+            textAlign: 'left'
           }
         }>
         &nbsp;
-        {writtendate ? 'by Readiz / Last update: ' + String(writtendate).substring(0,10) : 'by Readiz'}
+        {writtendate ? '- Last update: ' + String(writtendate).substring(0,10) : ' - They think that there is a method.'}
         </div>
     </div>
   )
