@@ -18,8 +18,9 @@ import Details from '@/components/Details'
 # AtCoder Educational DP Contest
 
 - Round 링크: [Top](https://atcoder.jp/contests/dp) / [Tasks](https://atcoder.jp/contests/dp/tasks)
+- 소멤 블로그 풀이: [링크](https://infossm.github.io/blog/2019/05/15/Education-Dp-Contest-Solution/)
 
-아주 교육적인 DP 문제 모음집이다.
+아주 교육적인 DP 문제 모음집이다. 여기서는 간략하게 풀이를 정리해본다.
 
 ## A, B - Frog 1, 2
 
@@ -155,7 +156,11 @@ for(int i = 2; i <= N; ++i) {
 ## J - Sushi
 
 - 문제 링크: https://atcoder.jp/contests/dp/tasks/dp_j
-- 문제 예상 티어: ???
+- 문제 예상 티어: <SolvedTier tierName={TierName.Platinum} grade={5} width={15} />
+- nicotina04 님의 설명: https://nicotina04.tistory.com/275
+
+`J`번은 풀이에 실패했다. 핵심은 $DP[i][j][k]$를 정의하는데, $i$, $j$, $k$는 각각 초밥이 1개, 2개, 3개 남은 접시의 수로 정의해서 상태공간을 줄이는 것이 포인트이다. 이 발상을 떠올리는데 실패했기 때문에 추후 다시 풀이해볼 예정.
+
 
 <TagList />
 <Comment />
