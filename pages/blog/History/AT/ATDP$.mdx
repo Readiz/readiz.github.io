@@ -1,6 +1,6 @@
 ---
 title: AtCoder DP Contest
-writtendate: 2023-10-30
+writtendate: 2023-11-01
 tags:
     - PS
     - atcoder
@@ -11,6 +11,7 @@ import TagList from '@/components/TagList'
 import Image from '@/components/Image'
 import 'katex/dist/katex.min.css'
 import SolvedTier, {TierName} from '@/components/SolvedTier';
+import Details from '@/components/Details'
 
 <Header />
 
@@ -56,6 +57,105 @@ E번의 경우에는 $W \le 10^9$ 이기 때문에, 오히려 $V \le 10^3$은 �
 
 - LCS: <a href="/ps/Algorithm/DP/LCS">링크</a>
 
+
+## G - Longest Path
+
+- 문제 링크: https://atcoder.jp/contests/dp/tasks/dp_g
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={2} width={15} />
+
+Tree DP 유형하고 유사한 문제. 풀이는 여러 방법이 존재하는 것 같지만 일단 일반적인 Tree 처럼 풀 수는 없다. (방향이 있는 그래프)
+
+`indegree`가 0인 정점들을 출발점으로 잡고 시작한 다음, `leaf`에 도달했을 경우부터 시작해서 `depth`를 채워주는 방식으로 하면, 중복방문을 피하면서 모든 정점의 `depth`를 채울 수 있다. 이들 중 `max` 값을 구하면 그래프에서의 가장 긴 경로의 거리가 된다.
+
+<Details>
+```cpp
+struct Node {
+    int depth;
+    int inCnt;
+    vector<int> edges;
+} n[100010];
+
+int dfs(int i) {
+    if (n[i].edges.size() == 0) {
+        // leaf
+        return 0;
+    }
+    if (n[i].depth != 0) return n[i].depth;
+
+    for(auto& t: n[i].edges) {
+        int res = dfs(t);
+        n[i].depth = max(n[i].depth, res + 1);
+    }
+    return n[i].depth;
+}
+```
+</Details>
+
+
+## H - Grid 1
+
+- 문제 링크: https://atcoder.jp/contests/dp/tasks/dp_h
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={5} width={15} />
+
+빈출 유형. Grid에서의 이동 방향은 아랫 방향과 우측 뿐이기 때문에, 역으로 경우의 수는 위쪽과 왼쪽에서 오는 것의 합으로 구해주면 된다. 다만, 현재 위치가 벽일 경우 그 값을 0으로 초기화하는 것은 잊어서는 안된다.
+
+
+## I - Coins
+
+- 문제 링크: https://atcoder.jp/contests/dp/tasks/dp_i
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={3} width={15} />
+
+흔히 `확률 DP`라고 불리는 유형인 듯 하다. 단계별로 생각해보자.
+
+1. 앞면이 0개인 경우의 확률
+    - $(1 - p_1)(1 - p_2)(1 - p_3)...(1 - p_N)$
+2. 앞면이 1개인 경우의 확률
+    - $p_1(1 - p_2)(1 - p_3)...(1 - p_N) + (1 - p_1)p_2(1 - p_3)...(1 - p_N) + ... + (1 - p_1)(1 - p_2)(1 - p_3)...(1 - p_{N-1})p_N$
+3. 앞면이 N개인 경우의 확률
+    - $p_1p_2p_3...p_N$
+
+그런데, 이것을 한번에 다 계산하기엔 연산량이 너무 많다. 이를 줄이기 위해 `DP`의 주요 풀이법 중 하나인 작은 경우부터 시작해보는 기법을 적용해볼 수 있다. $DP[i][j]$를 $i$번째 동전까지를 고려했을 때 $j$개가 앞면인 확률로 정의하자. 그러면 정의에 의해, $DP[1][0] = 1 - p_1$, $DP[1][1] = p_1$ 이 된다. 이 상태로부터 시작하면, 상태 전이를 시킬 수 있다. i가 작은 경우부터 한번 따라가보자.
+
+1. i = 2인 경우
+    - $DP[2][0] = DP[1][0]$
+    - $DP[2][1] = DP[1][0] \times p_2 + DP[1][1] \times (1 - p_2)$
+    - $DP[2][2] = DP[1][1] \times p_2$
+2. i = 3인 경우
+    - $DP[3][0] = DP[2][0]$
+    - $DP[3][1] = DP[2][0] \times p_3 + DP[2][1] \times (1 - p_3)$
+    - $DP[3][2] = DP[2][1] \times p_3 + DP[2][2] \times (1 - p_3)$
+    - $DP[3][3] = DP[2][2] \times p_3$
+
+여기까지 보면 규칙이 보인다. 전부 다 앞면인 경우와 전부 다 뒷면인 경우를 제외하면, 확률 상태전이가 $j$와 $j-1$ 두 곳에서 올 수 있다. 이를 통해 구현할 수 있다.
+
+<Details>
+```cpp
+// 초기조건
+DP[1][0] = 1.0 - p[1];
+DP[1][1] = p[1];
+
+for(int i = 2; i <= N; ++i) {
+    for(int j = 0; j <= i; ++j) {
+        if (j == 0) {
+            DP[i][0] = DP[i - 1][0] * (1 - p[i]);
+        } else if (j < i) {
+            DP[i][j] = DP[i - 1][j] * (1 - p[i]) + DP[i - 1][j - 1] * p[i];
+        } else {
+            DP[i][j] = DP[i - 1][j - 1] * p[i]; 
+        }
+    }
+}
+```
+</Details>
+
+
+최종적으로 구하고자 하는 것은 앞면이 뒷면보다 많이 나왔을 때인데, 이것은 $DP[N][N/2+1]$ ~ $DP[N][N]$ 의 합을 구하면 계산된다.
+
+
+## J - Sushi
+
+- 문제 링크: https://atcoder.jp/contests/dp/tasks/dp_j
+- 문제 예상 티어: ???
 
 <TagList />
 <Comment />
