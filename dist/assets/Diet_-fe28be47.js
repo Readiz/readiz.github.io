@@ -1,0 +1,1 @@
+const t=[{depth:1,text:"Healthy Diet",id:"healthy-diet"},{depth:2,text:"간헐적 단식",id:"간헐적-단식"},{depth:2,text:"Low Carbon",id:"low-carbon"},{depth:2,text:"Set Point",id:"set-point"},{depth:2,text:"Extra",id:"extra"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};

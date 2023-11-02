@@ -10,7 +10,7 @@ import Header from '@/components/Header'
 import TagList from '@/components/TagList'
 import Image from '@/components/Image'
 import 'katex/dist/katex.min.css'
-import SolvedTier, {TierName} from '@/components/SolvedTier';
+import SolvedTier, {TierName} from '@/components/SolvedTier'
 import Details from '@/components/Details'
 
 <Header />
@@ -173,7 +173,7 @@ for(int i = 2; i <= N; ++i) {
 I번에서는 $i$개의 동전을 고려한 상태에서 $i+1$개의 동전을 고려한 상황으로 전이를 했었다. 이와 유사하게 할 수 있다. $N=4, i=1, j=1, k=1$ 인 상황을 가정해보자.
 
 0. 해당하는 상황은 $DP[1][1][1]$로 볼 수 있다.
-1. $p = \frac 1 4$로 이미 아무것도 없는 접시를 고른다. 횟수만 1 더해진다.
+1. $p = \frac 1 4$로 이미 아무것도 없는 접시를 고른다. 상태가 자기 자신으로 전이된다.
 2. $p = \frac 1 4$로 초밥이 1개 있는 접시를 고른다. 상태가 $DP[0][1][1]$로 전이된다.
 3. $p = \frac 1 4$로 초밥이 2개 있는 접시를 고른다. 상태가 $DP[2][0][1]$로 전이된다.
 4. $p = \frac 1 4$로 초밥이 3개 있는 접시를 고른다. 상태가 $DP[1][2][0]$로 전이된다.

@@ -1,0 +1,31 @@
+---
+title: Expected Value
+writtendate: 2023-11-02
+tags:
+    - math
+    - probability
+---
+import Comment from '@/components/Comment'
+import Details from '@/components/Details'
+import Image from '@/components/Image'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier'
+
+<Header />
+
+문제 풀이 사이트 `AtCoder`에서 종종 출제되는 기댓값에 대한 이론적 정리.
+
+## Expected Value
+
+기댓값은 영어로 `Expected Value` 이 번역된 말인데, 흔히들 `EV`로 줄여서 쓰는 듯 하다. 그래서 전기차(?) 랑 헷갈릴 때가 간혹 있다. 확률변수 $X$에 대한 기댓값은 보통 수학적으로 $E[X]$라고 나타낸다. 수식으로는,
+
+- $E[X] = \displaystyle \sum_{i=1}^{n} x_iP_i$
+
+이는 이산(Discrete) 확률 분포라고 하고, 연속으로는 적분으로 정의한다.
+
+- $E[X] = \displaystyle \int xf(x)\,dx$
+
+<TagList />
+<Comment />

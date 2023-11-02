@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"Katex 문법 정리",id:"katex-문법-정리"},{depth:2,text:"문자 꾸밈",id:"문자-꾸밈"},{depth:3,text:"참고 사이트",id:"참고-사이트"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
