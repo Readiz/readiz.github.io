@@ -1,1 +1,0 @@
-const e=[{depth:2,text:"Expected Value",id:"expected-value"},{depth:3,text:"주사위 눈금의 기댓값 Case",id:"주사위-눈금의-기댓값-case"},{depth:3,text:"주사위 던지는 수의 기댓값",id:"주사위-던지는-수의-기댓값"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
