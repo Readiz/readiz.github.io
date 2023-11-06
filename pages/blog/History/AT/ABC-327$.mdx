@@ -1,0 +1,75 @@
+---
+title: AtCoder Beginner Contest 327
+writtendate: 2023-11-06
+tags:
+    - PS
+    - atcoder
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+
+<Header />
+
+# ABC 327 Upsolving
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#804000'}}>767</span> (Rank: 4218 / 11283)
+- Round 링크: [Top](https://atcoder.jp/contests/abc327) / [Tasks](https://atcoder.jp/contests/abc327/tasks)
+
+상당히 망했다. D는 문제 이해하는데 시간이 너무 오래 걸린 뒤로 `graph`로 변환하는 문제라는 감이 왔지만 풀이에 실패했고, E는 `greedy`하게 접근해봤는데 이게 아닌듯 하다. 업솔빙 필수.
+
+## A - ab
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc327_a
+- Score: 100점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={4} width={15} />
+
+인접문자열에 대해서 간단한 처리를 해주면 풀리는 문제이다.
+
+## B - A^A
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc327_b
+- Score: 200점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={5} width={15} />
+
+$A^A$는 상당히 빠르게 커지는 수이기 때문에, $A=1$부터 시작해서 타겟 수보다 작거나 같을 때까지 완전탐색을 해도 어려움 없이 풀리는 문제이다. 다만, `overflow`에 주의해야 할 것.
+
+
+## C - Number Place
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc327_c
+- Score: 250점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={1} width={15} />
+
+스도쿠. 각 구역별로 1~9가 다 등장하는지 체크하면 되는데, 문제는 3x3 영역에 대한 판단이 될 것이다. 이것은 $cnt[i/3][j/3][k]$ 배열을 만들어서 체크하면 가장 간단하게 체크가 가능하다.
+
+
+## D - Good Tuple Problem (To be upsolved)
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc327_d
+- Score: 400점
+- 문제 예상 티어: ???
+
+$A$, $B$를 잇는 간선으로 그래프를 그려서 해결할 수 있는데, 결국 cycle이 있으면 안된다는 사실을 알 수 있다. 여기까지는 쉽게 떠올릴 수 있는데 문제는 반례가 존재한다. cycle이 짝수일 경우에는 cycle이 있더라도 `Good Tuple`인 경우가 있기 때문.
+
+
+## E - Maximize Rating (To be upsolved..)
+
+- 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc327_e
+- Score: 475점
+- 문제 예상 티어: ??
+
+수학 문제. 어떻게 하면 최대 $N=5000$번의 대회 중 어떤 것을 참가할지 빠르게 결정할 수 있을까? $O(2^N)$ 접근은 당연히 `TLE`이고...
+
+
+## F, G
+
+Skip
+
+
+<TagList />
+<Comment />
