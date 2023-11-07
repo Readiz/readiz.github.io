@@ -1,1 +1,0 @@
-import{j as a}from"./ssg-client-5ec444fe.js";const o="_example_tmtoi_1",l={example:o},r=e=>a("iframe",{className:l.example,src:e.url,title:e.url,allow:"geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb",sandbox:"allow-modals allow-forms allow-popups allow-scripts allow-same-origin"});export{r as I};

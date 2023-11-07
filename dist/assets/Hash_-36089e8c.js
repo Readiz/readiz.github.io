@@ -1,1 +1,0 @@
-const e=[{depth:2,text:"Collision control",id:"collision-control"},{depth:2,text:"Integer Hash Key",id:"integer-hash-key"},{depth:2,text:"String Hash Key",id:"string-hash-key"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
