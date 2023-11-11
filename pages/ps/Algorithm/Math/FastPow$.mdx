@@ -1,0 +1,42 @@
+---
+title: 빠른 거듭제곱
+writtendate: 2023-11-11
+tags:
+    - math
+---
+import Comment from '@/components/Comment'
+import Details from '@/components/Details'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## Barrett Reduction
+
+일반적으로 특정 수를 $N$ 제곱하는데 걸리는 시간은 $O(N)$ 이지만, 간단한 수학으로 이를 $O(\log N)$에 마칠 수 있다. 이는 거듭제곱 하고자 하는 수를 이진수로 보고, `binary lifting` 하는 것이라고 보면 된다. 
+
+예를 들어, $a$의 $13$ 제곱을 하고자 한다면, 이는 이진수로 $1101_{(2)}$이므로,
+
+- $1$ 제곱 한 수
+- $4$ 제곱 한 수
+- $8$ 제곱 한 수
+
+를 모두 곱하면 된다. $2^n$ 제곱 한 수는 같은 수를 두번 곱함으로써 빠르게 구해진다. ($8$제곱한 수는 $4$제곱한 수를 두번 곱하면 된다)
+
+따라서 아래와 같은 알고리즘 작성이 가능하다. $a^p$를 구하는 알고리즘이다.
+
+```cpp
+ll fpow(ll a, ll p) {
+    ll res = 1LL;
+    while (p) {
+        if (p & 1LL) res = res * a;
+        a = a * a;
+        p >>= 1LL;
+    }
+    return res;
+}
+```
+
+<TagList />
+<Comment />
