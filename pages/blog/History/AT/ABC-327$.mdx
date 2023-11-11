@@ -11,6 +11,7 @@ import TagList from '@/components/TagList'
 import Image from '@/components/Image'
 import 'katex/dist/katex.min.css'
 import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
 
 <Header />
 
@@ -19,6 +20,11 @@ import SolvedTier, {TierName} from '@/components/SolvedTier';
 - 대회 참가 유무: Y
 - 최종 Performance: <span style={{color:'#804000'}}>767</span> (Rank: 4218 / 11283)
 - Round 링크: [Top](https://atcoder.jp/contests/abc327) / [Tasks](https://atcoder.jp/contests/abc327/tasks)
+- 문제별 결과
+
+| A | B | C | D | E | F | G |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="WA" /> | <AC state="WA" /> | - | - |
 
 상당히 망했다. D는 문제 이해하는데 시간이 너무 오래 걸린 뒤로 `graph`로 변환하는 문제라는 감이 왔지만 풀이에 실패했고, E는 `greedy`하게 접근해봤는데 이게 아닌듯 하다. 업솔빙 필수.
 
