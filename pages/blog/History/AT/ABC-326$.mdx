@@ -1,6 +1,6 @@
 ---
 title: AtCoder Beginner Contest 326
-writtendate: 2023-10-30
+writtendate: 2023-11-14
 tags:
     - PS
     - atcoder
@@ -65,13 +65,54 @@ N의 범위가 $N \le 3 \times 10^5$ 이고, 숫자의 범위 $A_i \le 10^9$ 이
 처음에 dfs를 2개로 나누어 생각했지만 이것은 오히려 패착이었다. 간단한 조건으로 푸는게 항상 옳다. 그냥 $x$ -\> $x + 1$로 전이 시키고, $x$ == $N - 1$이 될 때 다음 row로 가게 하는 dfs가 유효했다. 다음에는 이런 유형 나올 때 너무 어렵게 접근하지 말자..
 
 
-## E - Revenge of "The Salary of AtCoder Inc." (To be upsolved..)
+## E - Revenge of "The Salary of AtCoder Inc." (Solved with Editorial)
 
 - 문제 링크: https://atcoder.jp/contests/abc326/tasks/abc326_e
 - Score: 450점
-- 문제 예상 티어: ??
+- 문제 예상 티어: <SolvedTier tierName={TierName.Platinum} grade={5} width={15} />
+- 기댓값 이론 정리: <a href="/blog/Study/Math/EV">링크</a>
 
-`확률 DP`라고 한다. 개인적으로 풀어보지 못한 유형이고, `DP Contest` `I` 번이 이 유형이라고 하니, 둘 다 한번 정리해 두어야겠다.
+`기댓값 DP` 유형 이라고 한다. 문제 내에서 `Modular Inverse`도 요구하는 등 상당히 백준에서 일반적으로 접하기는 어려운 유형이다. 에디토리얼을 보고 풀이를 정리해본다.
+
+우선, `기댓값`을 바로 구하기에는 난이도가 있다. `기댓값`을 구하기 이전에, 확률을 먼저 구해보도록 하자. $p_i$를 $A_i$엔이 지급되었을 때의 확률이라고 하자. 편의상 $p_0 = 1$로 정의하자. 그러면, 다음을 얻을 수 있다고 한다.
+
+- $p_i = \displaystyle \frac 1 N \sum_{j=0}^{i-1} p_j$
+
+위 수식을 처음부터 생각하기 어렵다. `small to large` 해보자. 만약 $N = 1$ 이라면 자명하게 $p_1 = 1$이다. $N = 2$라면 아래와 같은 경우가 있다.
+
+- $p_1 = \displaystyle \frac 1 2 (1) = \frac 1 2$ ... 처음 주사위를 던져서 1이 나왔을 확률
+- $p_2 = \displaystyle \frac 1 2 (1 + \frac 1 2) = \frac 3 4$ ... (처음에 2가 바로 나왔을 확률) + (처음 주사위를 던져서 1, 그다음 2가 나왔을 확률)
+
+모든 확률의 합이 $1$이 되지 않았다고 해서 당황할 필요는 없다. 지금 모든 확률이 독립인 경우를 다루고 있는 것이 아니다. $p_i$를 $A_i$엔이 지급되었을 때의 확률이라고 정의하고 있다. (실제 기댓값을 구하기 용이하도록) $N = 3$인 경우를 한번 더 생각해보자. 
+
+
+- $p_1 = \displaystyle \frac 1 3 (1) = \frac 1 3$
+- $p_2 = \displaystyle \frac 1 3 (1 + \frac 1 3) = \frac 4 9$
+- $p_2 = \displaystyle \frac 1 3 (1 + \frac 1 3 + \frac 4 9) = \frac {16} {27}$
+
+여기서 $\frac 1 3$은 현재 $p_i$가 나오게 된 확률, 그리고 괄호 안에 들어간 숫자들의 합은 그 전 눈금들에 가 있는 상태들의 합이다. 수식이 어려울 뿐 `DP 상태전이`를 완벽하게 나타낸 표현이라고 볼 수 있다. 또한 위 수식은 누적합을 활용해 $O(N)$에 계산할 수 있다.
+
+그리고 문제에서 최종적으로 우리가 구하고자 하는 값은 기댓값이고, 기댓값은 정의에 의해 아래처럼 구할 수 있다.
+
+- $E[X] = \displaystyle \sum_{i=1}^{N} x_ip_i$
+
+위 사실들을 조합하고, `Modular Inverse`를 이용해 최종적인 답을 구할 수 있다. 문제에서 나온 $998244353$ 라는 수는 `AtCoder`에서 좋아하는 소수인 듯 하다. 이 `체` 에서 $\displaystyle \frac 1 N$은 아래와 같이 구할 수 있다. `getInv(N)` 으로 구하면 된다.
+
+```cpp
+ll fastPow(ll a, ll p) {
+    ll res = 1LL;
+    while (p) {
+        if (p & 1LL) res = res * a % MOD;
+        a = a * a % MOD;
+        p >>= 1LL;
+    }
+    return res;
+}
+
+ll getInv(ll v) {
+    return fastPow(v, MOD - 2);
+}
+```
 
 
 ## F - Robot Rotation (To be upsolved..)
