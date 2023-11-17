@@ -1,0 +1,84 @@
+---
+title: Codeforces Round 909
+writtendate: 2023-11-18
+tags:
+    - PS
+    - atcoder
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
+import Details from '@/components/Details'
+
+<Header />
+
+# Codeforces Round 909 Upsolving
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#00C0C0'}}>?</span> (Rank: ? / ?)
+- Round 링크: [Top](https://codeforces.com/contest/1899) / [Problems](https://codeforces.com/contest/1899/problems)
+- 문제별 결과
+
+| A | B | C | D | E | F | G |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="TLE" /> | <AC state="AC" /> | <AC state="AC" /> | - | - |
+
+레이팅은 샘플링일 뿐이다....라고 생각하자. `C` 풀이가 막힌게 치명적. `subarray` 관련해서 원래 약했는데, 자력솔 해보자.
+
+## A - Game with Integers
+
+- 문제 링크: https://codeforces.com/contest/1899/problem/A
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={5} width={15} />
+
+님게임과 비슷한데, 님게임의 풀이법처럼 거창한 것은 필요없고, 그냥 3의 배수인지 아닌지로 판단하면 충분하다. `A`번이 아니었다면 고민좀 했겠지만 `A` 번이라서 맞겠거니 하고 믿음의 제출.
+
+
+## B - 250 Thousand Tons of TNT
+
+- 문제 링크: https://codeforces.com/contest/1899/problem/B
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={5} width={15} />
+
+문제 조건은 복잡한데, 결과적으로 $n$의 약수들에 대해서 구간합들을 구해서 구간별 최대 - 최소를 구한 것이 최종 답이 된다. 여기서 구간의 합을 구할 때는 단골 방식인 `prefix sum`을 미리 구해두고 활용하면 된다.
+
+
+## C - Yarik and Array (To be upsolved...)
+
+- 문제 링크: https://codeforces.com/contest/1899/problem/C
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={3} width={15} />
+
+골드 중상위 정도 되는 전형적인 문제였던 것 같은데 풀지 못했다. 풀이법을 고민해보자. `subarray`는 연속된 부분 수열을 뜻한다. (이 문제에서) 어떻게하면 `TLE`를 안나게 로직을 만들 수 있을까?
+
+
+## D - Yarik and Musical Notes
+
+- 문제 링크: https://codeforces.com/contest/1899/problem/D
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={4} width={15} />
+
+관찰이 필요한 문제였다. 어떤 경우에 교환법칙이 성립하는지 잘 생각해보면, 아래 2가지 case가 있다. (1가지가 아니다!)
+
+- $(2^k, 2^k)$의 꼴
+- $(2^4, 4^2)$의 꼴
+
+두 번째 case가 tricky한데, 사실 이는 예전 `지수와 로그` 단원에서 가끔 문제로 나오던 성질이라서 기억이 났다. $b_i = 2^{a_i}$로 정의 했으므로, $b_i = 1, 2$가 되는 경우만 특별하게 세어 주고 (1과 2가 나온 숫자의 수를 전처리 해주면 된다), 숫자가 같은 경우의 수는 간단하게 $_nC_2$로 구하면 된다.
+
+
+## E - Queue Sort
+
+- 문제 링크: https://codeforces.com/contest/1899/problem/E
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={5} width={15} />
+
+문제 유형 자체는 `E`번에 나올만 한데, 문제는 관찰이 너무 쉬웠다. 내 체감 난이도는 $A \lt B \lt E \lt D \lt\lt C$ 였다. 풀이는 간단하게 최솟값을 찾은 후 뒤쪽으로 `non-decreasing order`인지 확인하고, 맞다면 그 최솟값이 있는 위치의 `index`가 정답이 된다. 최솟값 앞에 있는 숫자들 간의 대소는 어차피 뒤로 옮기면서 다시 정렬되므로 신경쓸 필요가 없다.
+
+
+## F, G
+
+그래프 문제. G의 경우 할만해 보였는데 접근 방법이 마지막까지 떠오르지 않아 풀이에 실패헀다. 이 두 문제도 해보는게 좋을 듯.
+
+
+
+<TagList />
+<Comment />
