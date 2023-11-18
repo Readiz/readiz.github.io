@@ -1,0 +1,1 @@
+const t=[{depth:2,text:"scanf 사용 팁",id:"scanf-사용-팁"},{depth:3,text:"공백을 포함해서 한줄 입력 받기",id:"공백을-포함해서-한줄-입력-받기"},{depth:2,text:"printf 사용 팁",id:"printf-사용-팁"},{depth:3,text:"참고 자료",id:"참고-자료"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
