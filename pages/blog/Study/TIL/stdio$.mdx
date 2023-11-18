@@ -1,0 +1,49 @@
+---
+title: stdio 사용 팁
+writtendate: 2023-11-18
+tags:
+    - c
+    - stdio
+    - printf
+    - scanf
+---
+
+import Header from '@/components/Header'
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+
+<Header />
+
+## scanf 사용 팁
+
+나는 `CP`를 할 때 `scanf`를 사용한다. 처음 `C`로 문제 풀이를 시작했기 때문이기도 하고, `cin`, `cout` 처럼 `fastio`를 위한 처리를 하지 않아도 되서이다. 몇가지 문제 풀이 할 때 유용한 방식들을 정리한다.
+
+### 공백을 포함해서 한줄 입력 받기
+
+```cpp
+scanf("%[^\n]", buf);
+```
+
+위처럼 하면 된다. 그런데 주의할 점은, `scanf`의 특성상 문자열을 읽고 아닌 문자열이 왔을 때는 위치를 원복한다는 것이다. 그래서 그 다음 입력을 같은 방식으로 받으려고 한다면, `scanf("%c", dummy);`와 같이 추가적으로 한 문자를 `buffer`에서 제거해주는 방식이 필요하다.
+
+
+## printf 사용 팁
+
+특수한 출력 방식은 아래와 같은 것들이 있다. (잘 쓰지 않는)
+
+- %x, %X: 양의 16진수로 표현
+- %o: 양의 8진수로 표현
+- %f: `float`을 출력
+- %lf: `double`을 출력
+- %e: 지수 표현법으로 `float`을 출력 (예시: 1.200000e+00)
+- %le: 지수 표현법으로 `double`을 출력
+- %g: %f와 %e중 짧은 것으로 표현 (사람이 읽기 쉬운 자연스러운 소수 표현법?)
+- %p: 포인터의 메모리 주소를 표현 (예시: 0x7ffcecb336ac)
+- %%: %를 표현
+
+### 참고 자료
+
+- atomic0x90님의 블로그: https://atomic0x90.github.io/c-language/2019/06/04/printf-format.html
+
+<TagList />
+<Comment />

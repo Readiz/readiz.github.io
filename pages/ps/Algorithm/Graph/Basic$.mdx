@@ -1,19 +1,15 @@
 ---
-title: Graph
-writtendate: 2023-05-22
-tags:
-    - graph
+title: Graph Basic
+writtendate: 2023-11-18
 ---
 import Comment from '@/components/Comment'
 import TagList from '@/components/TagList'
 import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
 
 <Header />
 
-그래프 관련 여러가지 정리
-
-
-## 기초를 튼튼히
+## Graph Basic
 
 그래프는 다음과 같은 요소로 이루어져 있다.
 
@@ -67,7 +63,7 @@ void dfs(int s) {
 
 2. BFS
 
-    노드 `x`로부터 각 노드까지 걸리는 거리를 구한다고 해보자.
+    노드 `x`로부터 각 노드까지 걸리는 거리를 구한다고 해보자. 잘 안쓰이는 방식이긴 하지만(구현이 dfs보다 복잡해서) 아래처럼도 가능하다.
 ```cpp
 queue<int> q;
 bool visited[N];
@@ -89,9 +85,5 @@ void BFS(int x) {
 }
 ```
 
-## 최단 경로
 
-### 작성 중
-
-<TagList />
 <Comment />

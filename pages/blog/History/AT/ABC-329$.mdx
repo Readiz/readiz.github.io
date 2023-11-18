@@ -1,0 +1,162 @@
+---
+title: AtCoder Beginner Contest 329
+writtendate: 2023-11-18
+tags:
+    - PS
+    - atcoder
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import Details from '@/components/Details'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
+
+<Header />
+
+# ABC 329 Upsolving
+
+<Image src="2023-11-18-23-31-56.png" />
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#00C0C0'}}>1225</span> (Rank: 1757 / 10234)
+- Round 링크: [Top](https://atcoder.jp/contests/abc329) / [Tasks](https://atcoder.jp/contests/abc329/tasks)
+- 문제별 결과
+
+| A | B | C | D | E | F | G |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> |  | <AC state="AC" /> | - |
+
+
+`F`에서 `unique` 사용 관련 삽질을 했고, `E`를 못풀어서 아쉬웠다. 만약 `F`까지 빠르게 풀었으면 옐로우 퍼포도 나오는 셋이었다.
+
+## A - Spread
+
+- 문제 링크: https://atcoder.jp/contests/abc329/tasks/abc329_a
+- Score: 100점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={5} width={15} />
+
+문자열 사이에 띄어쓰기를 하는 문제다.
+
+## B - Next
+
+- 문제 링크: https://atcoder.jp/contests/abc329/tasks/abc329_b
+- Score: 200점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={5} width={15} />
+
+가장 큰 수보다 하나 작은 수를 구하는 문제. `set`을 써서 맨 뒤 바로 앞 원소를 출력해주면 된다.
+
+## C - Count xxx
+
+- 문제 링크: https://atcoder.jp/contests/abc329/tasks/abc329_c
+- Score: 300점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={1} width={15} />
+
+문제를 읽다가 이거 너무 난이도 있는게 `C`에 나온게 아닌가? 하다가 자세히 보니까 그냥 연속된 문자열의 개수를 세는 문제였다. `map`으로 관리해주면 쉽게 풀 수 있다.
+
+## D - Election Quick Report
+
+- 문제 링크: https://atcoder.jp/contests/abc329/tasks/abc329_d
+- Score: 350
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={5} width={15} />
+
+`pq`를 사용하면 쉽게 풀 수 있는 문제이다. 아래 백준 문제와 유사하다.
+
+- 국회의원 선거 문제: https://www.acmicpc.net/problem/1417
+
+## E - Stamp (To be upsolved...)
+
+- 문제 링크: https://atcoder.jp/contests/abc329/tasks/abc329_e
+- Score: 475
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={1} width={15} />
+
+문자열의 `prefix`와 `suffix`의 모드를 나눠서 풀어보려고 했는데 잘 안됐다. 다시 풀어볼 예정.
+
+## F - Colored Ball
+
+- 문제 링크: https://atcoder.jp/contests/abc329/tasks/abc329_f
+- Score: 500
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={2} width={15} />
+
+`bitset`으로 풀 수 있는데, `small to large`가 정해라고 한다. 나는 `bitset`으로 풀었다.
+
+다만 모든 상자에 대해 `bitset`을 만들면 메모리 초과가 나게 된다. 이를 방지하기 위해서는 특정 사이즈 이상이 될 때 `bitset`으로 전환하도록 하면 된다.
+
+이 과정에서 이제 `vector` -> `bitset`으로 전환되는데, stack을 사용해서 사용되지 않는 `bitset`은 꾸준히 지워주면서 할당하면 풀이가 가능하다. 대충 아래와 같은 느낌으로 할당했다.
+
+```cpp
+vector<bitset<200001>> bs(20000);
+vector<int> s[200010];
+stack<int> deleted;
+int bsCnt;
+
+int newBs() {
+    if (deleted.size() == 0) {
+        if (bsCnt >= 20000) assert("MEM OVERFLOW!");
+        return bsCnt++;
+    }
+    int ret = deleted.top(); deleted.pop();
+    bs[ret].reset();
+    return ret;
+}
+```
+
+그리고, `vector`의 `unique`를 사용해서 중복원소를 제거할 때는 `sorted vector`에서만 사용해야 함에 유의하자. 즉, `unique`는 아래처럼 사용하는게 정석이다. 이걸 놓쳐서 6번 틀렸다..
+
+```cpp
+sort(v.begin(), v.end());
+v.erase(unique(v.begin(), v.end()), v.end());
+```
+마지막으로 `bitset`의 대표 `method`를 정리한다.
+
+- reset(): 전체 bit를 0으로
+- set(i): i번째 비트를 켠다.
+- flip(i): i번째 비트를 뒤집는다. (인자가 없으면 전체를 뒤집는다)
+- count(): 1로 세팅된 녀석들의 개수를 반환한다.
+- a |= b: a에 b를 or해서 저장한다.
+
+Editorial을 확인해보면, 공이 이동하게 되면 결과적으로 2배 이상의 `size`로 할당되게 되므로, 한 쿼리가 $O(\log N)$에 수행이 되는 꼴이라고 한다. 그래서 `swap`이나 `move`를 쓰면, $O(N \log N)$에 해결이 되는 모양이다. 아래가 정해. STL로 가능하게 되는 것이고, 상시 숭배 해야한다.
+
+<Details>
+```cpp
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+int main() {
+	int n, q;
+	cin >> n >> q;
+	vector<set<int>> st(n);
+	for (int i = 0; i < n; i++) {
+		int c;
+		cin >> c;
+		st[i].insert(c);
+	}
+	while (q--) {
+		int a, b;
+		cin >> a >> b;
+		a--; b--;
+		if (st[a].size() < st[b].size()) {
+			for (int i : st[a]) st[b].insert(i);
+			st[a].clear();
+			cout << st[b].size() << '\n';
+		}
+		else {
+			for (int i : st[b]) st[a].insert(i);
+			st[b].clear();
+			cout << st[a].size() << '\n';
+			swap(st[a], st[b]);
+		}
+	}
+}
+```
+</Details>
+
+## G
+
+Skip
+
+<TagList />
+<Comment />
