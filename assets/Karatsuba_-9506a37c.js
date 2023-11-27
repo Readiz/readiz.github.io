@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"약간의 수학",id:"약간의-수학"},{depth:2,text:"실제 구현",id:"실제-구현"},{depth:2,text:"Time Complexity",id:"time-complexity"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
