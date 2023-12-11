@@ -1,0 +1,86 @@
+---
+title: AtCoder Beginner Contest 332
+writtendate: 2023-12-10
+tags:
+    - PS
+    - atcoder
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import Details from '@/components/Details'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
+
+<Header />
+
+# ABC 332 Upsolving
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#008000'}}>1029</span> (Rank: 2217 / 9282)
+- Round 링크: [Top](https://atcoder.jp/contests/abc332) / [Tasks](https://atcoder.jp/contests/abc332/tasks)
+- 문제별 결과
+
+| A | B | C | D | E | F | G |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | - | - | - | - |
+
+
+3솔따리가 되었다. D번은 지금 봐도 왜 틀렸는지 잘 모르겠다. D, E, F 모두 무난히 풀 수 있어야 나중에 블루에 안착 가능할 듯. D만 빠르게 구현 했으면 E, F 모두 수학이라, 익숙했더라면 아마 쉽게 F번까지 풀었을 만한 셋이다. 연습이 필요하다.
+
+## A - Online Shopping
+
+- 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_a
+- Score: 100점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={5} width={15} />
+
+Do you know 조건문? 경계 조건 $K$만 판별할 수 있으면 된다.
+
+## B - Glass and Mug
+
+- 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_b
+- Score: 200점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={5} width={15} />
+
+간단한 `시뮬레이션`.
+
+## C - T-Shirts
+
+- 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_c
+- Score: 300점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={1} width={15} />
+
+간단한 `Greedy`. 일반 티셔츠를 먼저 사용하도록 하고, 로고 티셔츠는 로고 티셔츠를 사용해야 할 때만 사용하게 하는 식으로 구현하면 최적이다. 증명.. 나중에 해봐야겠지? :blobthinking:
+
+## D - Swapping Puzzle (To be upsolved...)
+
+- 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_d
+- Score: 425점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={2} width={15} />
+
+구현해보니 골드 상위 정도 되는 문제로 보이는데, 어디서 놓쳤는지 완탐이 제대로 안도는 것 같다. 업솔빙 예정.
+
+## E - Lucky Bag (To be upsolved...)
+
+- 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_e
+- Score: 525점
+- 문제 예상 티어: ?
+
+D번 푸느라 제대로 못봤다. 업솔빙 예정. 읽어봤을 때는 수학 문제인듯. 500점짜리 문제는 확실히 접근 시작이 쉽진 않다.
+
+## F - Random Update Query (To be upsolved...)
+
+- 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_f
+- Score: 550점
+- 문제 예상 티어: ?
+
+F에는 쿼리 문제가 많이 나오는 듯. 업솔빙 예정. 랜덤이기 떄문에 마찬가지로 수학이다.
+
+## G
+
+Skip
+
+<TagList />
+<Comment />
