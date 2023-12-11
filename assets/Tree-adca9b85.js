@@ -1,3 +1,0 @@
-import{p as a}from"./index_-5f3de030.js";import{u as s,j as t,a as i,F as c}from"./ssg-client-aa546051.js";import{H as m}from"./Header-d3484929.js";import{R as l}from"./RelatedWritings-cdf44713.js";import"./index.module-caf545e8.js";function o(e){const n=Object.assign({h2:"h2"},s(),e.components);return i(c,{children:[t(m,{}),`
-`,t(n.h2,{id:"related-contents",children:"Related Contents"}),`
-`,t(l,{})]})}function u(e={}){const{wrapper:n}=Object.assign({},s(),e.components);return n?t(n,Object.assign({},e,{children:t(o,e)})):o(e)}const d=Object.freeze(Object.defineProperty({__proto__:null,default:u},Symbol.toStringTag,{value:"Module"})),r={};r.outlineInfo=a;r.main=d;export{r as default};
