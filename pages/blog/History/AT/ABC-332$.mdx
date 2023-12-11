@@ -54,13 +54,114 @@ Do you know 조건문? 경계 조건 $K$만 판별할 수 있으면 된다.
 
 간단한 `Greedy`. 일반 티셔츠를 먼저 사용하도록 하고, 로고 티셔츠는 로고 티셔츠를 사용해야 할 때만 사용하게 하는 식으로 구현하면 최적이다. 증명.. 나중에 해봐야겠지? :blobthinking:
 
-## D - Swapping Puzzle (To be upsolved...)
+## D - Swapping Puzzle (Upsolved)
 
 - 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_d
 - Score: 425점
 - 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={2} width={15} />
 
-구현해보니 골드 상위 정도 되는 문제로 보이는데, 어디서 놓쳤는지 완탐이 제대로 안도는 것 같다. 업솔빙 예정.
+맵 사이즈가 $5 \times 5$가 최대이기 때문에 (그리고 실제로 이동 가능한 곳은 $4 \times 4$이기 때문에) 단순 `BFS`로 풀린다. 어렵게 접근한 것 자체가 잘못. 계속 시도하다가 `WA`가 난 정렬 후 비교 방식은 실제로 다른 `row`를 같은 `row`로 판정할 수 있기 때문에 안된다.
+
+몇 가지 Util 함수들을 만들면, 판 자체를 `BFS` 과정에서 들고 다닐 수 있고, 쉽게 비교할 수 있다. 또한 visited 체크는 판 전체를 `stringify` 한 후, set을 이용해서 체크하는 방식을 사용했다.
+
+<Details>
+```cpp
+int H, C;
+
+struct Board {
+    int b[5][5];
+
+    int (&operator[](int idx))[5] {
+        return b[idx];
+    }
+} A, B;
+
+bool cmp(Board& a, Board& b) {
+    for(int i = 0; i < H; ++i) {
+        for(int j = 0; j < C; ++j) {
+            if (a[i][j] == b[i][j]) continue;
+            return false;
+        }
+    }
+    return true;
+}
+
+unordered_set<string> US;
+
+void visitedReset() {
+    US.clear();
+}
+
+string getHash(Board& a) {
+    string str = "";
+    for(int i = 0; i < H; ++i) {
+        for(int j = 0; j < C; ++j) {
+            str += to_string(a[i][j]) + " ";
+        }
+    }
+    return str;
+}
+
+bool checkVisited(Board& a) {
+    string hash = getHash(a);
+    if (US.find(hash) == US.end()) return false;
+    return true;
+}
+
+void registerVisited(Board& a) {
+    string hash = getHash(a);
+    US.insert(hash);
+}
+
+struct QData {
+    int depth;
+    Board b;
+} q[1000000];
+int qf, qr;
+
+void solve() {
+    scanf("%d %d", &H, &C);
+    FOR(i,0,H) FOR(j,0,C) scanf("%d", &A[i][j]);
+    FOR(i,0,H) FOR(j,0,C) scanf("%d", &B[i][j]);
+
+    int ans = 0x7FFFFFFF;
+
+    Board a = A;
+    visitedReset();
+    // bfs
+    qf = qr = 0;
+    q[qr++] = { 0, a };
+    while(qf != qr) {
+        auto& cur = q[qf++];
+
+        if (checkVisited(cur.b)) continue;
+        registerVisited(cur.b);
+
+        if (cmp(cur.b, B)) {
+            ans = cur.depth;
+            break;
+        }
+
+        for(int p = 0; p < H - 1; ++p) {
+            Board b = cur.b;
+            for(int i = 0; i < C; ++i) swap(b[p][i], b[p+1][i]);
+            q[qr++] = {cur.depth + 1, b};
+        }
+        for(int p = 0; p < C - 1; ++p) {
+            Board b = cur.b;
+            for(int i = 0; i < H; ++i) swap(b[i][p], b[i][p+1]);
+            q[qr++] = {cur.depth + 1, b};
+        }
+    }
+
+    if (ans != 0x7FFFFFFF) {
+        printf("%d\n", ans);
+    } else {
+        printf("-1\n");
+    }
+}
+```
+</Details>
 
 ## E - Lucky Bag (To be upsolved...)
 
