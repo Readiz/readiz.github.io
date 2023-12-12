@@ -163,6 +163,56 @@ void solve() {
 ```
 </Details>
 
+
+정해는 `next_permutation`을 활용한다. 내가 안써본 `STL`인데, 지금보니 상당히 유용하다. 직접 구현하려면, 뒤쪽부터 '내림차순'이 끝나는 지점을 파악해서, 그 내림차순을 뒤집은 뒤, 내림차순 뒤집고 나서 맨 앞의 숫자를 `swap` 하면 된다. 규칙은 쉽게 발견할 수 있을 것. `next_permutation`을 구하는 데에는 $O(N)$이 걸린다. 또한, 단순히 오름차순과 내림차순이 중요하기 때문에, 조합으로도 쉽게 활용할 수 있다. ($[0, 1, 1]$ 와 같은 배열을 만들어서 쓰면 된다. 내림차순으로만 바꿔줌에 유의. 또는 $[1, 1, 0]$ 으로 한 뒤 `prev_permutation`을 사용해도 된다. 그동안은 `bitset`만 썼는데 이 방식도 교육적이다.)
+
+<Details>
+```cpp
+int H, C;
+int A[5][5], B[5][5];
+
+void solve() {
+    scanf("%d %d", &H, &C);
+    FOR(i,0,H) FOR(j,0,C) scanf("%d", &A[i][j]);
+    FOR(i,0,H) FOR(j,0,C) scanf("%d", &B[i][j]);
+
+    int ans = 0x7FFFFFFF;
+
+    int ri[5], ci[5];
+    FOR(i,0,H) ri[i] = i;
+    FOR(i,0,C) ci[i] = i;
+
+    do {
+        do {
+            bool flag = true;
+            for(int i = 0; i < H; ++i) {
+                for(int j = 0; j < C; ++j) {
+                    if (A[ri[i]][ci[j]] == B[i][j]) continue;
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag == false) continue;
+
+            int cur = 0;
+            FOR(i,0,H) FOR(j,i+1,H) if (ri[i] > ri[j]) ++cur;
+            FOR(i,0,C) FOR(j,i+1,C) if (ci[i] > ci[j]) ++cur;
+
+            if (cur < ans) ans = cur;
+        } while(next_permutation(ci, ci + C));
+    } while(next_permutation(ri, ri + H));
+
+    if (ans != 0x7FFFFFFF) {
+        printf("%d\n", ans);
+    } else {
+        printf("-1\n");
+    }
+}
+```
+</Details>
+
+
 ## E - Lucky Bag (To be upsolved...)
 
 - 문제 링크: https://atcoder.jp/contests/abc332/tasks/abc332_e
