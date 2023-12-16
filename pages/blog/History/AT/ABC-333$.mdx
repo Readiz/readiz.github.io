@@ -1,0 +1,116 @@
+---
+title: AtCoder Beginner Contest 333
+writtendate: 2023-12-16
+tags:
+    - PS
+    - atcoder
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import Details from '@/components/Details'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
+
+<Header />
+
+# ABC 333 Upsolving
+
+<Image src="2023-12-16-23-00-00.png" />
+
+깔끔한 제출기록. `F`를 1시간 고민하고 풀지 못한 것은 아쉽다.
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#00C0C0'}}>1494</span> (Rank: 1129 / 13970)
+- Round 링크: [Top](https://atcoder.jp/contests/abc333) / [Tasks](https://atcoder.jp/contests/abc333/tasks)
+- 문제별 결과
+
+| A | B | C | D | E | F | G |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | - | - |
+
+
+슬슬 앳코더도 민트각이 보인다. `F`번은 앳코더에 많이 나오던 `확률 DP`인데, 블로그에 나름 정리를 했는데도 못풀어서 아쉬웠다. 업솔빙 필수.
+
+## A - Three Threes
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_a
+- Score: 100점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={5} width={15} />
+
+Do you know 반복문? 단순히 숫자를 입력받아 그 숫자만큼 반복시켜 출력하면 된다.
+
+## B - Pentagon
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_b
+- Score: 200점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={3} width={15} />
+
+Can you use `LUT`? 아래 방식이 머리가 안아프다.
+
+```cpp
+int len[5][5] = {
+    0, 1, 2, 2, 1,
+    1, 0, 1, 2, 2,
+    2, 1, 0, 1, 2,
+    2, 2, 1, 0, 1,
+    1, 2, 2, 1, 0
+};
+```
+
+## C - Repunit Trio
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_c
+- Score: 300점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={2} width={15} />
+
+$1$이 반복되는 배열을 미리 만들어두고, $O(N^3)$ 의 완전 탐색. 여기서 $N$은 대충 한 $14$정도의 길이로 잡았다. $N \le 333$이기 때문에, 커버가 되면 된다. (친절하게 예제 TC에 $N = 333$이 있으니 어렵지 않다)
+
+## D - Erase Leaves
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_d
+- Score: 400점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={3} width={15} />
+
+전형적인 `트리 DP`. `dfs`로 깊이 우선 탐색을 돌리면 각 `subtree`의 `size`를 구할 수 있고, $1$번 정점에 연결된 녀석들의 `size` 중 가장 큰 애를 $1$번 정점의 `size`에서 빼주면 답이 된다. 시간복잡도는 $O(N)$.
+
+
+## E - Takahashi Quest
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_e
+- Score: 450점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={3} width={15} />
+
+`시뮬레이션` + `Greedy`. 포션이 여러 종류가 있고 이 포션을 몬스터를 잡는데에 사용한다. 시간대별로 용사의 모험이 진행되므로, 포션은 가급적 몬스터에 마주치기 직전의 포션을 쓰는 것이 좋겠다(Greedy stays ahead). 만약 마주친 시점에 사용할 수 있는 포션이 없다면 즉시 종료. 하나라도 있다면 가능하고, 스택으로 어느 포션을 집을지 결정한다. 결정한 후, `Fenwick` 과 같은 자료구조로 다시 처음부터 시뮬레이션 하면서 용사의 최대 포션 소지량을 계산할 수 있다. 이렇게 하면 시간복잡도는 $O(N \log N)$.
+
+Editorial에서는 `Fenwick`이 아닌 `imos`로 계산했다. (`inclusive_scan`이라는 못보던 `STL`을 사용했다.)
+
+## F - Bomb Game 2 (To be upsolved...)
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_f
+- Score: 550점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Platinum} grade={2} width={15} />
+
+앳코더 빈출 유형. 예전 `DP` 연습용 셋의 `확률 DP` 문제이다. 확률간의 전이를 생각해야 하는 문제. 업솔빙 예정.
+
+
+## G - Nearest Fraction (Will not be upsovled, just memo)
+
+- 문제 링크: https://atcoder.jp/contests/abc333/tasks/abc333_g
+- Score: 625점
+- 문제 예상 티어: ?
+
+특이한 풀이가 있어서 메모용으로 저장해둔다. 갓이썬의 `Fraction`을 사용한 풀이.
+
+```python
+from fractions import Fraction
+r = Fraction(input())
+N = int(input())
+ans = (r - Fraction("1e-100")).limit_denominator(N)
+print(*ans.as_integer_ratio())
+```
+
+<TagList />
+<Comment />
