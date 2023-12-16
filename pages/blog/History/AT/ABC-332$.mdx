@@ -221,23 +221,58 @@ void solve() {
 
 처음에는 정렬 후 완탐인가 싶었는데 `E`번에 그런 간단한게 잘 나오지 않는다. 풀이가 떠오르지 않아 에디토리얼을 보고 정리해본다. 결론부터 말하면 처음 본 `DP`.
 
-먼저, 평균값 $x_{mean}$은 가방을 어떻게 분배하든 상관없이 값이 항상 일정하다는 관찰해야 한다. 이 값은 미리 구해두면 변하지 않고 계속 활용 가능하다.
+먼저, 평균값 $x_{mean}$은 가방을 어떻게 분배하든 상관없이 값이 항상 일정하다는 관찰해야 한다(수식적으로 구해봐도 같다는 것을 알 수 있다). 이 값은 미리 구해두면 변하지 않고 계속 활용 가능하다.
 
-$S$를 전체 집합의 부분집합으로 정의하고, $1 \le k \le D$인 $k$를 잡아, $dp[S][k]$를 정의한다. 그러면 이 수식은 전체 문제의 부분 문제가 된다. 그리고 문제의 정답은
+$S_{sub}$를 전체 집합 $S_{all}$의 부분집합으로 정의하고, $1 \le k \le D$인 $k$를 잡아, $dp[S_{sub}][k]$를 정의한다. 그러면 이 수식은 전체 문제의 부분 문제가 된다. 그리고 문제의 정답은
 
-- $dp[S_{ori}][D]$
+- $dp[S_{all}][D]$
 
-에 있을 것이다(물론 최종 정답은 D로 나누어야 한다). 관건은 상태전이식인데.. 일단 전이 시키기 전에, 초기항 (S의 크기가 1이고, 하나의 가방에 다 넣음) 부터 한번 구해보자. 이 값은,
+에 있을 것이다(물론 최종 정답은 D로 나누어야 한다). 관건은 상태전이식인데.. 일단 전이 시키기 전에, 초기항 (D의 크기가 1, 하나의 가방에 다 넣음) 부터 한번 구해보자. 이 값은,
 
 - $dp[S][1] = ((\sum W_g) - x_{mean})^2$
 
-로 구해지는 것은 자명하다. 현재 집합은 1개의 물건만 들어있다. 여기에 물건이 하나가 더 들어오면?
+로 구해지는 것은 자명하다. 여기에 가방을 하나가 더 고려해보면?
 
 - $dp[S][k] = min(dp[S - T][k - 1] + dp[T][1])$
 
-로 전이를 시킬 수 있다고 한다. (이걸 어캐 암?)
+로 전이를 시킬 수 있다고 한다. (이걸 어캐 암?) $T$ 집합만큼을 뺀 것을 위 초기식과 연계시킬 수 있다.
 
-아무튼, 식은 이와 같이 만들 수 있다고 치고, 문제는 시간복잡도인데, $dp[S][1]$이 $O(N)$에 얻어질 수 있고, 이에 따른 전체 시간 복잡도는 $O(N 2^N)$이 된다.
+가방에 물건이 들어있는 상태를 `bit`로 관리하면, 예를 들어 $S_{sub}$가 $11011$와 같은 상태일 때, $11010$, $11000$, $10000$의 순서로 전이를 시키면서, 최소값을 업데이트 해나가는 식으로 구할 수 있겠다. 자주 쓰이는 방식인데 나만 모르는 웰노운 느낌.
+
+```cpp
+int W[16];
+double dp[1<<15][16] = {0, }; // ans: dp[(1<<N) - 1][D]. 모든 것이 선택되고, 그룹이 D개 일 때. 나누진 않는다.
+void solve() {
+    int N, D; scanf("%d %d", &N, &D);
+    double sum = 0;
+    for(int i = 0; i < N; ++i) {
+        scanf("%d", &W[i]);
+        sum += W[i];
+    }
+    double avg = sum / D; // 변하지 않음 (관찰 or 식 전개)
+
+    for(int cursor = 0; cursor < (1<<N); ++cursor) {
+        double csum = 0;
+        for(int j = 0; j < N; ++j) {
+            if (cursor & (1<<j)) csum += W[j];
+        }
+        csum = csum - avg;
+        // 1. 초기 조건, D = 1 일 때
+        dp[cursor][1] = csum * csum;
+
+        // 2. D >= 1 일 경우 채우기.
+        // 전이식: dp[S][k] = min(dp[S][k], dp[S-T][k-1] + dp[T][1]);
+        // 순회방법: cursor 를 x에 할당하고, x = (x - 1) & cursor 로 순회하면, 하나 뺀 애들을 순회 가능
+        for(int j = 2; j <= D; ++j) {
+            dp[cursor][j] = dp[cursor][j-1] + dp[0][1]; // 빈 그룹 추가하는 case를 초기값으로..
+            for(int x = cursor; x > 0; x = (x - 1) & cursor) {
+                dp[cursor][j] = min(dp[cursor][j], dp[cursor-x][j-1] + dp[x][1]);
+            }
+        }
+    }
+    printf("%.15lf\n", dp[(1<<N) - 1][D] / D);
+}
+```
 
 ## F - Random Update Query (Upsolved)
 
@@ -245,7 +280,141 @@ $S$를 전체 집합의 부분집합으로 정의하고, $1 \le k \le D$인 $k$�
 - Score: 550점
 - 문제 예상 티어: <SolvedTier tierName={TierName.Platinum} grade={2} width={15} />
 
-흔한 Lazy Seg. 그리고 앳코더는 `ModInt` 참 좋아한다.. 오히려 `E`보다 쉬웠다.
+흔한 Lazy Seg. 그리고 앳코더는 `ModInt` 참 좋아한다.. 오히려 `E`보다 쉬웠다. 백준 문제 중에, `수열과 쿼리 13` 문제가 있다. 이 문제에 약간의 확률을 끼얹은 것.
+
+- 수열과 쿼리 13: https://www.acmicpc.net/problem/13925
+
+<Details>
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+
+ll MOD = 998244353;
+
+int N;
+struct SegNode {
+    ll val;
+    ll lazySum;
+    ll lazyProduct;
+};
+
+struct LazySeg {
+    SegNode tree[800'040];
+    ll arr[200'010];
+    
+    ll init(int x, int s, int e) {
+        tree[x].lazySum = 0;
+        tree[x].lazyProduct = 1;
+        if (s == e) return tree[x].val = arr[s];
+        int m = (s+e)>>1;
+        return tree[x].val = (init(x<<1,s,m) + init(x<<1|1,m+1,e)) % MOD;
+    }
+    void init() {
+        init(1, 1, N);
+    }
+
+    void push(int x, int s, int e) {
+        if (tree[x].lazySum == 0 && tree[x].lazyProduct == 1) return;
+        
+        tree[x].val *= tree[x].lazyProduct;
+        tree[x].val += tree[x].lazySum;
+        tree[x].val %= MOD;
+
+        if (s != e) { // if it is not leaf, Propogate
+            tree[x<<1].lazySum *= tree[x].lazyProduct;
+            tree[x<<1].lazyProduct *= tree[x].lazyProduct;
+            tree[x<<1].lazySum += tree[x].lazySum;
+            tree[x<<1].lazyProduct %= MOD;
+            tree[x<<1].lazySum %= MOD;
+
+            tree[x<<1|1].lazySum *= tree[x].lazyProduct;
+            tree[x<<1|1].lazyProduct *= tree[x].lazyProduct;
+            tree[x<<1|1].lazySum += tree[x].lazySum;
+            tree[x<<1|1].lazyProduct %= MOD;
+            tree[x<<1|1].lazySum %= MOD;
+            
+        }
+        tree[x].lazySum = 0;
+        tree[x].lazyProduct = 1;
+    }
+
+    void updateRange(int x, int s, int e, int l, int r, ll lazySum, ll lazyProduct) {
+        push(x, s, e);
+        if (r < s || e < l) return;
+        if (l <= s && e <= r) {
+            tree[x].lazySum += lazySum;
+            tree[x].lazyProduct *= lazyProduct;
+            push(x, s, e);
+            return;
+        }
+        int m = (s+e)>>1;
+        updateRange(x<<1,s,m,l,r,lazySum,lazyProduct);
+        updateRange(x<<1|1,m+1,e,l,r,lazySum,lazyProduct);
+        tree[x].val = tree[x<<1].val + tree[x<<1|1].val;
+        tree[x].val %= MOD;
+    }
+    void updateRange(int l, int r, ll lazySum, ll lazyProduct) {
+        updateRange(1, 1, N, l, r, lazySum, lazyProduct);
+    }
+    
+    int getRange(int x, int s, int e, int l, int r) {
+        push(x, s, e);
+        if (r < s || e < l) return 0;
+        if (l <= s && e <= r) return tree[x].val;
+        int m = (s+e)>>1;
+        return (getRange(x<<1,s,m,l,r) + getRange(x<<1|1,m+1,e,l,r)) % MOD;
+    }
+    // int getRange(int l, int r) {
+    //     return getRange(1, 1, N, l, r);
+    // }
+    ll getValue(int idx) {
+        return getRange(1,1,N,idx,idx);
+    }
+} lazySeg;
+
+ll fastPow(ll a, ll p) {
+    ll res = 1LL;
+    while (p) {
+        if (p & 1LL) res = res * a % MOD;
+        a = a * a % MOD;
+        p >>= 1LL;
+    }
+    return res;
+}
+
+ll getInv(ll v) {
+    return fastPow(v, MOD - 2);
+}
+
+int main() {
+    int M; scanf("%d %d", &N, &M);
+    for(int i = 1; i <= N; ++i) scanf("%d", &lazySeg.arr[i]);
+    lazySeg.init();
+
+    for(int m = 0; m < M; ++m) {
+        ll l, r, v; scanf("%lld %lld %lld", &l, &r, &v);
+        ll range = r - l + 1;
+
+        ll p = getInv(range); // uniform 확률 -> 변할 확률 = 1 / range
+        ll ip = (range - 1) * p % MOD; // 변하지 않은 확률 = (range - 1) / range
+        ll lazyProduct = ip;
+        ll lazySum = p * v;
+
+        lazySeg.updateRange(l, r, lazySum, lazyProduct);
+    }
+    
+    for(int i = 1; i <= N; ++i) {
+        printf("%lld ", lazySeg.getValue(i));
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+</Details>
 
 ## G
 

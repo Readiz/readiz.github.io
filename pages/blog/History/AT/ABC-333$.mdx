@@ -13,6 +13,7 @@ import Details from '@/components/Details'
 import 'katex/dist/katex.min.css'
 import SolvedTier, {TierName} from '@/components/SolvedTier';
 import AC, {StateName} from '@/components/AtCoderResult';
+import { Link } from 'react-router-dom'
 
 <Header />
 
@@ -93,7 +94,9 @@ Editorial에서는 `Fenwick`이 아닌 `imos`로 계산했다. (`inclusive_scan`
 - Score: 550점
 - 문제 예상 티어: <SolvedTier tierName={TierName.Platinum} grade={2} width={15} />
 
-앳코더 빈출 유형. 예전 `DP` 연습용 셋의 `확률 DP` 문제이다. 확률간의 전이를 생각해야 하는 문제. 업솔빙 예정.
+앳코더 빈출 유형. 예전 `DP` 연습용 셋의 `확률 DP` 문제이다. 확률간의 전이를 생각해야 하는 문제. 업솔빙 예정. 결과 출력이 분수 형태가 될 때 해당 출력을 모듈로 역원으로 다루는 문제는 앳코더에 자주 나와서 아래 글에 한번 더 정리했다.
+
+- <Link to="/ps/Algorithm/Math/FastPowModularInverse">빠른 거듭제곱과 모듈로 역원</Link>
 
 
 ## G - Nearest Fraction (Will not be upsovled, just memo)
