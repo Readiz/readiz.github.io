@@ -1,0 +1,1 @@
+const t=[{depth:2,text:"TSP",id:"tsp"},{depth:3,text:"Bottom-up solution",id:"bottom-up-solution"}],e=Object.freeze(Object.defineProperty({__proto__:null,outline:t},Symbol.toStringTag,{value:"Module"}));export{e as p};
