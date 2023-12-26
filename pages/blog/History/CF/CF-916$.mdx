@@ -1,0 +1,100 @@
+---
+title: Codeforces Round 916
+writtendate: 2023-12-20
+tags:
+    - PS
+    - codeforces
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
+import Details from '@/components/Details'
+
+<Header />
+
+# Codeforces Round 916 Upsolving
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#03a89e'}}>**1405**</span> (Rank: 2068 / 18719)
+- Round 링크: [Top](https://codeforces.com/contest/1914) / [Problems](https://codeforces.com/contest/1914/problems)
+- 문제별 결과
+
+| A | B | C | D | E1 | E2 | F | G1 | G2 |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | - | - | - |
+
+`F`, `G1` 중에 하나만 더 풀었으면, 떡상각이었는데 너무 아쉽다. `F`, `G1` 복기 예정.
+
+
+## A - Problemsolving Log
+
+- 문제 링크: https://codeforces.com/contest/1914/problem/A
+- Score: N/A
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={3} width={15} />
+
+전형적인 코포스타일 A번.
+
+## B - Preparing for the Contest
+
+- 문제 링크: https://codeforces.com/contest/1914/problem/B
+- Score: N/A
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={3} width={15} />
+
+`Deque` 느낌으로, 앞 뒤로 숫자를 넣어 해결했다.
+
+## C - Quests
+
+- 문제 링크: https://codeforces.com/contest/1914/problem/C
+- Score: N/A
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={5} width={15} />
+
+전형적인 `Greedy`. `prefix sum`과 `prefix max` 를 구해야 하는 문제라서 재밌었다. RPG 장르에서 1회성 퀘스트 이후 반복하면 보상이 안좋아지는 그런 것을 사용해서 낸 재밌는 문제.
+
+## D - Three Activities
+
+- 문제 링크: https://codeforces.com/contest/1914/problem/D
+- Score: N/A
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={2} width={15} />
+
+한 D번 오면 보통 머리가 잘 안돌아간다. 그래서 각 활동 중 이득인 것 기준으로 정렬해서 $100 * 100 * 100$ 만큼 반복했는데, 알고보니 $3*3*3$ 번만 반복해도 됐다.
+
+
+## E1, E2 - Game with Marbles
+
+- 문제 링크 (E1: Easy): https://codeforces.com/contest/1914/problem/E1
+- 문제 링크 (E2: Hard): https://codeforces.com/contest/1914/problem/E2
+- Score: N/A
+- 문제 예상 티어: <SolvedTier tierName={TierName.Gold} grade={3} width={15} />
+
+역시나 `Greedy`. 각 플레이어가 최선으로 게임한다면, $a_i + b_i$가 최대한 것을 고르면 된다. 이 사실을 알고 나면, 그냥 평범한 `pq`문제로 변한다.
+
+
+## F - Programming Competition (To be upsolved...)
+
+- 문제 링크: https://codeforces.com/contest/1914/problem/F
+- Score: N/A
+- 문제 예상 티어: ?
+
+뭔가 엄청 복잡한 tree 나누기 합치기로 구현을 시도하다가 막혔는데, 업솔빙 예정.
+
+
+## G1 - Light Bulbs (Easy Version) (To be upsolved...)
+
+- 문제 링크: https://codeforces.com/contest/1914/problem/G1
+- Score: N/A
+- 문제 예상 티어: ?
+
+뭔가 할만한 경우의 수 구하기라는 것 같은데 지금은 잘 모르겠다. 추후 풀이 예정.
+
+
+## G1 - Light Bulbs (Hard Version)
+
+Skip.
+
+
+<TagList />
+<Comment />

@@ -24,14 +24,14 @@ import 'katex/dist/katex.min.css'
 
 를 모두 곱하면 된다. $2^n$ 제곱 한 수는 같은 수를 두번 곱함으로써 빠르게 구해진다. ($8$제곱한 수는 $4$제곱한 수를 두번 곱하면 된다)
 
-따라서 아래와 같은 알고리즘 작성이 가능하다. $a^p$를 구하는 알고리즘이다.
+따라서 아래와 같은 알고리즘 작성이 가능하다. $a^p$를 구하는 알고리즘이다. 기하급수적으로 커지므로, `MOD`로 나머지만 들고다니도록 많이 구현하는 편.
 
 ```cpp
 ll fpow(ll a, ll p) {
     ll res = 1LL;
     while (p) {
-        if (p & 1LL) res = res * a;
-        a = a * a;
+        if (p & 1LL) res = res * a % MOD;
+        a = a * a % MOD;
         p >>= 1LL;
     }
     return res;
