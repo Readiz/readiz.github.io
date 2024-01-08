@@ -1,0 +1,80 @@
+---
+title: AtCoder Beginner Contest 335
+writtendate: 2024-01-06
+tags:
+    - PS
+    - atcoder
+---
+import Comment from '@/components/Comment'
+import Header from '@/components/Header'
+import TagList from '@/components/TagList'
+import Image from '@/components/Image'
+import Details from '@/components/Details'
+import 'katex/dist/katex.min.css'
+import SolvedTier, {TierName} from '@/components/SolvedTier';
+import AC, {StateName} from '@/components/AtCoderResult';
+import { Link } from 'react-router-dom'
+
+<Header />
+
+# ABC 335 Upsolving
+
+- 대회 참가 유무: Y
+- 최종 Performance: <span style={{color:'#00C0C0'}}>1441</span> (Rank: 1199 / 13016)
+- Round 링크: [Top](https://atcoder.jp/contests/abc335) / [Tasks](https://atcoder.jp/contests/abc335/tasks)
+- 문제별 결과
+
+| A | B | C | D | E | F | G |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | <AC state="AC" /> | - | - | - |
+
+
+무난한 4솔브. `E`도 할만 했는데, 최종적으로 맞왜틀. 17분까지 `D` 풀이를 완료한 후, 삽질만 엄청 했다. 그래프 문제 좀 다양하게 더 풀어봐야겠다.
+
+## A - 202<s>3</s>
+
+- 문제 링크: https://atcoder.jp/contests/abc335/tasks/abc335_a
+- Score: 100점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={5} width={15} />
+
+Do you know how to `input` & `output`?
+
+## B - Tetrahedral Number
+
+- 문제 링크: https://atcoder.jp/contests/abc335/tasks/abc335_b
+- Score: 150점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Bronze} grade={2} width={15} />
+
+$O(N^3)$ 루프 문제.
+
+## C - Loong Tracking
+
+- 문제 링크: https://atcoder.jp/contests/abc335/tasks/abc335_c
+- Score: 300점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={3} width={15} />
+
+Do you know `deque`?
+
+## D - Loong and Takahashi
+
+- 문제 링크: https://atcoder.jp/contests/abc335/tasks/abc335_d
+- Score: 400점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Silver} grade={1} width={15} />
+
+`애드 훅` 문제. 예시가 없었다면 조금 어려웠을 수도 있는데, 조건도 홀수만이어서 고려할게 적었고, 명확하게 시계방향으로 숫자만 채우면 되는 문제였다. 여기까지 풀면 타임어택으로 1천등 ~ 4천등의 순위가 갈렸다는게.. CP의 냉혹함인듯 하다.
+
+## E - Non-Decreasing Colorful Path (To be upsolved...)
+
+- 문제 링크: https://atcoder.jp/contests/abc335/tasks/abc335_e
+- Score: 525점
+- 문제 예상 티어: <SolvedTier tierName={TierName.Platinum} grade={5} width={15} />
+
+엄청 여러번 `WA`, `TLE`를 반복했다. 거리가 0인 `Edge`를 처리하기 곤란했다. (이거때문에 다들 TLE..) 업솔빙 예정.
+
+## F, G
+
+문제가 너무 많이 쌓인 관계로 일단 skip. G는 정수론을 좀 빠삭하게 알면 쉬울 법한 문제인데, 나중에 도전해봐야겠다. 소수를 포함하는 거듭제곱과 연관된 정수론 연습문제인듯.
+
+
+<TagList />
+<Comment />
