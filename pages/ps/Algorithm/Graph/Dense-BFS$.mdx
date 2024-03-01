@@ -1,0 +1,87 @@
+---
+title: Dense BFS
+writtendate: 2024-02-29
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+
+## Dense BFS
+
+`inwooleeme` 님이 알려준 밀집 그래프에서의 그래프 최단 거리를 구하는 방법. 관련 문제를 풀면서 확인해보자.
+
+- Intercity 문제: https://www.acmicpc.net/problem/9264
+
+아래 블로그 글도 많이 참고 되었다.
+
+- 카레라이스가 먹고싶은 casterian 님 블로그: https://casterian.net/algo/dense-bfs.html
+
+
+### 일반 순회
+
+모든 간선의 길이가 동일하므로, queue를 써서 풀어보자. 초기에 시작 정점을 집어넣고, 연결된 edge를 순회하는 지극히 평범한 bfs 이다. 시간복잡도는 $O(V + E)$이고, 밀집 그래프에서는 $E = V(V-1)$이므로 $O(V^2)$에 가깝게 된다.
+
+```cpp
+vector<bool> vis;
+vis.resize(N, false);
+queue<pair<int,int>> q; // 간선 길이가 같으므로 pq 쓰는거나 q 쓰는거나 똑같다.
+q.push({0, 0}); // vertex, dist
+ll ans1 = INF;
+while(q.size()) {
+    auto cur = q.front(); q.pop();
+    if (cur.first == N - 1) {
+        ans1 = (ll)cur.second * A;
+        break;
+    }
+    vis[cur.first] = true;
+
+    for(auto& nxt: e[cur.first]) {
+        if (vis[nxt]) continue;
+        q.push({nxt, cur.second + 1});
+    }
+}
+```
+
+### 밀집 순회
+
+이 부분이 다루고자 하는 부분인데, 밀집 그래프의 경우 직관적으로 연결된 정점을 queue에 계속 넣는 것을 반복하게 될 경우에는 같은 정점이 반복해서 계속 들어가게 될 것이다. 만약 `SPFA`와 같은 알고리즘을 활용하고자 하더라도, 정점이 빠진 순간에 높은 확률로 다시 queue에 들어가게 되므로 수행시간은 줄어들더라도 전체적인 시간복잡도는 크게 줄어들기 어렵다. 따라서 아래와 같은 방식처럼 `unvisited` set을 하나 만들어두고, `unvisited`의 정점을 하나씩 빼면서 queue에 넣는 방식이 유효하다. 물론 `dense` 하다고 하더라도, 모든 정점이 연결되었다는 이야기는 아니므로, 이분 탐색을 활용해서 실제로 이어진 정점인지 확인해야 한다. 이분 탐색을 한 번 사용하는데에 $O(\log V)$의 시복도가 걸리고, $M$을 완전 그래프에서 빠진 간선의 수(dense graph에서는 작은 수일 것이다)로 정의하면 이 만큼 이분 탐색이 반복되므로 $O(M \log V)$의 시간이 걸린다.
+
+그리고, 다른 관점에서 모든 정점이 `unvisited`로부터 한번씩 빠지게 되므로, $O(V \log V)$의 시복도가 걸린다. 이를 종합하면, 전체적인 시간복잡도는 $O((M + V) \log V)$이다. 일반적인 BFS 시복도인 $O(V + E) = O(V^2)$에 비해 많은 개선이 있다고 하겠다.
+
+```cpp
+set<int> unvis;
+FOR(i,1,N) unvis.insert(i);
+q = {};
+q.push({0, 0}); // vertex, dist
+ll ans2 = INF;
+
+while(q.size()) {
+    auto cur = q.front(); q.pop();
+    if (cur.first == N - 1) { // 여기까진 같음
+        ans2 = (ll)cur.second * B;
+        break;
+    }
+    // cur에 이어진 간선을 보는 대신에, unvis 중에서 하나를 본다. (dense 하므로 대부분의 경우 경로가 있다)
+    for(auto it = unvis.begin(); it != unvis.end(); ) {
+        int nxt = *it;
+        if (e[cur.first].find(nxt) == e[cur.first].end()) {
+            // 아직 방문 안한 정점이다.
+            q.push({nxt, cur.second + 1});
+            it = unvis.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+```
+
+## Time Complexity
+
+- $O((M + V) \log V)$
+  - $M$은 완전 그래프($E = V(V-1)$)에서 빠진 간선의 수이다.
+
+<Comment />
