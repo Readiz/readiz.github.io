@@ -1,0 +1,67 @@
+---
+title: Hilbert Curve
+writtendate: 2024-03-19
+---
+import Details from '@/components/Details'
+import Image from '@/components/Image'
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+## Hilbert Curve
+
+- Wikipedia: https://en.wikipedia.org/wiki/Hilbert_curve
+- Codeforces blog: https://codeforces.com/blog/entry/61203
+- Hilbert MO 소개: https://tamref.com/97
+
+`Hilbert Curve`는 정수좌표계에서 사용가능한 일종의 `Space-Filling Curve` 이다. 1차원 좌표계에서 어떤 좌표 리스트가 있어서 그들을 최단 경로로 방문해야 한다고 한다면 이를 구하는 것은 간단하다. 위치를 정렬해서 오름차순이나 내림차순으로 방문하면 된다. 2차원 좌표계가 되면 이야기가 많이 복잡해진다. 이를 `Hilbert Curve` 를 사용해서 1차원 좌표계처럼 2차원 좌표계를 `projection` 할 수 있고, 휴리스틱하게 어느정도 가까운 점들끼리 방문할 수 있게 된다.
+
+<Image src="hilbertcurve.png" />
+
+아래 코드는 서두의 codeforces blog에서 공유된 코드로, 임의의 $x$, $y$ 좌표가 주어졌을 때의 Hilbert Curve 상의 순서를 $O(\log N)$ 시간 복잡도로 구할 수 있다.
+
+```cpp
+constexpr int rotateDelta[4] = {3, 0, 0, 1};
+inline int64_t hilbertOrder(int x, int y, int pow, int rotate) {
+	if (pow == 0) {
+		return 0;
+	}
+	int hpow = 1 << (pow-1);
+	int seg = (x < hpow) ? (
+		(y < hpow) ? 0 : 3
+	) : (
+		(y < hpow) ? 1 : 2
+	);
+	seg = (seg + rotate) & 3;
+	int nx = x & (x ^ hpow), ny = y & (y ^ hpow);
+	int nrot = (rotate + rotateDelta[seg]) & 3;
+	int64_t subSquareSize = int64_t(1) << (2*pow - 2);
+	int64_t ans = seg * subSquareSize;
+	int64_t add = hilbertOrder(nx, ny, pow-1, nrot);
+	ans += (seg == 1 || seg == 2) ? add : (subSquareSize - add - 1);
+	return ans;
+}
+```
+
+### 활용
+
+#### Mo's 알고리즘의 정렬 순서로 활용하기
+
+`Mo's` 알고리즘의 경우 쿼리 문제에서 쿼리의 $l$, $r$ 기준으로 정렬해서 동작하는 알고리즘이다. 이에 관해서는 글 서두에 있는 블로그에 잘 정리되어 있다. $N$과 $Q$가 거의 유사한 문제에서는 `Mo's` 알고리즘에 `zigzag` 아이디어를 섞은 것과 `Hilbert Curve`를 활용한 방식이 거의 유사한 성능을 보인다. `수열과 쿼리 0` 문제에서 측정한 속도는 아래와 같다.
+
+- 일반 `Mo's`: 1070 ms
+- `Mo's` + `zigzag`: 680 ms
+- `Mo's` + `Hilbert`: 660 ms
+
+#### Heuristics 문제에 활용하기
+
+성능을 요하는 `TSP` 문제에서 활용 가능하다. 임의의 좌표를 비용을 최소로 해서 방문해야 할때, 위에서 살펴본 것처럼 2차원 좌표계를 1차원 좌표계인 것처럼 순서를 정해서 방문할 수 있다. 대충 `int map[1000][1000]` 정도까지는 미리 순서를 저장해두고 $O(1)$에 구하는 것이 좋은 방식으로 보인다. 이전에 다뤘던 `Angle Sort`와의 성능 비교도 이후에 진행해봐야겠다.
+
+```cpp
+// [TODO] 2차원 공간에 Hilbert Curve 방문 순서를 채우는 코드
+```
+
+<Comment />
