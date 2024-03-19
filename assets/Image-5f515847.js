@@ -1,0 +1,1 @@
+import{j as t}from"./ssg-client-1884f836.js";const i=s=>s.width?t("img",{src:"/assets/"+s.src,width:s.width,style:{maxWidth:"100%"}}):t("img",{src:"/assets/"+s.src,style:{maxWidth:"100%"}});export{i as I};
