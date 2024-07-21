@@ -1,1 +1,0 @@
-const e=[{depth:1,text:"Score 식 분석",id:"score-식-분석"},{depth:1,text:"초반 전략",id:"초반-전략"},{depth:1,text:"중반 전략",id:"중반-전략"},{depth:1,text:"후반 전략",id:"후반-전략"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
