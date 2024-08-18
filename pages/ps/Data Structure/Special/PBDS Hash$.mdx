@@ -1,0 +1,59 @@
+---
+title: PBDS Hash
+writtendate: 2024-08-18
+tags:
+    - PBDS
+    - Hash
+    - data structure
+---
+import Comment from '@/components/Comment'
+import TagList from '@/components/TagList'
+import Header from '@/components/Header'
+import Image from '@/components/Image'
+import 'katex/dist/katex.min.css'
+
+<Header />
+
+`PBDS Hash`에 관한 간단한 정리.
+
+- gnu official design manual: http://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_data_structures_design.html
+- 관련 Codeforces 글: https://codeforces.com/blog/entry/60737
+
+## PBDS Hash?
+
+PBDS는 Policy based data structures의 약자로, `g++`에서 `ext/pb_ds` 아래에 위치하는 데이터 구조를 칭한다. 위 코드포스 블로그 글을 참조하면, 일반적인 `unordered_map` 보다 훨씬 빠른 속도로 동작한다고 한다.
+
+PBDS에서 사용가능한 것은 `gp_hash_table` 과 `cc_hash_table` 인데, `gp_hash_table`은 `Open Addressing` 방식이고, `cc_hash_table`은 `Chaining` 방식이다. 일반적으로 속도를 높히기 위해서 PBDS를 가지고 오는 것이므로 성능 향상을 목적으로는 `gp_hash_table`을 사용하는 것이 맞겠다.
+
+<Image src="2024-08-18-22-11-20.png" />
+
+### 사용 방법
+
+헤더를 넣고, 일반 `unordered_map` 처럼 사용하면 된다. 끝. `atcoder` 에 샘플로 제출한 솔루션은 아래와 같다.
+
+- AtCoder ABC367 F번 솔루션에 사용: https://atcoder.jp/contests/abc367/submissions/56866430
+
+```cpp
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
+const int HW_RANDOM = chrono::high_resolution_clock::now().time_since_epoch().count();
+struct chash {
+    int operator()(int x) const { return x ^ HW_RANDOM; }
+};
+gp_hash_table<int, int, chash> Table;
+```
+
+여기서 `chash` 는 해시 저격 방지용이다. 간단하게 저격 생각하지 않고 그냥 쓸거면 아래처럼도 가능하다.
+
+
+```cpp
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+gp_hash_table<int, int> Table;
+```
+
+사용은 STL과 거의 같으므로, 편하게 사용할 수 있다.
+
+<TagList />
+<Comment />
