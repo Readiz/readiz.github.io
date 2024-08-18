@@ -1,0 +1,1 @@
+const e=[{depth:2,text:"PBDS Hash?",id:"pbds-hash"},{depth:3,text:"사용 방법",id:"사용-방법"}],t=Object.freeze(Object.defineProperty({__proto__:null,outline:e},Symbol.toStringTag,{value:"Module"}));export{t as p};
