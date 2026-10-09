@@ -10,4 +10,4 @@
 - GitHub Pages 작업물과 정적 보관본: <https://git.readiz.com/>
 - 운영 종료 주소: `blog.readiz.com`
 
-`git.readiz.com`은 Mac 게이트웨이가 고정 upstream `https://readiz.github.io`를 프록시해 제공합니다. GitHub의 직접 도메인 바인딩은 기존 점유로 거절되어, 현재 계정 Pages의 사용자 지정 도메인은 비우고 `gh-pages/CNAME`을 두지 않습니다. 운영 설정은 `Readiz/new-home`의 `ops/README.md`에서 관리합니다. 옛 블로그 빌드 결과로 `gh-pages`를 덮어쓰지 마세요.
+`git.readiz.com`은 Readiz 계정에서 DNS TXT 소유권을 확인한 뒤 GitHub Pages에 직접 연결했습니다. Pages 사용자 지정 도메인과 `gh-pages/CNAME`은 모두 `git.readiz.com`으로 유지하고 HTTPS를 강제합니다. 운영 설정은 `Readiz/new-home`의 `ops/README.md`에서 관리합니다. 옛 블로그 빌드 결과로 `gh-pages`를 덮어쓰지 마세요.
